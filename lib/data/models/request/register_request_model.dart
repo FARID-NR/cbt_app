@@ -1,51 +1,33 @@
 import 'dart:convert';
 
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 class RegisterRequestModel {
-  // {
-  //     "success": true,
-  //     "message": "Pendaftaran Berhasil",
-  //     "data": {
-  //         "nama": "muiz",
-  //         "username": "60900120004",
-  //         "roles": "mahasiswa"
-  //     }
-  // }
+    final String nama;
+    final String username;
+    final String password;
+    final String skKompren;
 
-  final String nama;
-  final String username;
-  final String password;
-  final String roles;
-  
-  RegisterRequestModel({
-    required this.nama,
-    required this.username,
-    required this.password,
-    required this.roles,
-  });
+    RegisterRequestModel({
+        required this.nama,
+        required this.username,
+        required this.password,
+        required this.skKompren,
+    });
 
+    factory RegisterRequestModel.fromJson(String str) => RegisterRequestModel.fromMap(json.decode(str));
 
+    String toJson() => json.encode(toMap());
 
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'nama': nama,
-      'username': username,
-      'password': password,
-      'roles': roles,
-    };
-  }
-
-  factory RegisterRequestModel.fromMap(Map<String, dynamic> map) {
-    return RegisterRequestModel(
-      nama: map['nama'] as String,
-      username: map['username'] as String,
-      password: map['password'] as String,
-      roles: map['roles'] as String,
+    factory RegisterRequestModel.fromMap(Map<String, dynamic> json) => RegisterRequestModel(
+        nama: json["nama"],
+        username: json["username"],
+        password: json["password"],
+        skKompren: json["sk_kompren"],
     );
-  }
 
-  String toJson() => json.encode(toMap());
-
-  factory RegisterRequestModel.fromJson(String source) => RegisterRequestModel.fromMap(json.decode(source) as Map<String, dynamic>);
+    Map<String, dynamic> toMap() => {
+        "nama": nama,
+        "username": username,
+        "password": password,
+        "sk_kompren": skKompren,
+    };
 }

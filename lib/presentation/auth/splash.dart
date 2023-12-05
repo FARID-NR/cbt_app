@@ -14,13 +14,18 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(
-      const Duration(seconds: 3),
-      () => Navigator.pushReplacement(
+    navAuthPage();
+  }
+
+  void navAuthPage() async {
+    await Future.delayed(const Duration(seconds: 3));
+
+    if (mounted) {
+      Navigator.pushReplacement(
         context, 
         MaterialPageRoute(builder: (context) => const AuthPage(),)
-      ),
-    );
+      );
+    }
   }
 
   @override

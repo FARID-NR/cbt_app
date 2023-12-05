@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
-class UploadFile extends StatefulWidget {
+class UploadFile extends StatelessWidget {
   // final String fileName;
   final Function(File file) onFileSelected;
 
@@ -13,21 +13,28 @@ class UploadFile extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
-  @override
-  State<UploadFile> createState() => _UploadFileState();
-}
+  Future<void> _pickFile(BuildContext context) async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
 
-class _UploadFileState extends State<UploadFile> {
+    if (result != null) {
+      File file = File(result.files.single.path!);
+
+      // Memanggil fungsi onFileSelected dengan file yang dipilih
+      onFileSelected(file);
+    } else {
+      // Handle jika file tidak dipilih
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Tidak ada file yang dipilih.')),
+      );
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        FilePickerResult? result = await FilePicker.platform.pickFiles();
-
-        if (result != null) {
-          String selectedFileName = result.files.single.name;
-          widget.onFileSelected(File(result.files.single.path!));
-        }
+        _pickFile(context);
       },
       child: Container(
         height: 48,

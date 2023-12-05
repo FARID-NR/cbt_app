@@ -1,3 +1,4 @@
+import 'package:cbt_app/bloc/login/login_bloc.dart';
 import 'package:cbt_app/common/constants/colors.dart';
 import 'package:cbt_app/common/widgets/buttons.dart';
 import 'package:cbt_app/presentation/auth/widget/login_bottom_sheet_mhs.dart';
@@ -30,10 +31,9 @@ class _AuthPageState extends State<AuthPage> {
             const Text(
               'CBT UINAM',
               style: TextStyle(
-                fontSize: 34,
-                fontWeight: FontWeight.w800,
-                color: ColorName.primary
-              ),
+                  fontSize: 34,
+                  fontWeight: FontWeight.w800,
+                  color: ColorName.primary),
             ),
             const SizedBox(height: 8.0),
             const Text(
@@ -54,54 +54,47 @@ class _AuthPageState extends State<AuthPage> {
           children: [
             const SizedBox(height: 8.0),
             Button.filled(
-              onPressed: () {
-                showModalBottomSheet(
-                  context: context, 
-                  useSafeArea: true,
-                  isScrollControlled: true,
-                  builder: (BuildContext context) {
-                    return LoginBottomSheetDsn();
-                    // return BlocProvider(
-                    //   create: (context) => LoginBloc(),
-                    //   child: const LoginBottomSheet(),
-                    // );
-                  },
-                );
-              }, 
-              label: "CIVITAS AKADEMIK"
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    useSafeArea: true,
+                    isScrollControlled: true,
+                    builder: (BuildContext context) {
+                      return BlocProvider(
+                        create: (context) => LoginBloc(),
+                        child: const LoginBottomSheetDsn(),
+                      );
+                    },
+                  );
+                },
+                label: "CIVITAS AKADEMIK"),
+            const SizedBox(
+              height: 8.0,
             ),
-            const SizedBox(height: 8.0,),
             Button.outlined(
-              onPressed: () {
-                showModalBottomSheet(
-                  context: context, 
-                  useSafeArea: true,
-                  isScrollControlled: true,
-                  builder: (BuildContext context) {
-                    return LoginBottomSheet();
-                  },
-                );
-              }, 
-              label: 'MAHASISWA'
-            ),
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    useSafeArea: true,
+                    isScrollControlled: true,
+                    builder: (BuildContext context) {
+                      return LoginBottomSheet();
+                    },
+                  );
+                },
+                label: 'MAHASISWA'),
             const SizedBox(height: 32.0),
             const Text.rich(
               TextSpan(
-                text: "Dengan memilih salah satu, Anda menyetujuinya ",
-                children: [
-                  TextSpan(
-                    text: "Ketentuan Layanan & Kebijakan Privasi",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      color: ColorName.primary
-                    )
-                  )
-                ]
-              ),
-              style: TextStyle(
-                fontSize: 12,
-                color: ColorName.grey
-              ),
+                  text: "Dengan memilih salah satu, Anda menyetujuinya ",
+                  children: [
+                    TextSpan(
+                        text: "Ketentuan Layanan & Kebijakan Privasi",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: ColorName.primary))
+                  ]),
+              style: TextStyle(fontSize: 12, color: ColorName.grey),
               textAlign: TextAlign.center,
             )
           ],

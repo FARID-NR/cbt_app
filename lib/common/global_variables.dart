@@ -1,3 +1,3 @@
 class GlobalVariables {
-  static const baseUrl = 'https://2306-114-10-134-147.ngrok-free.app';
+  static const baseUrl = 'http://127.0.0.1:8000';
 }

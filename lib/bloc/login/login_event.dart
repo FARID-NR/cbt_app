@@ -1,4 +1,7 @@
 part of 'login_bloc.dart';
 
-@immutable
-sealed class LoginEvent {}
+@freezed
+class LoginEvent with _$LoginEvent {
+  const factory LoginEvent.started() = _Started;
+  const factory LoginEvent.login(LoginRequestModel requestModel) = _Login;
+}

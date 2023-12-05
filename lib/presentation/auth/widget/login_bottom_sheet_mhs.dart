@@ -1,4 +1,3 @@
-import 'package:cbt_app/bloc/login/login_bloc.dart';
 import 'package:cbt_app/presentation/auth/widget/register_bottom_sheet_mhs.dart';
 import 'package:cbt_app/presentation/mahasiswa/mahasiswa.dart';
 import 'package:flutter/gestures.dart';
@@ -7,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:flutter_siakad_app/data/models/request/auth_request_model.dart';
 
 // import '../../../bloc/login/login_bloc.dart';
+import '../../../bloc/register/register_bloc.dart';
 import '../../../common/constants/colors.dart';
 import '../../../common/widgets/buttons.dart';
 import '../../../common/widgets/custom_text_field.dart';
@@ -93,33 +93,34 @@ class _LoginBottomSheetState extends State<LoginBottomSheet> {
               ),
               const SizedBox(height: 24.0),
               Button.filled(
-                        onPressed: () {
-                          // final model = AuthRequestModel(
-                          //     email: usernameController.text,
-                          //     password: passwordController.text);
-                          // context
-                          //     .read<LoginBloc>()
-                          //     .add(LoginEvent.login(model));
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MahasiswaPage()));
-                        },
-                        label: 'Masuk',
-                      ),
+                onPressed: () {
+                  // final model = AuthRequestModel(
+                  //     email: usernameController.text,
+                  //     password: passwordController.text);
+                  // context
+                  //     .read<LoginBloc>()
+                  //     .add(LoginEvent.login(model));
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => MahasiswaPage()));
+                },
+                label: 'Masuk',
+              ),
               // BlocBuilder<LoginBloc, LoginState>(
               //   builder: (context, state) {
               //     return state.maybeWhen(
               //       orElse: () {
-                      // return Button.filled(
-                      //   onPressed: () {
-                      //     // final model = AuthRequestModel(
-                      //     //     email: usernameController.text,
-                      //     //     password: passwordController.text);
-                      //     // context
-                      //     //     .read<LoginBloc>()
-                      //     //     .add(LoginEvent.login(model));
-                      //   },
-                      //   label: 'Masuk',
-                      // );
-                    // },
+              // return Button.filled(
+              //   onPressed: () {
+              //     // final model = AuthRequestModel(
+              //     //     email: usernameController.text,
+              //     //     password: passwordController.text);
+              //     // context
+              //     //     .read<LoginBloc>()
+              //     //     .add(LoginEvent.login(model));
+              //   },
+              //   label: 'Masuk',
+              // );
+              // },
               //       loading: () {
               //         return const Center(
               //           child: CircularProgressIndicator(),
@@ -130,27 +131,23 @@ class _LoginBottomSheetState extends State<LoginBottomSheet> {
               // ),
               const SizedBox(height: 50),
               Center(
-                child: Text.rich(
+                child: Text.rich(TextSpan(text: 'Belum Punya Akun ', children: [
                   TextSpan(
-                    text: 'Belum Punya Akun ',
-                    children: [
-                      TextSpan(
-                        text: 'Buat Akun',
-                        style: TextStyle(
+                      text: 'Buat Akun',
+                      style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          color: ColorName.primary
-                        ),
-                        recognizer: TapGestureRecognizer()..onTap = () {
-                          Navigator.pushReplacement(context, 
-                            MaterialPageRoute(builder: (context) {
-                              return const RegisterBottomSheet();
-                            })
-                          );
-                        }
-                      )
-                    ]
-                  )
-                ),
+                          color: ColorName.primary),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) {
+                            return BlocProvider(
+                              create: (context) => RegisterBloc(),
+                              child: const RegisterBottomSheet(),
+                            );
+                          }));
+                        })
+                ])),
               )
             ],
           ),
