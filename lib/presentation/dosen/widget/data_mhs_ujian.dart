@@ -1,11 +1,4 @@
-import 'dart:io';
-
-import 'package:cbt_app/common/utils/dimensions.dart';
-import 'package:cbt_app/common/utils/images.dart';
-import 'package:cbt_app/common/widgets/animated_floating_button.dart';
-import 'package:cbt_app/common/widgets/upload_file.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../../common/constants/colors.dart';
 
@@ -49,119 +42,120 @@ class _DataMhsUjianState extends State<DataMhsUjianTile> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          children: [
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-              child: Text(
-                'Data Mahasiswa Ujian',
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: ColorName.primary),
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              // Untuk kembali ke halaman sebelumnya
+              Navigator.pop(context);
+            },
+          ),
+          title: const Text(
+            'List Pengajuan Mahasiswa',
+            style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w700,
+                color: ColorName.primary),
+          ),
+        ),
+        body: IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 45.0,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16.0),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Text('1.'),
+                      ),
+                      Text(
+                        '',
+                        style: TextStyle(
+                          color: ColorName.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            ),
-            IntrinsicHeight(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 45.0,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 10),
-                            child: Text('1.'),
-                          ),
-                          Text(
-                            '',
-                            style: TextStyle(
-                              color: ColorName.grey,
-                            ),
-                          ),
-                        ],
+              SizedBox(width: 5.0),
+              VerticalDivider(),
+              SizedBox(width: 5.0),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Awwir Wahyudin',
+                      style: TextStyle(
+                        color: ColorName.primary,
                       ),
                     ),
-                  ),
-                  SizedBox(width: 5.0),
-                  VerticalDivider(),
-                  SizedBox(width: 5.0),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 16.0),
-                    child: Column(
+                    SizedBox(height: 18.0),
+                    Text(
+                      '60900120025',
+                      style: TextStyle(
+                        color: ColorName.grey,
+                      ),
+                    ),
+                    SizedBox(height: 18.0),
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Awwir Wahyudin',
-                          style: TextStyle(
-                            color: ColorName.primary,
+                        GestureDetector(
+                          onTap: () {
+        
+                          },
+                          child: Text(
+                            'Lihat SK Kompren',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: ColorName.primary,
+                              decoration: TextDecoration.underline
+                            ),
                           ),
                         ),
-                        SizedBox(height: 18.0),
-                        Text(
-                          '60900120025',
-                          style: TextStyle(
-                            color: ColorName.grey,
-                          ),
+                        SizedBox(
+                          height: 10,
                         ),
-                        SizedBox(height: 18.0),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        Row(
+                          mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
                           children: [
-                            GestureDetector(
-                              onTap: () {
-
+                            TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  isClicked = !isClicked;
+                                });
+                                _showSuccessDialog();
                               },
                               child: Text(
-                                'Lihat SK Kompren',
+                                isClicked ? 'Belum Dapat Ujian' : 'Dapat Ikut Ujian',
                                 style: TextStyle(
-                                  fontSize: 16,
-                                  color: ColorName.primary,
-                                  decoration: TextDecoration.underline
+                                  color: Colors.white,
                                 ),
+                              ),
+                              style: TextButton.styleFrom(
+                                backgroundColor: isClicked ? Colors.red : Colors.green,
                               ),
                             ),
                             SizedBox(
-                              height: 10,
+                              width: 10,
                             ),
-                            Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                              children: [
-                                TextButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      isClicked = !isClicked;
-                                    });
-                                    _showSuccessDialog();
-                                  },
-                                  child: Text(
-                                    isClicked ? 'Belum Dapat Ujian' : 'Dapat Ikut Ujian',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  style: TextButton.styleFrom(
-                                    backgroundColor: isClicked ? Colors.red : Colors.green,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                              ],
-                            )
                           ],
                         )
                       ],
-                    ),
-                  ),
-                ],
+                    )
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

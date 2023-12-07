@@ -78,7 +78,10 @@ class _AuthPageState extends State<AuthPage> {
                     useSafeArea: true,
                     isScrollControlled: true,
                     builder: (BuildContext context) {
-                      return LoginBottomSheet();
+                      return BlocProvider(
+                        create: (context) => LoginBloc(),
+                        child: const LoginBottomSheet(),
+                      );
                     },
                   );
                 },

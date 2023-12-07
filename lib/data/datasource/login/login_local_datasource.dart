@@ -1,5 +1,4 @@
 import 'package:cbt_app/data/models/response/login_response_model.dart';
-import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginLocalDatasource {
@@ -21,6 +20,14 @@ class LoginLocalDatasource {
     final loginModel = LoginResponseModel.fromJson(jsonString);
     // debugPrint(loginModel.data.token);
     return loginModel.data.token;
+  }
+
+  Future<String> getRoles() async {
+    final pref = await SharedPreferences.getInstance();
+    final jsonString = pref.getString('login') ?? '';
+
+    final loginModel = LoginResponseModel.fromJson(jsonString);
+    return loginModel.data.roles;
   }
 
   Future<bool> isLogin() async {

@@ -1,21 +1,21 @@
 import 'dart:convert';
 
-class LoginResponseModel {
+class DashboardResponseModel {
     final bool success;
     final String message;
     final Data data;
 
-    LoginResponseModel({
+    DashboardResponseModel({
         required this.success,
         required this.message,
         required this.data,
     });
 
-    factory LoginResponseModel.fromJson(String str) => LoginResponseModel.fromMap(json.decode(str));
+    factory DashboardResponseModel.fromJson(String str) => DashboardResponseModel.fromMap(json.decode(str));
 
     String toJson() => json.encode(toMap());
 
-    factory LoginResponseModel.fromMap(Map<String, dynamic> json) => LoginResponseModel(
+    factory DashboardResponseModel.fromMap(Map<String, dynamic> json) => DashboardResponseModel(
         success: json["success"],
         message: json["message"],
         data: Data.fromMap(json["data"]),
@@ -29,12 +29,12 @@ class LoginResponseModel {
 }
 
 class Data {
-    String token;
-    String roles;
+    final int jumlahMatkul;
+    final int jumlahMahasiswa;
 
     Data({
-        required this.token,
-        required this.roles,
+        required this.jumlahMatkul,
+        required this.jumlahMahasiswa,
     });
 
     factory Data.fromJson(String str) => Data.fromMap(json.decode(str));
@@ -42,12 +42,12 @@ class Data {
     String toJson() => json.encode(toMap());
 
     factory Data.fromMap(Map<String, dynamic> json) => Data(
-        token: json["token"],
-        roles: json["roles"],
+        jumlahMatkul: json["jumlah_matkul"],
+        jumlahMahasiswa: json["jumlah_mahasiswa"],
     );
 
     Map<String, dynamic> toMap() => {
-        "token": token,
-        "roles": roles,
+        "jumlah_matkul": jumlahMatkul,
+        "jumlah_mahasiswa": jumlahMahasiswa,
     };
 }

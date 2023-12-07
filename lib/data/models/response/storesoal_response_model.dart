@@ -1,21 +1,21 @@
 import 'dart:convert';
 
-class RegisterResponseModel {
+class StoresoalResponseModel {
     final bool success;
     final String message;
     final Data data;
 
-   RegisterResponseModel({
+    StoresoalResponseModel({
         required this.success,
         required this.message,
         required this.data,
     });
 
-    factory RegisterResponseModel.fromJson(String str) => RegisterResponseModel.fromMap(json.decode(str));
+    factory StoresoalResponseModel.fromJson(String str) => StoresoalResponseModel.fromMap(json.decode(str));
 
     String toJson() => json.encode(toMap());
 
-    factory RegisterResponseModel.fromMap(Map<String, dynamic> json) => RegisterResponseModel(
+    factory StoresoalResponseModel.fromMap(Map<String, dynamic> json) => StoresoalResponseModel(
         success: json["success"],
         message: json["message"],
         data: Data.fromMap(json["data"]),

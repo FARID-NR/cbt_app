@@ -1,7 +1,6 @@
 import 'package:cbt_app/common/constants/colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../common/constants/themes.dart';
 
 class BackgroundDecoration extends StatelessWidget {
   const BackgroundDecoration(

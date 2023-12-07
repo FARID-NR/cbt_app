@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class IconName {
   static const String home = 'assets/icons/home.svg';

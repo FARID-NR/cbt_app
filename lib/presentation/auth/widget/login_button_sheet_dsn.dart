@@ -102,37 +102,46 @@ class _LoginBottomSheetDsnState extends State<LoginBottomSheetDsn> {
                         LoginLocalDatasource().saveLoginData(data);
                         if (data.data.roles == 'dosen'){
                           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-                            return DosenPage();
+                            return const DosenPage();
                           }));
-                        } else {
-                          AlertDialog(
-                            title: Text('Dosen'),
-                            content: Text('Akun anda tidak terdaftar sebagai dosen'),
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text('Close'),
-                              ),
-                            ],
+                        } else if (data.data.roles != 'dosen') {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text('Dosen'),
+                                content: const Text('Akun anda tidak terdaftar sebagai dosen'),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text('Close'),
+                                  ),
+                                ],
+                              );
+                            },
                           );
                         }
                       },
                       error: (message){
                         showDialog(
-                          context: context, 
-                          builder: (context) {
-                            return AlertDialog(
-                              title: Text(message),
-                            );
-                          }
-                        );
-                        // ScaffoldMessenger.of(context).showSnackBar(
-                        //   SnackBar(
-                        //     content: Text('Error - $message')
-                        //   )
-                        // );
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text('Dosen'),
+                                content: const Text('Username atau Password salah'),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text('Close'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
                       }
                     );
                   },
@@ -153,10 +162,11 @@ class _LoginBottomSheetDsnState extends State<LoginBottomSheetDsn> {
                           label: 'Masuk',
                         );
                       }, loading: () {
-                        return Center(
+                        return const Center(
                           child: CircularProgressIndicator(),
                         );
-                      });
+                      }
+                    );
                     },
                   ),
                 ),

@@ -1,13 +1,10 @@
 import 'package:cbt_app/common/constants/colors.dart';
 import 'package:cbt_app/common/constants/icons.dart';
-import 'package:cbt_app/common/constants/themes.dart';
-import 'package:cbt_app/common/widgets/circular_button.dart';
 import 'package:cbt_app/common/widgets/svg_icon.dart';
 import 'package:cbt_app/presentation/dosen/pages/Creat/creat_page.dart';
 import 'package:cbt_app/presentation/dosen/pages/dashboard_page.dart';
 import 'package:cbt_app/presentation/dosen/pages/pengujian_page.dart';
 import 'package:cbt_app/presentation/profile/profile_page.dart';
-import 'package:cbt_app/presentation/dosen/widget/menu_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
@@ -32,10 +29,10 @@ class _DosenPageState extends State<DosenPage> {
    final ZoomDrawerController zoomDrawerController = ZoomDrawerController();
 
   final List<Widget> _pages = const [
-    const DashboardPage(),
-    const PengujianPage(),
-    const CreatPage(),
-    const ProfilePage()
+    DashboardPage(),
+    PengujianPage(),
+    CreatPage(),
+    ProfilePage()
 
   ];
 
@@ -120,7 +117,6 @@ class _DosenPageState extends State<DosenPage> {
         //     ),
         //   )
         // ),
-
 
         body: _pages[_selectedIndex],
         bottomNavigationBar: ClipRRect(

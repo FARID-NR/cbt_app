@@ -18,42 +18,40 @@ class _CreatPageState extends State<CreatPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(20.0),
-      children: [
-        const Text(
-          'Mahasiswa',
-          style: TextStyle(
+    return ListView(padding: const EdgeInsets.all(20.0), children: [
+      const Text(
+        'Mahasiswa',
+        style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w700,
-            color: ColorName.primary
-          ),
-        ),
-        const SizedBox(height: 10.0),
-        SearchInput(
-          controller: searchController,
-        ),
-        const SizedBox(height: 40.0),
-        MenuCard(
-          label: 'Pengajuan',
-          backgroundColor: const Color(0xff686BFF),
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) =>  ListMatkulPage()));
-          },
-          imagePath: Images.jadwal,
-        ),
-        const SizedBox(height: 40.0),
-        MenuCard(
-          label: 'Hasil Penilaian',
-          backgroundColor: const Color(0xff686BFF),
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) =>  ListMatkulHasilPage()));
-          },
-          imagePath: Images.nMatkul,
-        ),
-      ]
-    );
+            color: ColorName.primary),
+      ),
+      const SizedBox(height: 10.0),
+      SearchInput(
+        controller: searchController,
+      ),
+      const SizedBox(height: 40.0),
+      MenuCard(
+        label: 'Pengajuan',
+        backgroundColor: const Color(0xff686BFF),
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => ListMatkulPage()));
+        },
+        imagePath: Images.jadwal,
+      ),
+      const SizedBox(height: 40.0),
+      MenuCard(
+        label: 'Hasil Penilaian',
+        backgroundColor: const Color(0xff686BFF),
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const ListMatkulHasilPage()));
+        },
+        imagePath: Images.nMatkul,
+      ),
+    ]);
   }
 }

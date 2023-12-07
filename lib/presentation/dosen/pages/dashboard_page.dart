@@ -1,17 +1,9 @@
 import 'package:cbt_app/common/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:flutter_siakad_app/pages/mahasiswa/absensi_page.dart';
-// import 'package:flutter_siakad_app/pages/mahasiswa/jadwal_matkul_page.dart';
-// import 'package:flutter_siakad_app/pages/mahasiswa/nilai_mk_page.dart';
-// import 'package:flutter_siakad_app/pages/mahasiswa/widgets/sample_map_page.dart';
 
-// import '../../bloc/khs/khs_bloc.dart';
-// import '../../common/constants/colors.dart';
-// import '../../common/constants/images.dart';
-// import '../../common/widgets/menu_card.dart';
-// import '../../common/widgets/search_input.dart';
-// import 'khs_page.dart';
+import '../../../bloc/dashboard/dashboard_bloc.dart';
+
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -21,100 +13,188 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+
+  @override
+  void initState() {
+    context.read<DashboardBloc>().add(const DashboardEvent.getDash());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final searchController = TextEditingController();
-
-    return ListView(
-      padding: const EdgeInsets.all(20.0),
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-              "Perkuliahan",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w700,
-                color: ColorName.primary,
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        // padding: const EdgeInsets.all(20.0),
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                "Perkuliahan",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w700,
+                  color: ColorName.primary,
+                ),
               ),
-            ),
-            Row(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => const SampleMapPage())
-                    // );
-                  },
-                  icon: const Icon(
-                    Icons.map,
-                    color: ColorName.green,
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => const SampleMapPage())
+                      // );
+                    },
+                    icon: const Icon(
+                      Icons.map,
+                      color: ColorName.green,
+                    ),
                   ),
-                ),
-                IconButton(
-                  onPressed: () {
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => const AbsensiPage())
-                    // );
-                  },
-                  icon: const Icon(
-                    Icons.qr_code_scanner,
-                    color: ColorName.primary,
+                  IconButton(
+                    onPressed: () {
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => const AbsensiPage())
+                      // );
+                    },
+                    icon: const Icon(
+                      Icons.qr_code_scanner,
+                      color: ColorName.primary,
+                    ),
                   ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.notifications,
-                    color: ColorName.primary,
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.notifications,
+                      color: ColorName.primary,
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
-        ),
-        const SizedBox(height: 10.0),
-        // SearchInput(
-        //   controller: searchController,
-        // ),
-        // const SizedBox(height: 40.0),
-        // MenuCard(
-        //   label: 'Kartu Hasil\nStudi',
-        //   backgroundColor: const Color(0xff686BFF),
-        //   onPressed: () {
-        //     Navigator.push(context,
-        //         MaterialPageRoute(builder: (context) => const KhsPage()));
-        //   },
-        //   imagePath: Images.khs,
-        // ),
-        // const SizedBox(height: 40.0),
-        // MenuCard(
-        //   label: 'Nilai\nMata Kuliah',
-        //   backgroundColor: const Color(0xffFFB023),
-        //   onPressed: () {
-        //     Navigator.push(context,
-        //         MaterialPageRoute(builder: (context) => const NilaiMkPage()));
-        //   },
-        //   imagePath: Images.nMatkul,
-        // ),
-        // const SizedBox(height: 40.0),
-        // MenuCard(
-        //   label: 'Jadwal\nMata Kuliah',
-        //   backgroundColor: const Color(0xffFF68F0),
-        //   onPressed: () {
-        //     Navigator.push(
-        //         context,
-        //         MaterialPageRoute(
-        //             builder: (context) => const JadwalMatkulPage()));
-        //   },
-        //   imagePath: Images.jadwal,
-        // ),
-      ],
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 10.0),
+          const SizedBox(height: 40.0),
+          BlocBuilder<DashboardBloc, DashboardState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                orElse: (){
+                  // return const Text('Data kosong');
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 100,
+                          padding: const EdgeInsets.all(7),
+                          decoration: BoxDecoration(
+                              color: Colors.blueAccent,
+                              borderRadius: BorderRadius.circular(8)),
+                          child: const Column(
+                            children: [
+                              Text(
+                                'Jumlah Matkul',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w600),
+                              ),
+                              Text(
+                                '0',
+                                style: TextStyle(fontSize: 30),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Container(
+                          height: 100,
+                          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 6),
+                          decoration: BoxDecoration(
+                              color: Colors.blueAccent,
+                              borderRadius: BorderRadius.circular(8)),
+                          child: const Column(
+                            children: [
+                              Text(
+                                'Jumlah Mahasiswa',
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.w600),
+                              ),
+                              Text(
+                                '0',
+                                style: TextStyle(fontSize: 30),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+                loading: () {
+                  return const Center(child: CircularProgressIndicator(),);
+                },
+                loaded: (data) {
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 100,
+                          padding: const EdgeInsets.all(7),
+                          decoration: BoxDecoration(
+                              color: Colors.blueAccent,
+                              borderRadius: BorderRadius.circular(8)),
+                          child: Column(
+                            children: [
+                              const Text(
+                                'Jumlah Matkul',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w600),
+                              ),
+                              Text(
+                                '${data.data.jumlahMatkul}',
+                                style: const TextStyle(fontSize: 30),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Container(
+                          height: 100,
+                          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 6),
+                          decoration: BoxDecoration(
+                              color: Colors.blueAccent,
+                              borderRadius: BorderRadius.circular(8)),
+                          child: Column(
+                            children: [
+                              const Text(
+                                'Jumlah Mahasiswa',
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.w600),
+                              ),
+                              Text(
+                                '${data.data.jumlahMahasiswa}',
+                                style: const TextStyle(fontSize: 30),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                    ],
+                  );
+                }
+              );
+              
+            },
+          )
+        ],
+      ),
     );
   }
 }
