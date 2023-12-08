@@ -2,7 +2,6 @@ import 'package:cbt_app/common/global_variables.dart';
 import 'package:cbt_app/data/datasource/login/login_local_datasource.dart';
 import 'package:cbt_app/data/models/response/get_soal_response_model.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class GetsoalRemoteDatasource {

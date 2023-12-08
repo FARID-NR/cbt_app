@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../bloc/pengajuan/pengajuan_bloc.dart';
 import '../../../common/constants/colors.dart';
 
 class DataMhsUjianTile extends StatefulWidget {
   // final CourseScheduleModel data;
-  const DataMhsUjianTile({super.key});
+  const DataMhsUjianTile({super.key, required int selectedUserId});
 
   @override
   State<DataMhsUjianTile> createState() => _DataMhsUjianState();
@@ -37,7 +39,6 @@ class _DataMhsUjianState extends State<DataMhsUjianTile> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -58,104 +59,126 @@ class _DataMhsUjianState extends State<DataMhsUjianTile> {
                 color: ColorName.primary),
           ),
         ),
-        body: IntrinsicHeight(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 45.0,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16.0),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(left: 10),
-                        child: Text('1.'),
-                      ),
-                      Text(
-                        '',
-                        style: TextStyle(
-                          color: ColorName.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(width: 5.0),
-              VerticalDivider(),
-              SizedBox(width: 5.0),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Awwir Wahyudin',
-                      style: TextStyle(
-                        color: ColorName.primary,
-                      ),
-                    ),
-                    SizedBox(height: 18.0),
-                    Text(
-                      '60900120025',
-                      style: TextStyle(
-                        color: ColorName.grey,
-                      ),
-                    ),
-                    SizedBox(height: 18.0),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-        
-                          },
-                          child: Text(
-                            'Lihat SK Kompren',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: ColorName.primary,
-                              decoration: TextDecoration.underline
+        body: BlocBuilder<PengajuanBloc, PengajuanState>(
+          builder: (context, state) {
+            return state.maybeWhen(
+              orElse: () {
+                return const Text('Belum ada pengajuan baru');
+              },
+              loading: () {
+                return const Center(child: CircularProgressIndicator(),);
+              },
+              loaded: (data) {
+                return ListView.builder(
+                  itemCount: data.data.mahasiswa.length,
+                  itemBuilder: (context, index) {
+                    return IntrinsicHeight(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: 45.0,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 16.0),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Text('${index + 1}.'),
+                                  ),
+                                  const Text(
+                                    '',
+                                    style: TextStyle(
+                                      color: ColorName.grey,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
-                          children: [
-                            TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  isClicked = !isClicked;
-                                });
-                                _showSuccessDialog();
-                              },
-                              child: Text(
-                                isClicked ? 'Belum Dapat Ujian' : 'Dapat Ikut Ujian',
-                                style: TextStyle(
-                                  color: Colors.white,
+                          const SizedBox(width: 5.0),
+                          const VerticalDivider(),
+                          const SizedBox(width: 5.0),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  data.data.mahasiswa[index].nama,
+                                  style: const TextStyle(
+                                    color: ColorName.primary,
+                                  ),
                                 ),
-                              ),
-                              style: TextButton.styleFrom(
-                                backgroundColor: isClicked ? Colors.red : Colors.green,
-                              ),
+                                const SizedBox(height: 18.0),
+                                Text(
+                                  data.data.mahasiswa[index].username,
+                                  style: const TextStyle(
+                                    color: ColorName.grey,
+                                  ),
+                                ),
+                                const SizedBox(height: 18.0),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        
+                                      },
+                                      child: const Text(
+                                        'Lihat SK Kompren',
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            color: ColorName.primary,
+                                            decoration: TextDecoration.underline),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        TextButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              isClicked = !isClicked;
+                                            });
+                                            _showSuccessDialog();
+                                          },
+                                          style: TextButton.styleFrom(
+                                            backgroundColor:
+                                                isClicked ? Colors.red : Colors.green,
+                                          ),
+                                          child: Text(
+                                            isClicked
+                                                ? 'Belum Dapat Ujian'
+                                                : 'Dapat Ikut Ujian',
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                )
+                              ],
                             ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                          ],
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                  
+                );
+              }
+            );
+            
+          },
         ),
       ),
     );

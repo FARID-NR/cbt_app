@@ -1,7 +1,5 @@
-import 'dart:io';
 
 import 'package:cbt_app/common/constants/colors.dart';
-import 'package:cbt_app/common/widgets/upload_file.dart';
 import 'package:flutter/material.dart';
 
 class OpsiPage extends StatefulWidget {
@@ -46,44 +44,45 @@ class _OpsiPageState extends State<OpsiPage> {
               SizedBox(height: 20),
               Row(
                 children: [
-                  UploadFile(
-                    // fileName: ,
-                    onFileSelected: (File file) {
-                      // Periksa jenis file sebelum mengambil tindakan
-                      final isImage = ['.jpeg', '.png', '.gif', '.jpg'].any(
-                          (extension) =>
-                              file.path.toLowerCase().endsWith(extension));
+                  // UploadFile(
+                  //   // fileName: ,
+                  //   onFileSelected: (File file) {
+                  //     // Periksa jenis file sebelum mengambil tindakan
+                  //     final isImage = ['.jpeg', '.png', '.gif', '.jpg'].any(
+                  //         (extension) =>
+                  //             file.path.toLowerCase().endsWith(extension));
           
-                      if (isImage) {
-                        // Lakukan sesuatu dengan file gambar yang dipilih di sini
-                        print('Selected file: ${file.path}');
-                        // Perbarui nama file di sini
-                        setState(() {
-                          fileName = file.path.split('/').last;
-                        });
-                      } else {
-                        // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
-                        print('File yang dipilih harus file gambar');
-                        // Misalnya, tampilkan pesan kesalahan
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text('File yang dipilih bukan file gambar'),
-                              actions: <Widget>[
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text('OK'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      }
-                    },
-                  ),
+                  //     if (isImage) {
+                  //       // Lakukan sesuatu dengan file gambar yang dipilih di sini
+                  //       print('Selected file: ${file.path}');
+                  //       // Perbarui nama file di sini
+                  //       setState(() {
+                  //         fileName = file.path.split('/').last;
+                  //       });
+                  //     } else {
+                  //       // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
+                  //       print('File yang dipilih harus file gambar');
+                  //       // Misalnya, tampilkan pesan kesalahan
+                  //       showDialog(
+                  //         context: context,
+                  //         builder: (BuildContext context) {
+                  //           return AlertDialog(
+                  //             title: Text('File yang dipilih bukan file gambar'),
+                  //             actions: <Widget>[
+                  //               TextButton(
+                  //                 onPressed: () {
+                  //                   Navigator.of(context).pop();
+                  //                 },
+                  //                 child: Text('OK'),
+                  //               ),
+                  //             ],
+                  //           );
+                  //         },
+                  //       );
+                  //     }
+                  //   },
+                  // ),
+                  
                   Expanded(
                     child: Container(
                       height: 48,
@@ -120,44 +119,45 @@ class _OpsiPageState extends State<OpsiPage> {
               SizedBox(height: 20),
               Row(
                 children: [
-                  UploadFile(
-                    // fileName: ,
-                    onFileSelected: (File file) {
-                      // Periksa jenis file sebelum mengambil tindakan
-                      final isImage = ['.jpeg', '.png', '.gif', '.jpg'].any(
-                          (extension) =>
-                              file.path.toLowerCase().endsWith(extension));
+                  // UploadFile(
+                  //   // fileName: ,
+                  //   onFileSelected: (File file) {
+                  //     // Periksa jenis file sebelum mengambil tindakan
+                  //     final isImage = ['.jpeg', '.png', '.gif', '.jpg'].any(
+                  //         (extension) =>
+                  //             file.path.toLowerCase().endsWith(extension));
           
-                      if (isImage) {
-                        // Lakukan sesuatu dengan file gambar yang dipilih di sini
-                        print('Selected file: ${file.path}');
-                        // Perbarui nama file di sini
-                        setState(() {
-                          fileName = file.path.split('/').last;
-                        });
-                      } else {
-                        // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
-                        print('File yang dipilih harus file gambar');
-                        // Misalnya, tampilkan pesan kesalahan
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text('File yang dipilih bukan file gambar'),
-                              actions: <Widget>[
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text('OK'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      }
-                    },
-                  ),
+                  //     if (isImage) {
+                  //       // Lakukan sesuatu dengan file gambar yang dipilih di sini
+                  //       print('Selected file: ${file.path}');
+                  //       // Perbarui nama file di sini
+                  //       setState(() {
+                  //         fileName = file.path.split('/').last;
+                  //       });
+                  //     } else {
+                  //       // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
+                  //       print('File yang dipilih harus file gambar');
+                  //       // Misalnya, tampilkan pesan kesalahan
+                  //       showDialog(
+                  //         context: context,
+                  //         builder: (BuildContext context) {
+                  //           return AlertDialog(
+                  //             title: Text('File yang dipilih bukan file gambar'),
+                  //             actions: <Widget>[
+                  //               TextButton(
+                  //                 onPressed: () {
+                  //                   Navigator.of(context).pop();
+                  //                 },
+                  //                 child: Text('OK'),
+                  //               ),
+                  //             ],
+                  //           );
+                  //         },
+                  //       );
+                  //     }
+                  //   },
+                  // ),
+                  
                   Expanded(
                     child: Container(
                       height: 48,
@@ -194,44 +194,45 @@ class _OpsiPageState extends State<OpsiPage> {
               SizedBox(height: 20),
               Row(
                 children: [
-                  UploadFile(
-                    // fileName: ,
-                    onFileSelected: (File file) {
-                      // Periksa jenis file sebelum mengambil tindakan
-                      final isImage = ['.jpeg', '.png', '.gif', '.jpg'].any(
-                          (extension) =>
-                              file.path.toLowerCase().endsWith(extension));
+                  // UploadFile(
+                  //   // fileName: ,
+                  //   onFileSelected: (File file) {
+                  //     // Periksa jenis file sebelum mengambil tindakan
+                  //     final isImage = ['.jpeg', '.png', '.gif', '.jpg'].any(
+                  //         (extension) =>
+                  //             file.path.toLowerCase().endsWith(extension));
           
-                      if (isImage) {
-                        // Lakukan sesuatu dengan file gambar yang dipilih di sini
-                        print('Selected file: ${file.path}');
-                        // Perbarui nama file di sini
-                        setState(() {
-                          fileName = file.path.split('/').last;
-                        });
-                      } else {
-                        // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
-                        print('File yang dipilih harus file gambar');
-                        // Misalnya, tampilkan pesan kesalahan
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text('File yang dipilih bukan file gambar'),
-                              actions: <Widget>[
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text('OK'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      }
-                    },
-                  ),
+                  //     if (isImage) {
+                  //       // Lakukan sesuatu dengan file gambar yang dipilih di sini
+                  //       print('Selected file: ${file.path}');
+                  //       // Perbarui nama file di sini
+                  //       setState(() {
+                  //         fileName = file.path.split('/').last;
+                  //       });
+                  //     } else {
+                  //       // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
+                  //       print('File yang dipilih harus file gambar');
+                  //       // Misalnya, tampilkan pesan kesalahan
+                  //       showDialog(
+                  //         context: context,
+                  //         builder: (BuildContext context) {
+                  //           return AlertDialog(
+                  //             title: Text('File yang dipilih bukan file gambar'),
+                  //             actions: <Widget>[
+                  //               TextButton(
+                  //                 onPressed: () {
+                  //                   Navigator.of(context).pop();
+                  //                 },
+                  //                 child: Text('OK'),
+                  //               ),
+                  //             ],
+                  //           );
+                  //         },
+                  //       );
+                  //     }
+                  //   },
+                  // ),
+                  
                   Expanded(
                     child: Container(
                       height: 48,
@@ -268,44 +269,45 @@ class _OpsiPageState extends State<OpsiPage> {
               SizedBox(height: 20),
               Row(
                 children: [
-                  UploadFile(
-                    // fileName: ,
-                    onFileSelected: (File file) {
-                      // Periksa jenis file sebelum mengambil tindakan
-                      final isImage = ['.jpeg', '.png', '.gif', '.jpg'].any(
-                          (extension) =>
-                              file.path.toLowerCase().endsWith(extension));
+                  // UploadFile(
+                  //   // fileName: ,
+                  //   onFileSelected: (File file) {
+                  //     // Periksa jenis file sebelum mengambil tindakan
+                  //     final isImage = ['.jpeg', '.png', '.gif', '.jpg'].any(
+                  //         (extension) =>
+                  //             file.path.toLowerCase().endsWith(extension));
           
-                      if (isImage) {
-                        // Lakukan sesuatu dengan file gambar yang dipilih di sini
-                        print('Selected file: ${file.path}');
-                        // Perbarui nama file di sini
-                        setState(() {
-                          fileName = file.path.split('/').last;
-                        });
-                      } else {
-                        // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
-                        print('File yang dipilih harus file gambar');
-                        // Misalnya, tampilkan pesan kesalahan
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text('File yang dipilih bukan file gambar'),
-                              actions: <Widget>[
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text('OK'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      }
-                    },
-                  ),
+                  //     if (isImage) {
+                  //       // Lakukan sesuatu dengan file gambar yang dipilih di sini
+                  //       print('Selected file: ${file.path}');
+                  //       // Perbarui nama file di sini
+                  //       setState(() {
+                  //         fileName = file.path.split('/').last;
+                  //       });
+                  //     } else {
+                  //       // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
+                  //       print('File yang dipilih harus file gambar');
+                  //       // Misalnya, tampilkan pesan kesalahan
+                  //       showDialog(
+                  //         context: context,
+                  //         builder: (BuildContext context) {
+                  //           return AlertDialog(
+                  //             title: Text('File yang dipilih bukan file gambar'),
+                  //             actions: <Widget>[
+                  //               TextButton(
+                  //                 onPressed: () {
+                  //                   Navigator.of(context).pop();
+                  //                 },
+                  //                 child: Text('OK'),
+                  //               ),
+                  //             ],
+                  //           );
+                  //         },
+                  //       );
+                  //     }
+                  //   },
+                  // ),
+                  
                   Expanded(
                     child: Container(
                       height: 48,
@@ -342,44 +344,45 @@ class _OpsiPageState extends State<OpsiPage> {
               SizedBox(height: 20),
               Row(
                 children: [
-                  UploadFile(
-                    // fileName: ,
-                    onFileSelected: (File file) {
-                      // Periksa jenis file sebelum mengambil tindakan
-                      final isImage = ['.jpeg', '.png', '.gif', '.jpg'].any(
-                          (extension) =>
-                              file.path.toLowerCase().endsWith(extension));
+                  // UploadFile(
+                  //   // fileName: ,
+                  //   onFileSelected: (File file) {
+                  //     // Periksa jenis file sebelum mengambil tindakan
+                  //     final isImage = ['.jpeg', '.png', '.gif', '.jpg'].any(
+                  //         (extension) =>
+                  //             file.path.toLowerCase().endsWith(extension));
           
-                      if (isImage) {
-                        // Lakukan sesuatu dengan file gambar yang dipilih di sini
-                        print('Selected file: ${file.path}');
-                        // Perbarui nama file di sini
-                        setState(() {
-                          fileName = file.path.split('/').last;
-                        });
-                      } else {
-                        // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
-                        print('File yang dipilih harus file gambar');
-                        // Misalnya, tampilkan pesan kesalahan
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text('File yang dipilih bukan file gambar'),
-                              actions: <Widget>[
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text('OK'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      }
-                    },
-                  ),
+                  //     if (isImage) {
+                  //       // Lakukan sesuatu dengan file gambar yang dipilih di sini
+                  //       print('Selected file: ${file.path}');
+                  //       // Perbarui nama file di sini
+                  //       setState(() {
+                  //         fileName = file.path.split('/').last;
+                  //       });
+                  //     } else {
+                  //       // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
+                  //       print('File yang dipilih harus file gambar');
+                  //       // Misalnya, tampilkan pesan kesalahan
+                  //       showDialog(
+                  //         context: context,
+                  //         builder: (BuildContext context) {
+                  //           return AlertDialog(
+                  //             title: Text('File yang dipilih bukan file gambar'),
+                  //             actions: <Widget>[
+                  //               TextButton(
+                  //                 onPressed: () {
+                  //                   Navigator.of(context).pop();
+                  //                 },
+                  //                 child: Text('OK'),
+                  //               ),
+                  //             ],
+                  //           );
+                  //         },
+                  //       );
+                  //     }
+                  //   },
+                  // ),
+                  
                   Expanded(
                     child: Container(
                       height: 48,

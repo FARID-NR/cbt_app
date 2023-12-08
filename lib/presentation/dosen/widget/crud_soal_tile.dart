@@ -388,51 +388,52 @@ class _CourseScheduleTileState extends State<CourseScheduleTile> {
                                                                             const SizedBox(height: 10),
                                                                             Row(
                                                                               children: [
-                                                                                UploadFile(
-                                                                                  // fileName: ,
-                                                                                  onFileSelected: (File file) {
-                                                                                    // Periksa jenis file sebelum mengambil tindakan
-                                                                                    final isImage = [
-                                                                                      '.jpeg',
-                                                                                      '.png',
-                                                                                      '.gif',
-                                                                                      '.jpg'
-                                                                                    ].any((extension) => file.path.toLowerCase().endsWith(extension));
+                                                                                // UploadFile(
+                                                                                //   // fileName: ,
+                                                                                //   onFileSelected: (File file) {
+                                                                                //     // Periksa jenis file sebelum mengambil tindakan
+                                                                                //     final isImage = [
+                                                                                //       '.jpeg',
+                                                                                //       '.png',
+                                                                                //       '.gif',
+                                                                                //       '.jpg'
+                                                                                //     ].any((extension) => file.path.toLowerCase().endsWith(extension));
                                           
-                                                                                    if (isImage) {
-                                                                                      // Lakukan sesuatu dengan file gambar yang dipilih di sini
-                                                                                      if (kDebugMode) {
-                                                                                        print('Selected file: ${file.path}');
-                                                                                      }
-                                                                                      // Perbarui nama file di sini
-                                                                                      setState(() {
-                                                                                        fileName = file.path.split('/').last;
-                                                                                      });
-                                                                                    } else {
-                                                                                      // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
-                                                                                      if (kDebugMode) {
-                                                                                        print('File yang dipilih harus file gambar');
-                                                                                      }
-                                                                                      // Misalnya, tampilkan pesan kesalahan
-                                                                                      showDialog(
-                                                                                        context: context,
-                                                                                        builder: (BuildContext context) {
-                                                                                          return AlertDialog(
-                                                                                            title: const Text('File yang dipilih bukan file gambar'),
-                                                                                            actions: <Widget>[
-                                                                                              TextButton(
-                                                                                                onPressed: () {
-                                                                                                  Navigator.of(context).pop();
-                                                                                                },
-                                                                                                child: const Text('OK'),
-                                                                                              ),
-                                                                                            ],
-                                                                                          );
-                                                                                        },
-                                                                                      );
-                                                                                    }
-                                                                                  },
-                                                                                ),
+                                                                                //     if (isImage) {
+                                                                                //       // Lakukan sesuatu dengan file gambar yang dipilih di sini
+                                                                                //       if (kDebugMode) {
+                                                                                //         print('Selected file: ${file.path}');
+                                                                                //       }
+                                                                                //       // Perbarui nama file di sini
+                                                                                //       setState(() {
+                                                                                //         fileName = file.path.split('/').last;
+                                                                                //       });
+                                                                                //     } else {
+                                                                                //       // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
+                                                                                //       if (kDebugMode) {
+                                                                                //         print('File yang dipilih harus file gambar');
+                                                                                //       }
+                                                                                //       // Misalnya, tampilkan pesan kesalahan
+                                                                                //       showDialog(
+                                                                                //         context: context,
+                                                                                //         builder: (BuildContext context) {
+                                                                                //           return AlertDialog(
+                                                                                //             title: const Text('File yang dipilih bukan file gambar'),
+                                                                                //             actions: <Widget>[
+                                                                                //               TextButton(
+                                                                                //                 onPressed: () {
+                                                                                //                   Navigator.of(context).pop();
+                                                                                //                 },
+                                                                                //                 child: const Text('OK'),
+                                                                                //               ),
+                                                                                //             ],
+                                                                                //           );
+                                                                                //         },
+                                                                                //       );
+                                                                                //     }
+                                                                                //   },
+                                                                                // ),
+                                                                                
                                                                                 Expanded(
                                                                                   child: Container(
                                                                                     height: 48,
@@ -467,50 +468,51 @@ class _CourseScheduleTileState extends State<CourseScheduleTile> {
                                                                             const SizedBox(height: 10),
                                                                             Row(
                                                                               children: [
-                                                                                UploadFile(
-                                                                                  // fileName: ,
-                                                                                  onFileSelected: (File file) {
-                                                                                    // Periksa jenis file sebelum mengambil tindakan
-                                                                                    final isImage = [
-                                                                                      '.jpeg',
-                                                                                      '.png',
-                                                                                      '.gif',
-                                                                                      '.jpg'
-                                                                                    ].any((extension) => file.path.toLowerCase().endsWith(extension));
+                                                                                // UploadFile(
+                                                                                //   // fileName: ,
+                                                                                //   onFileSelected: (File file) {
+                                                                                //     // Periksa jenis file sebelum mengambil tindakan
+                                                                                //     final isImage = [
+                                                                                //       '.jpeg',
+                                                                                //       '.png',
+                                                                                //       '.gif',
+                                                                                //       '.jpg'
+                                                                                //     ].any((extension) => file.path.toLowerCase().endsWith(extension));
                                           
-                                                                                    if (isImage) {
-                                                                                      // Lakukan sesuatu dengan file gambar yang dipilih di sini
-                                                                                      // print(
-                                                                                      //     'Selected file: ${file.path}');
-                                                                                      // Perbarui nama file di sini
-                                                                                      setState(() {
-                                                                                        fileName = file.path.split('/').last;
-                                                                                      });
-                                                                                    } else {
-                                                                                      // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
-                                                                                      if (kDebugMode) {
-                                                                                        print('File yang dipilih harus file gambar');
-                                                                                      }
-                                                                                      // Misalnya, tampilkan pesan kesalahan
-                                                                                      showDialog(
-                                                                                        context: context,
-                                                                                        builder: (BuildContext context) {
-                                                                                          return AlertDialog(
-                                                                                            title: const Text('File yang dipilih bukan file gambar'),
-                                                                                            actions: <Widget>[
-                                                                                              TextButton(
-                                                                                                onPressed: () {
-                                                                                                  Navigator.of(context).pop();
-                                                                                                },
-                                                                                                child: const Text('OK'),
-                                                                                              ),
-                                                                                            ],
-                                                                                          );
-                                                                                        },
-                                                                                      );
-                                                                                    }
-                                                                                  },
-                                                                                ),
+                                                                                //     if (isImage) {
+                                                                                //       // Lakukan sesuatu dengan file gambar yang dipilih di sini
+                                                                                //       // print(
+                                                                                //       //     'Selected file: ${file.path}');
+                                                                                //       // Perbarui nama file di sini
+                                                                                //       setState(() {
+                                                                                //         fileName = file.path.split('/').last;
+                                                                                //       });
+                                                                                //     } else {
+                                                                                //       // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
+                                                                                //       if (kDebugMode) {
+                                                                                //         print('File yang dipilih harus file gambar');
+                                                                                //       }
+                                                                                //       // Misalnya, tampilkan pesan kesalahan
+                                                                                //       showDialog(
+                                                                                //         context: context,
+                                                                                //         builder: (BuildContext context) {
+                                                                                //           return AlertDialog(
+                                                                                //             title: const Text('File yang dipilih bukan file gambar'),
+                                                                                //             actions: <Widget>[
+                                                                                //               TextButton(
+                                                                                //                 onPressed: () {
+                                                                                //                   Navigator.of(context).pop();
+                                                                                //                 },
+                                                                                //                 child: const Text('OK'),
+                                                                                //               ),
+                                                                                //             ],
+                                                                                //           );
+                                                                                //         },
+                                                                                //       );
+                                                                                //     }
+                                                                                //   },
+                                                                                // ),
+                                                                                
                                                                                 Expanded(
                                                                                   child: Container(
                                                                                     height: 48,
@@ -545,51 +547,52 @@ class _CourseScheduleTileState extends State<CourseScheduleTile> {
                                                                             const SizedBox(height: 10),
                                                                             Row(
                                                                               children: [
-                                                                                UploadFile(
-                                                                                  // fileName: ,
-                                                                                  onFileSelected: (File file) {
-                                                                                    // Periksa jenis file sebelum mengambil tindakan
-                                                                                    final isImage = [
-                                                                                      '.jpeg',
-                                                                                      '.png',
-                                                                                      '.gif',
-                                                                                      '.jpg'
-                                                                                    ].any((extension) => file.path.toLowerCase().endsWith(extension));
+                                                                                // UploadFile(
+                                                                                //   // fileName: ,
+                                                                                //   onFileSelected: (File file) {
+                                                                                //     // Periksa jenis file sebelum mengambil tindakan
+                                                                                //     final isImage = [
+                                                                                //       '.jpeg',
+                                                                                //       '.png',
+                                                                                //       '.gif',
+                                                                                //       '.jpg'
+                                                                                //     ].any((extension) => file.path.toLowerCase().endsWith(extension));
                                           
-                                                                                    if (isImage) {
-                                                                                      // Lakukan sesuatu dengan file gambar yang dipilih di sini
-                                                                                      if (kDebugMode) {
-                                                                                        print('Selected file: ${file.path}');
-                                                                                      }
-                                                                                      // Perbarui nama file di sini
-                                                                                      setState(() {
-                                                                                        fileName = file.path.split('/').last;
-                                                                                      });
-                                                                                    } else {
-                                                                                      // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
-                                                                                      if (kDebugMode) {
-                                                                                        print('File yang dipilih harus file gambar');
-                                                                                      }
-                                                                                      // Misalnya, tampilkan pesan kesalahan
-                                                                                      showDialog(
-                                                                                        context: context,
-                                                                                        builder: (BuildContext context) {
-                                                                                          return AlertDialog(
-                                                                                            title: const Text('File yang dipilih bukan file gambar'),
-                                                                                            actions: <Widget>[
-                                                                                              TextButton(
-                                                                                                onPressed: () {
-                                                                                                  Navigator.of(context).pop();
-                                                                                                },
-                                                                                                child: const Text('OK'),
-                                                                                              ),
-                                                                                            ],
-                                                                                          );
-                                                                                        },
-                                                                                      );
-                                                                                    }
-                                                                                  },
-                                                                                ),
+                                                                                //     if (isImage) {
+                                                                                //       // Lakukan sesuatu dengan file gambar yang dipilih di sini
+                                                                                //       if (kDebugMode) {
+                                                                                //         print('Selected file: ${file.path}');
+                                                                                //       }
+                                                                                //       // Perbarui nama file di sini
+                                                                                //       setState(() {
+                                                                                //         fileName = file.path.split('/').last;
+                                                                                //       });
+                                                                                //     } else {
+                                                                                //       // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
+                                                                                //       if (kDebugMode) {
+                                                                                //         print('File yang dipilih harus file gambar');
+                                                                                //       }
+                                                                                //       // Misalnya, tampilkan pesan kesalahan
+                                                                                //       showDialog(
+                                                                                //         context: context,
+                                                                                //         builder: (BuildContext context) {
+                                                                                //           return AlertDialog(
+                                                                                //             title: const Text('File yang dipilih bukan file gambar'),
+                                                                                //             actions: <Widget>[
+                                                                                //               TextButton(
+                                                                                //                 onPressed: () {
+                                                                                //                   Navigator.of(context).pop();
+                                                                                //                 },
+                                                                                //                 child: const Text('OK'),
+                                                                                //               ),
+                                                                                //             ],
+                                                                                //           );
+                                                                                //         },
+                                                                                //       );
+                                                                                //     }
+                                                                                //   },
+                                                                                // ),
+                                                                                
                                                                                 Expanded(
                                                                                   child: Container(
                                                                                     height: 48,
@@ -624,51 +627,52 @@ class _CourseScheduleTileState extends State<CourseScheduleTile> {
                                                                             const SizedBox(height: 10),
                                                                             Row(
                                                                               children: [
-                                                                                UploadFile(
-                                                                                  // fileName: ,
-                                                                                  onFileSelected: (File file) {
-                                                                                    // Periksa jenis file sebelum mengambil tindakan
-                                                                                    final isImage = [
-                                                                                      '.jpeg',
-                                                                                      '.png',
-                                                                                      '.gif',
-                                                                                      '.jpg'
-                                                                                    ].any((extension) => file.path.toLowerCase().endsWith(extension));
+                                                                                // UploadFile(
+                                                                                //   // fileName: ,
+                                                                                //   onFileSelected: (File file) {
+                                                                                //     // Periksa jenis file sebelum mengambil tindakan
+                                                                                //     final isImage = [
+                                                                                //       '.jpeg',
+                                                                                //       '.png',
+                                                                                //       '.gif',
+                                                                                //       '.jpg'
+                                                                                //     ].any((extension) => file.path.toLowerCase().endsWith(extension));
                                           
-                                                                                    if (isImage) {
-                                                                                      // Lakukan sesuatu dengan file gambar yang dipilih di sini
-                                                                                      if (kDebugMode) {
-                                                                                        print('Selected file: ${file.path}');
-                                                                                      }
-                                                                                      // Perbarui nama file di sini
-                                                                                      setState(() {
-                                                                                        fileName = file.path.split('/').last;
-                                                                                      });
-                                                                                    } else {
-                                                                                      // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
-                                                                                      if (kDebugMode) {
-                                                                                        print('File yang dipilih harus file gambar');
-                                                                                      }
-                                                                                      // Misalnya, tampilkan pesan kesalahan
-                                                                                      showDialog(
-                                                                                        context: context,
-                                                                                        builder: (BuildContext context) {
-                                                                                          return AlertDialog(
-                                                                                            title: const Text('File yang dipilih bukan file gambar'),
-                                                                                            actions: <Widget>[
-                                                                                              TextButton(
-                                                                                                onPressed: () {
-                                                                                                  Navigator.of(context).pop();
-                                                                                                },
-                                                                                                child: const Text('OK'),
-                                                                                              ),
-                                                                                            ],
-                                                                                          );
-                                                                                        },
-                                                                                      );
-                                                                                    }
-                                                                                  },
-                                                                                ),
+                                                                                //     if (isImage) {
+                                                                                //       // Lakukan sesuatu dengan file gambar yang dipilih di sini
+                                                                                //       if (kDebugMode) {
+                                                                                //         print('Selected file: ${file.path}');
+                                                                                //       }
+                                                                                //       // Perbarui nama file di sini
+                                                                                //       setState(() {
+                                                                                //         fileName = file.path.split('/').last;
+                                                                                //       });
+                                                                                //     } else {
+                                                                                //       // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
+                                                                                //       if (kDebugMode) {
+                                                                                //         print('File yang dipilih harus file gambar');
+                                                                                //       }
+                                                                                //       // Misalnya, tampilkan pesan kesalahan
+                                                                                //       showDialog(
+                                                                                //         context: context,
+                                                                                //         builder: (BuildContext context) {
+                                                                                //           return AlertDialog(
+                                                                                //             title: const Text('File yang dipilih bukan file gambar'),
+                                                                                //             actions: <Widget>[
+                                                                                //               TextButton(
+                                                                                //                 onPressed: () {
+                                                                                //                   Navigator.of(context).pop();
+                                                                                //                 },
+                                                                                //                 child: const Text('OK'),
+                                                                                //               ),
+                                                                                //             ],
+                                                                                //           );
+                                                                                //         },
+                                                                                //       );
+                                                                                //     }
+                                                                                //   },
+                                                                                // ),
+                                                                                
                                                                                 Expanded(
                                                                                   child: Container(
                                                                                     height: 48,
@@ -703,51 +707,52 @@ class _CourseScheduleTileState extends State<CourseScheduleTile> {
                                                                             const SizedBox(height: 10),
                                                                             Row(
                                                                               children: [
-                                                                                UploadFile(
-                                                                                  // fileName: ,
-                                                                                  onFileSelected: (File file) {
-                                                                                    // Periksa jenis file sebelum mengambil tindakan
-                                                                                    final isImage = [
-                                                                                      '.jpeg',
-                                                                                      '.png',
-                                                                                      '.gif',
-                                                                                      '.jpg'
-                                                                                    ].any((extension) => file.path.toLowerCase().endsWith(extension));
+                                                                                // UploadFile(
+                                                                                //   // fileName: ,
+                                                                                //   onFileSelected: (File file) {
+                                                                                //     // Periksa jenis file sebelum mengambil tindakan
+                                                                                //     final isImage = [
+                                                                                //       '.jpeg',
+                                                                                //       '.png',
+                                                                                //       '.gif',
+                                                                                //       '.jpg'
+                                                                                //     ].any((extension) => file.path.toLowerCase().endsWith(extension));
                                           
-                                                                                    if (isImage) {
-                                                                                      // Lakukan sesuatu dengan file gambar yang dipilih di sini
-                                                                                      if (kDebugMode) {
-                                                                                        print('Selected file: ${file.path}');
-                                                                                      }
-                                                                                      // Perbarui nama file di sini
-                                                                                      setState(() {
-                                                                                        fileName = file.path.split('/').last;
-                                                                                      });
-                                                                                    } else {
-                                                                                      // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
-                                                                                      if (kDebugMode) {
-                                                                                        print('File yang dipilih harus file gambar');
-                                                                                      }
-                                                                                      // Misalnya, tampilkan pesan kesalahan
-                                                                                      showDialog(
-                                                                                        context: context,
-                                                                                        builder: (BuildContext context) {
-                                                                                          return AlertDialog(
-                                                                                            title: const Text('File yang dipilih bukan file gambar'),
-                                                                                            actions: <Widget>[
-                                                                                              TextButton(
-                                                                                                onPressed: () {
-                                                                                                  Navigator.of(context).pop();
-                                                                                                },
-                                                                                                child: const Text('OK'),
-                                                                                              ),
-                                                                                            ],
-                                                                                          );
-                                                                                        },
-                                                                                      );
-                                                                                    }
-                                                                                  },
-                                                                                ),
+                                                                                //     if (isImage) {
+                                                                                //       // Lakukan sesuatu dengan file gambar yang dipilih di sini
+                                                                                //       if (kDebugMode) {
+                                                                                //         print('Selected file: ${file.path}');
+                                                                                //       }
+                                                                                //       // Perbarui nama file di sini
+                                                                                //       setState(() {
+                                                                                //         fileName = file.path.split('/').last;
+                                                                                //       });
+                                                                                //     } else {
+                                                                                //       // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
+                                                                                //       if (kDebugMode) {
+                                                                                //         print('File yang dipilih harus file gambar');
+                                                                                //       }
+                                                                                //       // Misalnya, tampilkan pesan kesalahan
+                                                                                //       showDialog(
+                                                                                //         context: context,
+                                                                                //         builder: (BuildContext context) {
+                                                                                //           return AlertDialog(
+                                                                                //             title: const Text('File yang dipilih bukan file gambar'),
+                                                                                //             actions: <Widget>[
+                                                                                //               TextButton(
+                                                                                //                 onPressed: () {
+                                                                                //                   Navigator.of(context).pop();
+                                                                                //                 },
+                                                                                //                 child: const Text('OK'),
+                                                                                //               ),
+                                                                                //             ],
+                                                                                //           );
+                                                                                //         },
+                                                                                //       );
+                                                                                //     }
+                                                                                //   },
+                                                                                // ),
+                                                                                
                                                                                 Expanded(
                                                                                   child: Container(
                                                                                     height: 48,
@@ -959,51 +964,52 @@ class _CourseScheduleTileState extends State<CourseScheduleTile> {
                                                                             const SizedBox(height: 20),
                                                                             Row(
                                                                               children: [
-                                                                                UploadFile(
-                                                                                  // fileName: ,
-                                                                                  onFileSelected: (File file) {
-                                                                                    // Periksa jenis file sebelum mengambil tindakan
-                                                                                    final isImage = [
-                                                                                      '.jpeg',
-                                                                                      '.png',
-                                                                                      '.gif',
-                                                                                      '.jpg'
-                                                                                    ].any((extension) => file.path.toLowerCase().endsWith(extension));
+                                                                                // UploadFile(
+                                                                                //   // fileName: ,
+                                                                                //   onFileSelected: (File file) {
+                                                                                //     // Periksa jenis file sebelum mengambil tindakan
+                                                                                //     final isImage = [
+                                                                                //       '.jpeg',
+                                                                                //       '.png',
+                                                                                //       '.gif',
+                                                                                //       '.jpg'
+                                                                                //     ].any((extension) => file.path.toLowerCase().endsWith(extension));
                                           
-                                                                                    if (isImage) {
-                                                                                      // Lakukan sesuatu dengan file gambar yang dipilih di sini
-                                                                                      if (kDebugMode) {
-                                                                                        print('Selected file: ${file.path}');
-                                                                                      }
-                                                                                      // Perbarui nama file di sini
-                                                                                      setState(() {
-                                                                                        fileName = file.path.split('/').last;
-                                                                                      });
-                                                                                    } else {
-                                                                                      // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
-                                                                                      if (kDebugMode) {
-                                                                                        print('File yang dipilih harus file gambar');
-                                                                                      }
-                                                                                      // Misalnya, tampilkan pesan kesalahan
-                                                                                      showDialog(
-                                                                                        context: context,
-                                                                                        builder: (BuildContext context) {
-                                                                                          return AlertDialog(
-                                                                                            title: const Text('File yang dipilih bukan file gambar'),
-                                                                                            actions: <Widget>[
-                                                                                              TextButton(
-                                                                                                onPressed: () {
-                                                                                                  Navigator.of(context).pop();
-                                                                                                },
-                                                                                                child: const Text('OK'),
-                                                                                              ),
-                                                                                            ],
-                                                                                          );
-                                                                                        },
-                                                                                      );
-                                                                                    }
-                                                                                  },
-                                                                                ),
+                                                                                //     if (isImage) {
+                                                                                //       // Lakukan sesuatu dengan file gambar yang dipilih di sini
+                                                                                //       if (kDebugMode) {
+                                                                                //         print('Selected file: ${file.path}');
+                                                                                //       }
+                                                                                //       // Perbarui nama file di sini
+                                                                                //       setState(() {
+                                                                                //         fileName = file.path.split('/').last;
+                                                                                //       });
+                                                                                //     } else {
+                                                                                //       // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
+                                                                                //       if (kDebugMode) {
+                                                                                //         print('File yang dipilih harus file gambar');
+                                                                                //       }
+                                                                                //       // Misalnya, tampilkan pesan kesalahan
+                                                                                //       showDialog(
+                                                                                //         context: context,
+                                                                                //         builder: (BuildContext context) {
+                                                                                //           return AlertDialog(
+                                                                                //             title: const Text('File yang dipilih bukan file gambar'),
+                                                                                //             actions: <Widget>[
+                                                                                //               TextButton(
+                                                                                //                 onPressed: () {
+                                                                                //                   Navigator.of(context).pop();
+                                                                                //                 },
+                                                                                //                 child: const Text('OK'),
+                                                                                //               ),
+                                                                                //             ],
+                                                                                //           );
+                                                                                //         },
+                                                                                //       );
+                                                                                //     }
+                                                                                //   },
+                                                                                // ),
+                                                                                
                                                                                 Expanded(
                                                                                   child: Container(
                                                                                     height: 48,
@@ -1202,61 +1208,62 @@ class _CourseScheduleTileState extends State<CourseScheduleTile> {
                                       const SizedBox(height: 20),
                                       Row(
                                         children: [
-                                          UploadFile(
-                                            // fileName: ,
-                                            onFileSelected: (File file) {
-                                              // Periksa jenis file sebelum mengambil tindakan
-                                              final isImage = [
-                                                '.jpeg',
-                                                '.png',
-                                                '.gif',
-                                                '.jpg'
-                                              ].any((extension) => file.path
-                                                  .toLowerCase()
-                                                  .endsWith(extension));
+                                          // UploadFile(
+                                          //   // fileName: ,
+                                          //   onFileSelected: (File file) {
+                                          //     // Periksa jenis file sebelum mengambil tindakan
+                                          //     final isImage = [
+                                          //       '.jpeg',
+                                          //       '.png',
+                                          //       '.gif',
+                                          //       '.jpg'
+                                          //     ].any((extension) => file.path
+                                          //         .toLowerCase()
+                                          //         .endsWith(extension));
 
-                                              if (isImage) {
-                                                // Lakukan sesuatu dengan file gambar yang dipilih di sini
-                                                if (kDebugMode) {
-                                                  print(
-                                                      'Selected file: ${file.path}');
-                                                }
-                                                // Perbarui nama file di sini
-                                                setState(() {
-                                                  fileName =
-                                                      file.path.split('/').last;
-                                                });
-                                              } else {
-                                                // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
-                                                if (kDebugMode) {
-                                                  print(
-                                                      'File yang dipilih harus file gambar');
-                                                }
-                                                // Misalnya, tampilkan pesan kesalahan
-                                                showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (BuildContext context) {
-                                                    return AlertDialog(
-                                                      title: const Text(
-                                                          'File yang dipilih bukan file gambar'),
-                                                      actions: <Widget>[
-                                                        TextButton(
-                                                          onPressed: () {
-                                                            Navigator.of(
-                                                                    context)
-                                                                .pop();
-                                                          },
-                                                          child:
-                                                              const Text('OK'),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  },
-                                                );
-                                              }
-                                            },
-                                          ),
+                                          //     if (isImage) {
+                                          //       // Lakukan sesuatu dengan file gambar yang dipilih di sini
+                                          //       if (kDebugMode) {
+                                          //         print(
+                                          //             'Selected file: ${file.path}');
+                                          //       }
+                                          //       // Perbarui nama file di sini
+                                          //       setState(() {
+                                          //         fileName =
+                                          //             file.path.split('/').last;
+                                          //       });
+                                          //     } else {
+                                          //       // Jika bukan file gambar, tampilkan pesan kesalahan atau lakukan tindakan lain
+                                          //       if (kDebugMode) {
+                                          //         print(
+                                          //             'File yang dipilih harus file gambar');
+                                          //       }
+                                          //       // Misalnya, tampilkan pesan kesalahan
+                                          //       showDialog(
+                                          //         context: context,
+                                          //         builder:
+                                          //             (BuildContext context) {
+                                          //           return AlertDialog(
+                                          //             title: const Text(
+                                          //                 'File yang dipilih bukan file gambar'),
+                                          //             actions: <Widget>[
+                                          //               TextButton(
+                                          //                 onPressed: () {
+                                          //                   Navigator.of(
+                                          //                           context)
+                                          //                       .pop();
+                                          //                 },
+                                          //                 child:
+                                          //                     const Text('OK'),
+                                          //               ),
+                                          //             ],
+                                          //           );
+                                          //         },
+                                          //       );
+                                          //     }
+                                          //   },
+                                          // ),
+                                          
                                           Expanded(
                                             child: Container(
                                               height: 48,

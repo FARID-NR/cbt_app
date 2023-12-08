@@ -1,3 +1,4 @@
+import 'package:cbt_app/bloc/pengajuan/pengajuan_bloc.dart';
 import 'package:cbt_app/common/constants/colors.dart';
 import 'package:cbt_app/common/constants/images.dart';
 import 'package:cbt_app/common/widgets/menu_card.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../bloc/endpoint/endpoint_bloc.dart';
+import '../../../../../data/datasource/endpoint/endpoint_local_datasource.dart';
 
 class ListMatkulPage extends StatefulWidget {
   const ListMatkulPage({super.key});
@@ -63,22 +65,28 @@ class _ListMatkulPageState extends State<ListMatkulPage> {
                       return Center(child: CircularProgressIndicator(),);
                     },
                     loaded: (data){
+                      EndpointLocalDatasource().saveDataEndpoint(data);
                       return Column(
                         children: [
                           Expanded(
                             child: ListView.builder(
                               itemCount: data.data.length,
                               itemBuilder: (context, index) {
+                                // final userId = data.data[index].id;
                                 return Padding(
                                   padding: const EdgeInsets.only(bottom: 15),
                                   child: MenuCard(
                                     label: data.data[index].nama,
                                     backgroundColor: const Color(0xff686BFF),
                                     onPressed: () {
+                                      int selectedUserId = data.data[index].id;
+                                      debugPrint(selectedUserId.toString());
+                                      context.read<PengajuanBloc>().add(PengajuanEvent.pengajuan(userId: selectedUserId));
+
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => const DataMhsUjianTile()));
+                                              builder: (context) => DataMhsUjianTile(selectedUserId: selectedUserId)));
                                     },
                                     imagePath: Images.khs,
                                   ),

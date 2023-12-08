@@ -5,6 +5,7 @@ import 'package:cbt_app/common/extensions/build_context_ext.dart';
 import 'package:cbt_app/common/widgets/upload_file.dart';
 import 'package:cbt_app/data/models/request/register_request_model.dart';
 import 'package:cbt_app/presentation/auth/auth.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +15,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../common/constants/colors.dart';
 import '../../../common/widgets/buttons.dart';
 import '../../../common/widgets/custom_text_field.dart';
-import '../../../data/datasource/register/register_local_datasource.dart';
 
 class RegisterBottomSheet extends StatefulWidget {
   const RegisterBottomSheet({
@@ -27,11 +27,15 @@ class RegisterBottomSheet extends StatefulWidget {
 
 class _RegisterBottomSheetState extends State<RegisterBottomSheet> {
   final TextEditingController namaLengkapController = TextEditingController();
-  final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
-  final skKomprenController = TextEditingController();
-  String fileName = "Upload SK";
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  
+
   bool isSKBeingChecked = false;
+
+  File? _filePdf;
+
+  
 
   // Fungsi untuk menampilkan dialog verifikasi
   void _showVerificationDialog(BuildContext context) {
@@ -135,15 +139,10 @@ class _RegisterBottomSheetState extends State<RegisterBottomSheet> {
                     Row(
                       children: [
                         UploadFile(
-                            // fileName: ,
-                            onFileSelected: (File file) {
-                          // Lakukan sesuatu dengan file yang dipilih di sini
-                          print('Selected file: ${file.path}');
-                          // Perbarui nama file di sini
-                          setState(() {
-                            fileName = file.path.split('/').last;
-                          });
-                        }),
+                          onFileSelected: (file) {
+                            _filePdf = file;
+                          },
+                        ),
                         Expanded(
                           child: Container(
                             height: 48,
@@ -161,7 +160,7 @@ class _RegisterBottomSheetState extends State<RegisterBottomSheet> {
                             padding: EdgeInsets.all(8),
                             child: Center(
                               child: Text(
-                                fileName,
+                                'Upload SK',
                                 style: TextStyle(color: Colors.black),
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -176,7 +175,7 @@ class _RegisterBottomSheetState extends State<RegisterBottomSheet> {
                         state.maybeWhen(
                           orElse: () {},
                           success: (state) {
-                            AuthLocalDatasource().saveAuthData(state);
+                            // AuthLocalDatasource().saveAuthData(state);
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text('REGISTER SUCCESS'),
@@ -197,14 +196,27 @@ class _RegisterBottomSheetState extends State<RegisterBottomSheet> {
                           orElse: () {
                             return Button.filled(
                               onPressed: () {
-                                final dataRequest = RegisterRequestModel(
+                                if (_filePdf != null) {
+                                  final dataRequest = RegisterRequestModel(
                                     nama: namaLengkapController.text,
                                     username: usernameController.text,
                                     password: passwordController.text,
-                                    skKompren: skKomprenController.text);
+                                    skKomprenPath: _filePdf!
+                                    
+                                  );
+                                  debugPrint(dataRequest.toString());
                                 context
                                     .read<RegisterBloc>()
                                     .add(RegisterEvent.register(dataRequest));
+                                } else {
+                                   ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('Pilih file SK terlebih dahulu'),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                );
+                                }
+                                
                               },
                               label: 'Buat Akun',
                             );

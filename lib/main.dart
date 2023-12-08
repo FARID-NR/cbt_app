@@ -1,6 +1,7 @@
 import 'package:cbt_app/bloc/dashboard/dashboard_bloc.dart';
 import 'package:cbt_app/bloc/endpoint/endpoint_bloc.dart';
 import 'package:cbt_app/bloc/login/login_bloc.dart';
+import 'package:cbt_app/bloc/pengajuan/pengajuan_bloc.dart';
 import 'package:cbt_app/bloc/register/register_bloc.dart';
 import 'package:cbt_app/data/datasource/login/login_local_datasource.dart';
 import 'package:cbt_app/presentation/auth/splash.dart';
@@ -33,6 +34,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<GetsoalBloc>(
           create: (context) => GetsoalBloc()
+        ),
+        BlocProvider<PengajuanBloc>(
+          create: (context) => PengajuanBloc()
         ),
       ],
       child: MaterialApp(
