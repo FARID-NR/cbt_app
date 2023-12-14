@@ -70,13 +70,17 @@ class _PengujianPageState extends State<PengujianPage> {
                                   int selectedUserId = userId;
 
                                   // Trigger the event with the updated selectedUserId
-                                  context.read<GetsoalBloc>().add(GetsoalEvent.getSoal(userId: selectedUserId));
+                                  context.read<GetsoalBloc>().add(
+                                      GetsoalEvent.getSoal(
+                                          userId: selectedUserId));
 
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              CourseScheduleTile( selectedUserId: selectedUserId,)));
+                                              CourseScheduleTile(
+                                                selectedUserId: selectedUserId,
+                                              )));
                                 },
                                 imagePath: Images.khs,
                               ),

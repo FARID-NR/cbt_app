@@ -6,22 +6,18 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
-class LoginRemoteDatasource{
-  
+class LoginRemoteDatasource {
   Future<Either<String, LoginResponseModel>> login(
-    LoginRequestModel requestModel) async {
-      debugPrint(requestModel.password.toString());
-    final response = await http.post(
-      Uri.parse('${GlobalVariables.baseUrl}/api/login'),
-      body: {
-        "password": requestModel.password,
-        'username': requestModel.username
-      }
-    );
+      LoginRequestModel requestModel) async {
+    debugPrint(requestModel.password.toString());
+    final response = await http
+        .post(Uri.parse('${GlobalVariables.baseUrl}/api/login'), body: {
+      "password": requestModel.password,
+      'username': requestModel.username
+    });
 
     debugPrint(response.body);
     if (response.statusCode == 200) {
-
       try {
         final loginResponseModel = LoginResponseModel.fromJson(response.body);
         return Right(loginResponseModel);
@@ -34,7 +30,6 @@ class LoginRemoteDatasource{
   }
 
   Future<Either<String, String>> logout() async {
-  
     final headers = {
       'Authorization': 'Bearer ${await LoginLocalDatasource().getToken()}'
     };
@@ -42,9 +37,8 @@ class LoginRemoteDatasource{
     // debugPrint(token);
 
     final response = await http.get(
-      Uri.parse('${GlobalVariables.baseUrl}/api/logout'),
-      headers: headers
-    );
+        Uri.parse('${GlobalVariables.baseUrl}/api/logout'),
+        headers: headers);
     // debugPrint(response.statusCode.toString());
     if (response.statusCode == 200) {
       return Right('Logout Successfully');

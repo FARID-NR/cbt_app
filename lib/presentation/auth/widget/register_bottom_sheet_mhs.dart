@@ -29,13 +29,28 @@ class _RegisterBottomSheetState extends State<RegisterBottomSheet> {
   final TextEditingController namaLengkapController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  
 
   bool isSKBeingChecked = false;
 
   File? _filePdf;
 
-  
+  Future<void> pickFile() async {
+    try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['pdf'],
+      );
+
+      if (result != null) {
+        _filePdf= File(result.files.first.path!);
+        setState(() {}); // Perbarui tampilan setelah pemilihan file
+      } else {
+        // Pengguna membatalkan pemilihan
+      }
+    } catch (e) {
+      print('Terjadi kesalahan: $e');
+    }
+  }
 
   // Fungsi untuk menampilkan dialog verifikasi
   void _showVerificationDialog(BuildContext context) {
@@ -138,10 +153,31 @@ class _RegisterBottomSheetState extends State<RegisterBottomSheet> {
                     const SizedBox(height: 12.0),
                     Row(
                       children: [
-                        UploadFile(
-                          onFileSelected: (file) {
-                            _filePdf = file;
+                        GestureDetector(
+                          onTap: () async {
+                            pickFile();
                           },
+                          child: Container(
+                            height: 48,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(8),
+                                  topLeft: Radius.circular(8)),
+                            ),
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.file_upload),
+                                SizedBox(width: 8),
+                                Text(
+                                  "Pilih File",
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                         Expanded(
                           child: Container(
@@ -176,13 +212,25 @@ class _RegisterBottomSheetState extends State<RegisterBottomSheet> {
                           orElse: () {},
                           success: (state) {
                             // AuthLocalDatasource().saveAuthData(state);
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('REGISTER SUCCESS'),
-                                backgroundColor: Colors.green,
-                              ),
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Register Success'),
+                                  content: Text('Data anda akan dicek oleh admin'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                        context.pushReplacement(const AuthPage());
+                                      },
+                                      child: Text('OK'),
+                                    ),
+                                  ],
+                                );
+                              },
                             );
-                            context.pushReplacement(const AuthPage());
+                            
                           },
                           loading: () {
                             return const Center(
@@ -198,25 +246,24 @@ class _RegisterBottomSheetState extends State<RegisterBottomSheet> {
                               onPressed: () {
                                 if (_filePdf != null) {
                                   final dataRequest = RegisterRequestModel(
-                                    nama: namaLengkapController.text,
-                                    username: usernameController.text,
-                                    password: passwordController.text,
-                                    skKomprenPath: _filePdf!
-                                    
-                                  );
+                                      nama: namaLengkapController.text,
+                                      username: usernameController.text,
+                                      password: passwordController.text,
+                                      skKompren: _filePdf!
+                                    );
                                   debugPrint(dataRequest.toString());
-                                context
-                                    .read<RegisterBloc>()
-                                    .add(RegisterEvent.register(dataRequest));
+                                  context
+                                      .read<RegisterBloc>()
+                                      .add(RegisterEvent.register(dataRequest));
                                 } else {
-                                   ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text('Pilih file SK terlebih dahulu'),
-                                    backgroundColor: Colors.red,
-                                  ),
-                                );
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content:
+                                          Text('Pilih file SK terlebih dahulu'),
+                                      backgroundColor: Colors.red,
+                                    ),
+                                  );
                                 }
-                                
                               },
                               label: 'Buat Akun',
                             );
@@ -228,7 +275,6 @@ class _RegisterBottomSheetState extends State<RegisterBottomSheet> {
                           },
                         );
                       },
-                      
                     ),
                     const SizedBox(height: 50),
                     Center(

@@ -57,47 +57,50 @@ class _ListMatkulPageState extends State<ListMatkulPage> {
             Expanded(
               child: BlocBuilder<EndpointBloc, EndpointState>(
                 builder: (context, state) {
-                  return state.maybeWhen(
-                    orElse: (){
-                      return Text('Data matkul belum di isi');
-                    },
-                    loading: (){
-                      return Center(child: CircularProgressIndicator(),);
-                    },
-                    loaded: (data){
-                      EndpointLocalDatasource().saveDataEndpoint(data);
-                      return Column(
-                        children: [
-                          Expanded(
-                            child: ListView.builder(
-                              itemCount: data.data.length,
-                              itemBuilder: (context, index) {
-                                // final userId = data.data[index].id;
-                                return Padding(
-                                  padding: const EdgeInsets.only(bottom: 15),
-                                  child: MenuCard(
-                                    label: data.data[index].nama,
-                                    backgroundColor: const Color(0xff686BFF),
-                                    onPressed: () {
-                                      int selectedUserId = data.data[index].id;
-                                      debugPrint(selectedUserId.toString());
-                                      context.read<PengajuanBloc>().add(PengajuanEvent.pengajuan(userId: selectedUserId));
+                  return state.maybeWhen(orElse: () {
+                    return Text('Data matkul belum di isi');
+                  }, loading: () {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }, loaded: (data) {
+                    EndpointLocalDatasource().saveDataEndpoint(data);
+                    return Column(
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: data.data.length,
+                            itemBuilder: (context, index) {
+                              // final userId = data.data[index].id;
+                              return Padding(
+                                padding: const EdgeInsets.only(bottom: 15),
+                                child: MenuCard(
+                                  label: data.data[index].nama,
+                                  backgroundColor: const Color(0xff686BFF),
+                                  onPressed: () {
+                                    int selectedUserId = data.data[index].id;
+                                    debugPrint(selectedUserId.toString());
+                                    context.read<PengajuanBloc>().add(
+                                        PengajuanEvent.pengajuan(
+                                            userId: selectedUserId));
 
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => DataMhsUjianTile(selectedUserId: selectedUserId)));
-                                    },
-                                    imagePath: Images.khs,
-                                  ),
-                                );
-                              },
-                            ),
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                DataMhsUjianTile(
+                                                    selectedUserId:
+                                                        selectedUserId)));
+                                  },
+                                  imagePath: Images.khs,
+                                ),
+                              );
+                            },
                           ),
-                        ],
-                      );
-                    }
-                  );
+                        ),
+                      ],
+                    );
+                  });
                 },
               ),
             ),

@@ -29,7 +29,7 @@ class EndpointLocalDatasource {
     return []; // Mengembalikan daftar kosong jika tidak ada data atau ID yang tersedia
   }
 
-    // Future<int> getIdEndpoint() async {
+  // Future<int> getIdEndpoint() async {
   //   final pref = await SharedPreferences.getInstance();
   //   final jsonString = pref.getString('endpoint') ?? '';
 
@@ -40,10 +40,9 @@ class EndpointLocalDatasource {
   // Future<int?> getIdEndpoint() async {
   //   final pref = await SharedPreferences.getInstance();
   //   final jsonString = await pref.getString('endpoint') ?? '';
-    
 
   //   final endpointModel = EndpointResponseModel.fromJson(jsonString);
-    
+
   //   if (endpointModel.data.isNotEmpty) {
   //     // debugPrint(endpointModel.data.toString());
   //     final userData = endpointModel.data.last;
@@ -52,5 +51,4 @@ class EndpointLocalDatasource {
 
   //   return null; // Mengembalikan null jika tidak ada data atau ID yang tersedia
   // }
-
 }

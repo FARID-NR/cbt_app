@@ -1,8 +1,6 @@
 import 'package:cbt_app/common/utils/custom_themes.dart';
 import 'package:flutter/material.dart';
 
-
-
 class CustomPasswordTextField extends StatefulWidget {
   final TextEditingController? controller;
   final String? hintTxt;

@@ -13,10 +13,7 @@ class EndpointBloc extends Bloc<EndpointEvent, EndpointState> {
     on<_GetEndpoint>((event, emit) async {
       emit(const _Loading());
       final response = await EndpointRemoteDatasource().getEndpoint();
-      response.fold(
-        (l) => emit(_Error(l)), 
-        (r) => emit(_Loaded(r))
-      );
+      response.fold((l) => emit(_Error(l)), (r) => emit(_Loaded(r)));
     });
   }
 }

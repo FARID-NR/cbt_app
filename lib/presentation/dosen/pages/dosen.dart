@@ -16,26 +16,22 @@ class DosenPage extends StatefulWidget {
 }
 
 class _DosenPageState extends State<DosenPage> {
-
   int _selectedIndex = 0;
-  
 
-  void _onItemTapped (int index) {
+  void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
 
-   final ZoomDrawerController zoomDrawerController = ZoomDrawerController();
+  final ZoomDrawerController zoomDrawerController = ZoomDrawerController();
 
   final List<Widget> _pages = const [
     DashboardPage(),
     PengujianPage(),
     CreatPage(),
     ProfilePage()
-
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +62,7 @@ class _DosenPageState extends State<DosenPage> {
         //                 offset: const Offset(-10, 0),
         //                 child: CircularButton(
         //                   child: const Icon(
-        //                     Icons.menu_open, 
+        //                     Icons.menu_open,
         //                     color: Colors.white,
         //                   ),
         //                   onTap: () {
@@ -131,45 +127,41 @@ class _DosenPageState extends State<DosenPage> {
             onTap: _onItemTapped,
             items: [
               BottomNavigationBarItem(
-                icon: SvgIcon(
-                  iconUrl: IconName.home,
-                  height: 20,
-                  color: _selectedIndex == 0
-                      ? Colors.white
-                      : Colors.grey.withOpacity(0.8),
-                ),
-                label: 'Dashboard'
-              ),
+                  icon: SvgIcon(
+                    iconUrl: IconName.home,
+                    height: 20,
+                    color: _selectedIndex == 0
+                        ? Colors.white
+                        : Colors.grey.withOpacity(0.8),
+                  ),
+                  label: 'Dashboard'),
               BottomNavigationBarItem(
-                icon: SvgIcon(
-                  iconUrl: IconName.chart,
-                  height: 20,
-                  color: _selectedIndex == 1
-                      ? Colors.white
-                      : Colors.grey.withOpacity(0.8),
-                ),
-                label: 'Pengujian'
-              ),
+                  icon: SvgIcon(
+                    iconUrl: IconName.chart,
+                    height: 20,
+                    color: _selectedIndex == 1
+                        ? Colors.white
+                        : Colors.grey.withOpacity(0.8),
+                  ),
+                  label: 'Pengujian'),
               BottomNavigationBarItem(
-                icon: SvgIcon(
-                  iconUrl: IconName.creat,
-                  height: 20,
-                  color: _selectedIndex == 2
-                      ? Colors.white
-                      : Colors.grey.withOpacity(0.8),
-                ),
-                label: 'Mahasiswa'
-              ),
+                  icon: SvgIcon(
+                    iconUrl: IconName.creat,
+                    height: 20,
+                    color: _selectedIndex == 2
+                        ? Colors.white
+                        : Colors.grey.withOpacity(0.8),
+                  ),
+                  label: 'Mahasiswa'),
               BottomNavigationBarItem(
-                icon: SvgIcon(
-                  iconUrl: IconName.profile,
-                  height: 20,
-                  color: _selectedIndex == 3
-                      ? Colors.white
-                      : Colors.grey.withOpacity(0.8),
-                ),
-                label: 'Profile'
-              ),
+                  icon: SvgIcon(
+                    iconUrl: IconName.profile,
+                    height: 20,
+                    color: _selectedIndex == 3
+                        ? Colors.white
+                        : Colors.grey.withOpacity(0.8),
+                  ),
+                  label: 'Profile'),
             ],
           ),
         ),
@@ -177,4 +169,3 @@ class _DosenPageState extends State<DosenPage> {
     );
   }
 }
-

@@ -1,7 +1,6 @@
 import 'package:cbt_app/common/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 
-
 const titilliumRegular = TextStyle(
   fontFamily: 'Ubuntu',
   fontSize: Dimensions.fontSizeSmall,

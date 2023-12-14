@@ -12,8 +12,6 @@ class AuthLocalDatasource {
     await pref.remove('regist_data');
   }
 
-  
-
   // Future<RegistertResponseModel?> getAuthData() async {
   //   final pref = await SharedPreferences.getInstance();
   //   final authData = pref.getString('regist_data');
@@ -23,5 +21,4 @@ class AuthLocalDatasource {
   //     return null;
   //   }
   // }
-
 }

@@ -8,6 +8,12 @@ class PengajuanLocalDatasource {
     return result;
   }
 
+  Future<bool> getId(PengajuanResponseModel data) async {
+    final pref = await SharedPreferences.getInstance();
+    final result = await pref.setString('pengajuan', data.data.matkul.id.toString());
+    return result;
+  }
+
   // saya mau membuat future update ketika saya klik tombol dapat ujian maka status akan berubah menjadi true
   // Future<bool> updateDataPengajuan(PengajuanResponseModel data) async {
   //   final pref = await SharedPreferences.getInstance();

@@ -14,9 +14,6 @@ class ProfilePageMhs extends StatefulWidget {
 }
 
 class _ProfilePageMhsState extends State<ProfilePageMhs> {
-
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,38 +28,38 @@ class _ProfilePageMhsState extends State<ProfilePageMhs> {
                 child: BlocConsumer<LogoutBloc, LogoutState>(
                   listener: (context, state) {
                     state.maybeWhen(
-                      orElse: () {},
-                      loaded: () {
-                        LoginLocalDatasource().removeLoginData();
-                        Navigator.pushReplacement(
-                          context, MaterialPageRoute(builder: (context) {
-                          return const AuthPage();
-                          }
-                        ),
-                      );
-                      },
-                      error: () {
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('logout error')));
-                      }
-                    );
+                        orElse: () {},
+                        loaded: () {
+                          LoginLocalDatasource().removeLoginData();
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) {
+                              return const AuthPage();
+                            }),
+                          );
+                        },
+                        error: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('logout error')));
+                        }
+                        );
                   },
                   builder: (context, state) {
-                    return state.maybeWhen(
-                      orElse: () {
-                        return ElevatedButton(
-                          onPressed: () {
-                            // Aksi logout
-                              context
-                                  .read<LogoutBloc>()
-                                  .add(const LogoutEvent.logout(),);
-                          },
-                          child: Text('Logout'),
-                        );
-                      },
-                      loading: () {
-                        return Center(child: CircularProgressIndicator(),);
-                      }
-                    );
+                    return state.maybeWhen(orElse: () {
+                      return ElevatedButton(
+                        onPressed: () {
+                          // Aksi logout
+                          context.read<LogoutBloc>().add(
+                                const LogoutEvent.logout(),
+                              );
+                        },
+                        child: Text('Logout'),
+                      );
+                    }, loading: () {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    });
                   },
                 ),
               ),

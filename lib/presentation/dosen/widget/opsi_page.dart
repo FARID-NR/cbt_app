@@ -1,4 +1,3 @@
-
 import 'package:cbt_app/common/constants/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -16,23 +15,22 @@ class _OpsiPageState extends State<OpsiPage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          appBar: AppBar(
-            title: Text(
-              'Soal',
-              style: TextStyle(
-                fontSize: 20,
-                color: ColorName.primary,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+      appBar: AppBar(
+        title: Text(
+          'Soal',
+          style: TextStyle(
+            fontSize: 20,
+            color: ColorName.primary,
+            fontWeight: FontWeight.bold,
           ),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              
               SizedBox(height: 20),
               TextFormField(
                 decoration: InputDecoration(
@@ -51,7 +49,7 @@ class _OpsiPageState extends State<OpsiPage> {
                   //     final isImage = ['.jpeg', '.png', '.gif', '.jpg'].any(
                   //         (extension) =>
                   //             file.path.toLowerCase().endsWith(extension));
-          
+
                   //     if (isImage) {
                   //       // Lakukan sesuatu dengan file gambar yang dipilih di sini
                   //       print('Selected file: ${file.path}');
@@ -82,7 +80,7 @@ class _OpsiPageState extends State<OpsiPage> {
                   //     }
                   //   },
                   // ),
-                  
+
                   Expanded(
                     child: Container(
                       height: 48,
@@ -126,7 +124,7 @@ class _OpsiPageState extends State<OpsiPage> {
                   //     final isImage = ['.jpeg', '.png', '.gif', '.jpg'].any(
                   //         (extension) =>
                   //             file.path.toLowerCase().endsWith(extension));
-          
+
                   //     if (isImage) {
                   //       // Lakukan sesuatu dengan file gambar yang dipilih di sini
                   //       print('Selected file: ${file.path}');
@@ -157,7 +155,7 @@ class _OpsiPageState extends State<OpsiPage> {
                   //     }
                   //   },
                   // ),
-                  
+
                   Expanded(
                     child: Container(
                       height: 48,
@@ -201,7 +199,7 @@ class _OpsiPageState extends State<OpsiPage> {
                   //     final isImage = ['.jpeg', '.png', '.gif', '.jpg'].any(
                   //         (extension) =>
                   //             file.path.toLowerCase().endsWith(extension));
-          
+
                   //     if (isImage) {
                   //       // Lakukan sesuatu dengan file gambar yang dipilih di sini
                   //       print('Selected file: ${file.path}');
@@ -232,7 +230,7 @@ class _OpsiPageState extends State<OpsiPage> {
                   //     }
                   //   },
                   // ),
-                  
+
                   Expanded(
                     child: Container(
                       height: 48,
@@ -276,7 +274,7 @@ class _OpsiPageState extends State<OpsiPage> {
                   //     final isImage = ['.jpeg', '.png', '.gif', '.jpg'].any(
                   //         (extension) =>
                   //             file.path.toLowerCase().endsWith(extension));
-          
+
                   //     if (isImage) {
                   //       // Lakukan sesuatu dengan file gambar yang dipilih di sini
                   //       print('Selected file: ${file.path}');
@@ -307,7 +305,7 @@ class _OpsiPageState extends State<OpsiPage> {
                   //     }
                   //   },
                   // ),
-                  
+
                   Expanded(
                     child: Container(
                       height: 48,
@@ -351,7 +349,7 @@ class _OpsiPageState extends State<OpsiPage> {
                   //     final isImage = ['.jpeg', '.png', '.gif', '.jpg'].any(
                   //         (extension) =>
                   //             file.path.toLowerCase().endsWith(extension));
-          
+
                   //     if (isImage) {
                   //       // Lakukan sesuatu dengan file gambar yang dipilih di sini
                   //       print('Selected file: ${file.path}');
@@ -382,7 +380,7 @@ class _OpsiPageState extends State<OpsiPage> {
                   //     }
                   //   },
                   // ),
-                  
+
                   Expanded(
                     child: Container(
                       height: 48,

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'dart:math' as math;
 
-
 /// Widget to animate the button when scroll down
 class ScrollingFabAnimated extends StatefulWidget {
   /// Function to use when press the button

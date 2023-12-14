@@ -41,12 +41,12 @@ const mainGradientDT = LinearGradient(
 LinearGradient mainGradient(BuildContext context) =>
     UIParameters.isDarkMode(context) ? mainGradientDT : mainGradientLT;
 
-
 // ignore: avoid_classes_with_only_static_members
 class UIParameters {
-
-  static BorderRadius  get cardBorderRadius => BorderRadius.circular(kCardBorderrRadius);
-  static EdgeInsets  get screenPadding => const EdgeInsets.all(kMobileScreenPadding);
+  static BorderRadius get cardBorderRadius =>
+      BorderRadius.circular(kCardBorderrRadius);
+  static EdgeInsets get screenPadding =>
+      const EdgeInsets.all(kMobileScreenPadding);
 
   static double getHeight(BuildContext context) {
     return MediaQuery.of(context).size.height;

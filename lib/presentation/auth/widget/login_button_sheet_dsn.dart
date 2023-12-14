@@ -97,20 +97,43 @@ class _LoginBottomSheetDsnState extends State<LoginBottomSheetDsn> {
                 BlocListener<LoginBloc, LoginState>(
                   listener: (context, state) {
                     state.maybeWhen(
-                      orElse: (){},
-                      loaded: (data) {
-                        LoginLocalDatasource().saveLoginData(data);
-                        if (data.data.roles == 'dosen'){
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-                            return const DosenPage();
-                          }));
-                        } else if (data.data.roles != 'dosen') {
+                        orElse: () {},
+                        loaded: (data) {
+                          LoginLocalDatasource().saveLoginData(data);
+                          if (data.data.roles == 'dosen') {
+                            Navigator.pushReplacement(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const DosenPage();
+                            }));
+                          } else if (data.data.roles != 'dosen') {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: const Text('Dosen'),
+                                  content: const Text(
+                                      'Akun anda tidak terdaftar sebagai dosen'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text('Close'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
+                        },
+                        error: (message) {
                           showDialog(
                             context: context,
                             builder: (context) {
                               return AlertDialog(
                                 title: const Text('Dosen'),
-                                content: const Text('Akun anda tidak terdaftar sebagai dosen'),
+                                content:
+                                    const Text('Username atau Password salah'),
                                 actions: <Widget>[
                                   TextButton(
                                     onPressed: () {
@@ -122,28 +145,7 @@ class _LoginBottomSheetDsnState extends State<LoginBottomSheetDsn> {
                               );
                             },
                           );
-                        }
-                      },
-                      error: (message){
-                        showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                title: const Text('Dosen'),
-                                content: const Text('Username atau Password salah'),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: const Text('Close'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                      }
-                    );
+                        });
                   },
                   child: BlocBuilder<LoginBloc, LoginState>(
                     builder: (context, state) {
@@ -151,9 +153,8 @@ class _LoginBottomSheetDsnState extends State<LoginBottomSheetDsn> {
                         return Button.filled(
                           onPressed: () {
                             final requestModel = LoginRequestModel(
-                                username: usernameController.text,
-                                password: passwordController.text,
-                                
+                              username: usernameController.text,
+                              password: passwordController.text,
                             );
                             context
                                 .read<LoginBloc>()
@@ -165,8 +166,7 @@ class _LoginBottomSheetDsnState extends State<LoginBottomSheetDsn> {
                         return const Center(
                           child: CircularProgressIndicator(),
                         );
-                      }
-                    );
+                      });
                     },
                   ),
                 ),

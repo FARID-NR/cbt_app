@@ -8,6 +8,22 @@ class StartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              // Untuk kembali ke halaman sebelumnya
+              Navigator.pop(context);
+            },
+          ),
+          title: const Text(
+            'Ruang Ujian',
+            style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w700,
+                color: ColorName.primary),
+          ),
+        ),
       body: Container(
         color: ColorName.light,
         child: Center(
@@ -18,16 +34,16 @@ class StartPage extends StatelessWidget {
               Text(
                 'Ujian Dimulai',
                 style: TextStyle(
-                  fontSize: 20,
-                  color: ColorName.primary,
-                  fontWeight: FontWeight.w900
-                ),
+                    fontSize: 20,
+                    color: ColorName.primary,
+                    fontWeight: FontWeight.w900),
               ),
               // Tombol Mulai
               ElevatedButton(
                 onPressed: () {
                   // Aksi logout
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CbtScreen()));
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => CbtScreen()));
                 },
                 child: Text('Mulai Ujian'),
               ),

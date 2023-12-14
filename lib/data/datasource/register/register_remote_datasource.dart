@@ -5,46 +5,88 @@ import 'package:cbt_app/data/models/request/register_request_model.dart';
 import 'package:cbt_app/data/models/response/register_response_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 class RegisterRemoteDataSource {
-
-
   Future<Either<String, RegistertResponseModel>> register(
-  RegisterRequestModel requestModel) async {
-    final url = Uri.parse('${GlobalVariables.baseUrl}/api/register');
+      RegisterRequestModel requestModel) async {
 
-    // Buat objek MultipartRequest
-    final request = http.MultipartRequest('POST', url);
+    final header = {
+      'Content-Type': 'multipart/form-data',
+      "Accept" : "application/json",
+    };
 
-    // Tambahkan username dan password ke request
+    final request = http.MultipartRequest(
+      'POST',
+      Uri.parse('${GlobalVariables.baseUrl}/api/register'),
+    );
+
+    final finalName = requestModel.skKompren.path.split('/').last;
+    final bytes = await requestModel.skKompren.readAsBytes();
+
+    final multiPartFile = http.MultipartFile.fromBytes('sk_kompren', bytes, filename: finalName);
+
+    request.files.add(multiPartFile);
+
+    request.fields['nama'] = requestModel.nama;
     request.fields['username'] = requestModel.username;
     request.fields['password'] = requestModel.password;
 
-    // Tambahkan file ke request
-    final file = await http.MultipartFile.fromPath('file', requestModel.skKomprenPath.path);
-    request.files.add(file); 
+    request.headers.addAll(header);
 
-    debugPrint(request.files.toString());
-    // Kirim request
-    final response = await request.send();
+    final http.StreamedResponse response = await request.send();
 
-    debugPrint(response.toString());
-    // Cek status response
+    final Uint8List responseList = await response.stream.toBytes();
+    final String responseData = String.fromCharCodes(responseList);
+
     if (response.statusCode == 200) {
-    // Parse response to RegistertResponseModel
-      final responseData = await response.stream.bytesToString();
-      final responseModel = RegistertResponseModel.fromJson(responseData);
-      return Right(responseModel);
-    } else {
-      // Return error message
-      final errorMessage = await response.stream.bytesToString();
-      final errorJson = jsonDecode(errorMessage);
-      final errorMessageJson = errorJson['message'];
-      return Left(errorMessage);
+      // print(await response.stream.bytesToString());
+      return Right(RegistertResponseModel.fromJson(responseData));
     }
-  }
+    else {
+      // print(response.statusCode);
+      return const Left('Server Error');
+    }
 
+
+  }
+  
+  // Future<Either<String, RegistertResponseModel>> register(
+  //     RegisterRequestModel requestModel) async {
+  //   final url = Uri.parse('${GlobalVariables.baseUrl}/api/register');
+
+  //   // Buat objek MultipartRequest
+  //   final request = http.MultipartRequest('POST', url);
+
+  //   // Tambahkan username dan password ke request
+  //   request.fields['username'] = requestModel.username;
+  //   request.fields['password'] = requestModel.password;
+
+  //   // Tambahkan file ke request
+  //   final file = await http.MultipartFile.fromPath(
+  //       'file', requestModel.skKomprenPath.path);
+  //   request.files.add(file);
+
+  //   debugPrint(request.files.toString());
+  //   // Kirim request
+  //   final response = await request.send();
+
+  //   debugPrint(response.toString());
+  //   // Cek status response
+  //   if (response.statusCode == 200) {
+  //     // Parse response to RegistertResponseModel
+  //     final responseData = await response.stream.bytesToString();
+  //     final responseModel = RegistertResponseModel.fromJson(responseData);
+  //     return Right(responseModel);
+  //   } else {
+  //     // Return error message
+  //     final errorMessage = await response.stream.bytesToString();
+  //     final errorJson = jsonDecode(errorMessage);
+  //     final errorMessageJson = errorJson['message'];
+  //     return Left(errorMessage);
+  //   }
+  // }
 
   // Future<Either<String, RegistertResponseModel>> register(
   //   RegisterRequestModel requestModel) async {
@@ -85,7 +127,6 @@ class RegisterRemoteDataSource {
 
   // }
 
-
 //  Future<Either<String, RegistertResponseModel>> register(
 //     RegisterRequestModel model, {File? skKompren}) async {
 //       final Map<String, String> body = {
@@ -93,7 +134,6 @@ class RegisterRemoteDataSource {
 //         'username': model.username,
 //         'password': model.password,
 //       };
-
 
 //       debugPrint(body.toString());
 
@@ -129,40 +169,40 @@ class RegisterRemoteDataSource {
 //       }
 //     }
 
-    // Future<Either<String, RegistertResponseModel>> addSKPdf(File file) async {
-    //   var request = http.MultipartRequest(
-    //     'POST',
-    //     Uri.parse('${GlobalVariables.baseUrl}/api/register'),
-    //   );
+  // Future<Either<String, RegistertResponseModel>> addSKPdf(File file) async {
+  //   var request = http.MultipartRequest(
+  //     'POST',
+  //     Uri.parse('${GlobalVariables.baseUrl}/api/register'),
+  //   );
 
-    //   final fileName = file.path.split('/').last;
-    //   final bytes = await file.readAsBytes();
+  //   final fileName = file.path.split('/').last;
+  //   final bytes = await file.readAsBytes();
 
-    //   final multiPartFile = http.MultipartFile.fromBytes(
-    //     'sk_kompren',
-    //     bytes,
-    //     filename: fileName,
-    //     contentType: MediaType('application', 'pdf'), // Perbaikan: tambahkan MediaType
-    //   );
+  //   final multiPartFile = http.MultipartFile.fromBytes(
+  //     'sk_kompren',
+  //     bytes,
+  //     filename: fileName,
+  //     contentType: MediaType('application', 'pdf'), // Perbaikan: tambahkan MediaType
+  //   );
 
-    //   request.files.add(multiPartFile);
+  //   request.files.add(multiPartFile);
 
-    //   debugPrint(multiPartFile.toString());
+  //   debugPrint(multiPartFile.toString());
 
-    //   try {
-    //     final http.StreamedResponse streamedResponse = await request.send();
-    //     final int statusCode = streamedResponse.statusCode;
+  //   try {
+  //     final http.StreamedResponse streamedResponse = await request.send();
+  //     final int statusCode = streamedResponse.statusCode;
 
-    //     final Uint8List responseList = await streamedResponse.stream.toBytes();
-    //     final String responseData = utf8.decode(responseList);
+  //     final Uint8List responseList = await streamedResponse.stream.toBytes();
+  //     final String responseData = utf8.decode(responseList);
 
-    //     if (statusCode == 200) {
-    //       return Right(RegistertResponseModel.fromJson(responseData));
-    //     } else {
-    //       return const Left('Register Gagal');
-    //     }
-    //   } catch (e) {
-    //     return Left('Terjadi kesalahan: $e');
-    //   }
-    // }
+  //     if (statusCode == 200) {
+  //       return Right(RegistertResponseModel.fromJson(responseData));
+  //     } else {
+  //       return const Left('Register Gagal');
+  //     }
+  //   } catch (e) {
+  //     return Left('Terjadi kesalahan: $e');
+  //   }
+  // }
 }

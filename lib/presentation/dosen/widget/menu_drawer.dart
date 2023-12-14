@@ -12,7 +12,7 @@
 // // Ganti dengan instance Bloc Anda
 //   @override
 //   Widget build(BuildContext context) {
-    
+
 //     return Container(
 //       width: double.maxFinite,
 //       decoration: BoxDecoration(
@@ -86,8 +86,8 @@
 //                                     ),
 //                                     onTap: () {
 //                                       onTap(0);
-//                                       Navigator.pushReplacement(context, 
-//                                         MaterialPageRoute(builder: (context) => PengujianPage()));      
+//                                       Navigator.pushReplacement(context,
+//                                         MaterialPageRoute(builder: (context) => PengujianPage()));
 //                                     },
 //                                   ),
 //                                   ListTile(
@@ -104,7 +104,7 @@
 //                                       ],
 //                                     ),
 //                                     onTap: () {
-                                                  
+
 //                                     },
 //                                   ),
 //                                 ],
@@ -133,7 +133,7 @@
 //                                       ],
 //                                     ),
 //                                     onTap: () {
-                                                  
+
 //                                     },
 //                                   ),
 //                                   ListTile(
@@ -150,7 +150,7 @@
 //                                       ],
 //                                     ),
 //                                     onTap: () {
-                                                  
+
 //                                     },
 //                                   ),
 //                                 ],
@@ -179,7 +179,7 @@
 //                                       ],
 //                                     ),
 //                                     onTap: () {
-                                                  
+
 //                                     },
 //                                   ),
 //                                   ListTile(
@@ -196,7 +196,7 @@
 //                                       ],
 //                                     ),
 //                                     onTap: () {
-                                                  
+
 //                                     },
 //                                   ),
 //                                 ],

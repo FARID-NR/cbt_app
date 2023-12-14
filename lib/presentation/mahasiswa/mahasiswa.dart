@@ -14,11 +14,9 @@ class MahasiswaPage extends StatefulWidget {
 }
 
 class _MahasiswaPageState extends State<MahasiswaPage> {
-
   int _selectedIndex = 0;
-  
 
-  void _onItemTapped (int index) {
+  void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -29,7 +27,6 @@ class _MahasiswaPageState extends State<MahasiswaPage> {
     PengujianMhsPage(),
     ProfilePage()
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -48,35 +45,32 @@ class _MahasiswaPageState extends State<MahasiswaPage> {
             onTap: _onItemTapped,
             items: [
               BottomNavigationBarItem(
-                icon: SvgIcon(
-                  iconUrl: IconName.home,
-                  height: 20,
-                  color: _selectedIndex == 0
-                      ? Colors.white
-                      : Colors.grey.withOpacity(0.8),
-                ),
-                label: 'Dashboard'
-              ),
+                  icon: SvgIcon(
+                    iconUrl: IconName.home,
+                    height: 20,
+                    color: _selectedIndex == 0
+                        ? Colors.white
+                        : Colors.grey.withOpacity(0.8),
+                  ),
+                  label: 'Dashboard'),
               BottomNavigationBarItem(
-                icon: SvgIcon(
-                  iconUrl: IconName.chart,
-                  height: 20,
-                  color: _selectedIndex == 1
-                      ? Colors.white
-                      : Colors.grey.withOpacity(0.8),
-                ),
-                label: 'Pengujian'
-              ),
+                  icon: SvgIcon(
+                    iconUrl: IconName.chart,
+                    height: 20,
+                    color: _selectedIndex == 1
+                        ? Colors.white
+                        : Colors.grey.withOpacity(0.8),
+                  ),
+                  label: 'Pengujian'),
               BottomNavigationBarItem(
-                icon: SvgIcon(
-                  iconUrl: IconName.profile,
-                  height: 20,
-                  color: _selectedIndex == 3
-                      ? Colors.white
-                      : Colors.grey.withOpacity(0.8),
-                ),
-                label: 'Profile'
-              ),
+                  icon: SvgIcon(
+                    iconUrl: IconName.profile,
+                    height: 20,
+                    color: _selectedIndex == 3
+                        ? Colors.white
+                        : Colors.grey.withOpacity(0.8),
+                  ),
+                  label: 'Profile'),
             ],
           ),
         ),
@@ -84,4 +78,3 @@ class _MahasiswaPageState extends State<MahasiswaPage> {
     );
   }
 }
-

@@ -1,4 +1,3 @@
-
 class IconName {
   static const String home = 'assets/icons/home.svg';
   static const String chart = 'assets/icons/chart.svg';
@@ -11,7 +10,7 @@ class IconName {
   // static const AssetImage contactsLine =
   //     AssetImage('assets/icons/contacts-line.png');
   // static const AssetImage mentalHealthLine =
-  //     AssetImage('assets/icons/mental-health-line.png');  
+  //     AssetImage('assets/icons/mental-health-line.png');
   // static const AssetImage profileLine =
   //     AssetImage('assets/icons/profile-line.png');
   // static const AssetImage projector2Line =
@@ -31,7 +30,7 @@ class IconName {
 ///      fonts:
 ///       - asset: fonts/AppIcons.ttf
 ///
-/// 
+///
 ///
 
 // class AppIcons {
@@ -52,4 +51,3 @@ class IconName {
 //   static const IconData web = IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 //   static const IconData code = IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 // }
-

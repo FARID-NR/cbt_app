@@ -5,19 +5,20 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+
 class DashboardRemoteDatasource {
-  Future<Either<String, DashboardResponseModel>> getDash() async{
+  Future<Either<String, DashboardResponseModel>> getDash() async {
     final header = {
       'Authorization': 'Bearer ${await LoginLocalDatasource().getToken()}'
     };
     final response = await http.get(
-      Uri.parse('${GlobalVariables.baseUrl}/api/dashboard-dosen'),
-      headers: header
-    );
+        Uri.parse('${GlobalVariables.baseUrl}/api/dashboard-dosen'),
+        headers: header
+      );
 
-    // debugPrint(response.body);
+    debugPrint(response.body);
 
-    if (response.statusCode == 200 ){
+    if (response.statusCode == 200) {
       return Right(DashboardResponseModel.fromJson(response.body));
     } else {
       return const Left('Server Error');

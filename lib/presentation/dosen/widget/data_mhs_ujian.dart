@@ -61,123 +61,119 @@ class _DataMhsUjianState extends State<DataMhsUjianTile> {
         ),
         body: BlocBuilder<PengajuanBloc, PengajuanState>(
           builder: (context, state) {
-            return state.maybeWhen(
-              orElse: () {
-                return const Text('Belum ada pengajuan baru');
-              },
-              loading: () {
-                return const Center(child: CircularProgressIndicator(),);
-              },
-              loaded: (data) {
-                return ListView.builder(
-                  itemCount: data.data.mahasiswa.length,
-                  itemBuilder: (context, index) {
-                    return IntrinsicHeight(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: 45.0,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 16.0),
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 10),
-                                    child: Text('${index + 1}.'),
-                                  ),
-                                  const Text(
-                                    '',
-                                    style: TextStyle(
-                                      color: ColorName.grey,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 5.0),
-                          const VerticalDivider(),
-                          const SizedBox(width: 5.0),
-                          Padding(
+            return state.maybeWhen(orElse: () {
+              return const Text('Belum ada pengajuan baru');
+            }, loading: () {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }, loaded: (data) {
+              return ListView.builder(
+                itemCount: data.data.mahasiswa.length,
+                itemBuilder: (context, index) {
+                  return IntrinsicHeight(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: 45.0,
+                          child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 16.0),
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  data.data.mahasiswa[index].nama,
-                                  style: const TextStyle(
-                                    color: ColorName.primary,
-                                  ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Text('${index + 1}.'),
                                 ),
-                                const SizedBox(height: 18.0),
-                                Text(
-                                  data.data.mahasiswa[index].username,
-                                  style: const TextStyle(
+                                const Text(
+                                  '',
+                                  style: TextStyle(
                                     color: ColorName.grey,
                                   ),
                                 ),
-                                const SizedBox(height: 18.0),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        
-                                      },
-                                      child: const Text(
-                                        'Lihat SK Kompren',
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            color: ColorName.primary,
-                                            decoration: TextDecoration.underline),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        TextButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              isClicked = !isClicked;
-                                            });
-                                            _showSuccessDialog();
-                                          },
-                                          style: TextButton.styleFrom(
-                                            backgroundColor:
-                                                isClicked ? Colors.red : Colors.green,
-                                          ),
-                                          child: Text(
-                                            isClicked
-                                                ? 'Belum Dapat Ujian'
-                                                : 'Dapat Ikut Ujian',
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                )
                               ],
                             ),
                           ),
-                        ],
-                      ),
-                    );
-                  },
-                  
-                );
-              }
-            );
-            
+                        ),
+                        const SizedBox(width: 5.0),
+                        const VerticalDivider(),
+                        const SizedBox(width: 5.0),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                data.data.mahasiswa[index].nama,
+                                style: const TextStyle(
+                                  color: ColorName.primary,
+                                ),
+                              ),
+                              const SizedBox(height: 18.0),
+                              Text(
+                                data.data.mahasiswa[index].username,
+                                style: const TextStyle(
+                                  color: ColorName.grey,
+                                ),
+                              ),
+                              const SizedBox(height: 18.0),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: const Text(
+                                      'Lihat SK Kompren',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: ColorName.primary,
+                                          decoration: TextDecoration.underline),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      TextButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            isClicked = !isClicked;
+                                          });
+                                          _showSuccessDialog();
+                                        },
+                                        style: TextButton.styleFrom(
+                                          backgroundColor: isClicked
+                                              ? Colors.red
+                                              : Colors.green,
+                                        ),
+                                        child: Text(
+                                          isClicked
+                                              ? 'Belum Dapat Ujian'
+                                              : 'Dapat Ikut Ujian',
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            });
           },
         ),
       ),

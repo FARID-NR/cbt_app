@@ -14,10 +14,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     on<_GetDash>((event, emit) async {
       emit(const _Loading());
       final response = await DashboardRemoteDatasource().getDash();
-      response.fold(
-        (l) => emit(_Error(l)), 
-        (r) => emit(_Loaded(r))
-      );
+      response.fold((l) => emit(_Error(l)), (r) => emit(_Loaded(r)));
     });
   }
 }

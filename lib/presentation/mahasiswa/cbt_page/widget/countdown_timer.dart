@@ -19,13 +19,7 @@ class CountdownTimer extends StatelessWidget {
         const SizedBox(
           width: 5,
         ),
-        Text(
-          time,
-          style: TextStyle(
-            fontSize: 16,
-            color: ColorName.primary
-          )
-        )
+        Text(time, style: TextStyle(fontSize: 16, color: ColorName.primary))
       ],
     );
   }

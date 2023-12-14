@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../bloc/dashboard/dashboard_bloc.dart';
 
-
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
 
@@ -13,7 +12,6 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-
   @override
   void initState() {
     context.read<DashboardBloc>().add(const DashboardEvent.getDash());
@@ -81,116 +79,115 @@ class _DashboardPageState extends State<DashboardPage> {
           const SizedBox(height: 40.0),
           BlocBuilder<DashboardBloc, DashboardState>(
             builder: (context, state) {
-              return state.maybeWhen(
-                orElse: (){
-                  // return const Text('Data kosong');
-                  return Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: 100,
-                          padding: const EdgeInsets.all(7),
-                          decoration: BoxDecoration(
-                              color: Colors.blueAccent,
-                              borderRadius: BorderRadius.circular(8)),
-                          child: const Column(
-                            children: [
-                              Text(
-                                'Jumlah Matkul',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w600),
-                              ),
-                              Text(
-                                '0',
-                                style: TextStyle(fontSize: 30),
-                              )
-                            ],
-                          ),
+              return state.maybeWhen(orElse: () {
+                // return const Text('Data kosong');
+                return Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 100,
+                        padding: const EdgeInsets.all(7),
+                        decoration: BoxDecoration(
+                            color: Colors.blueAccent,
+                            borderRadius: BorderRadius.circular(8)),
+                        child: const Column(
+                          children: [
+                            Text(
+                              'Jumlah Matkul',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w600),
+                            ),
+                            Text(
+                              '0',
+                              style: TextStyle(fontSize: 30),
+                            )
+                          ],
                         ),
                       ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Container(
-                          height: 100,
-                          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 6),
-                          decoration: BoxDecoration(
-                              color: Colors.blueAccent,
-                              borderRadius: BorderRadius.circular(8)),
-                          child: const Column(
-                            children: [
-                              Text(
-                                'Jumlah Mahasiswa',
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.w600),
-                              ),
-                              Text(
-                                '0',
-                                style: TextStyle(fontSize: 30),
-                              )
-                            ],
-                          ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Container(
+                        height: 100,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 6),
+                        decoration: BoxDecoration(
+                            color: Colors.blueAccent,
+                            borderRadius: BorderRadius.circular(8)),
+                        child: const Column(
+                          children: [
+                            Text(
+                              'Jumlah Mahasiswa',
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.w600),
+                            ),
+                            Text(
+                              '0',
+                              style: TextStyle(fontSize: 30),
+                            )
+                          ],
                         ),
                       ),
-                    ],
-                  );
-                },
-                loading: () {
-                  return const Center(child: CircularProgressIndicator(),);
-                },
-                loaded: (data) {
-                  return Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: 100,
-                          padding: const EdgeInsets.all(7),
-                          decoration: BoxDecoration(
-                              color: Colors.blueAccent,
-                              borderRadius: BorderRadius.circular(8)),
-                          child: Column(
-                            children: [
-                              const Text(
-                                'Jumlah Matkul',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w600),
-                              ),
-                              Text(
-                                '${data.data.jumlahMatkul}',
-                                style: const TextStyle(fontSize: 30),
-                              )
-                            ],
-                          ),
+                    ),
+                  ],
+                );
+              }, loading: () {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }, loaded: (data) {
+                return Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 100,
+                        padding: const EdgeInsets.all(7),
+                        decoration: BoxDecoration(
+                            color: Colors.blueAccent,
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Column(
+                          children: [
+                            const Text(
+                              'Jumlah Matkul',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w600),
+                            ),
+                            Text(
+                              '${data.data.jumlahMatkul}',
+                              style: const TextStyle(fontSize: 30),
+                            )
+                          ],
                         ),
                       ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Container(
-                          height: 100,
-                          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 6),
-                          decoration: BoxDecoration(
-                              color: Colors.blueAccent,
-                              borderRadius: BorderRadius.circular(8)),
-                          child: Column(
-                            children: [
-                              const Text(
-                                'Jumlah Mahasiswa',
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.w600),
-                              ),
-                              Text(
-                                '${data.data.jumlahMahasiswa}',
-                                style: const TextStyle(fontSize: 30),
-                              )
-                            ],
-                          ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Container(
+                        height: 100,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 6),
+                        decoration: BoxDecoration(
+                            color: Colors.blueAccent,
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Column(
+                          children: [
+                            const Text(
+                              'Jumlah Mahasiswa',
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.w600),
+                            ),
+                            Text(
+                              '${data.data.jumlahMahasiswa}',
+                              style: const TextStyle(fontSize: 30),
+                            )
+                          ],
                         ),
                       ),
-                      const SizedBox(width: 10),
-                    ],
-                  );
-                }
-              );
-              
+                    ),
+                    const SizedBox(width: 10),
+                  ],
+                );
+              });
             },
           )
         ],

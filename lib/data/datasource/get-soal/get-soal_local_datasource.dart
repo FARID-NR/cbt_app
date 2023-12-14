@@ -8,12 +8,18 @@ class GetsoalLocalDatasource {
     return result;
   }
 
+  Future<bool> getId(GetSoalResponseModel data) async {
+    final pref = await SharedPreferences.getInstance();
+    final result = await pref.setString('soal', data.data.id.toString());
+    return result;
+  }
+
 //   Future<Data> getIdEndpoint() async {
 //   final pref = await SharedPreferences.getInstance();
 //   final jsonString = pref.getString('soal') ?? '';
 
 //   final endpointModel = GetSoalResponseModel.fromJson(jsonString);
-  
+
 //   // Ambil semua objek Data dari model
 //   Data dataList = endpointModel.data.id as Data;
 
@@ -22,18 +28,6 @@ class GetsoalLocalDatasource {
 
 //   return dataList; // Mengembalikan daftar semua objek Data
 // }
-
-  // Future<String> getIdAsString() async {
-  //   final pref = await SharedPreferences.getInstance();
-  //   final jsonString = pref.getString('soal') ?? '';
-
-  //   final getSoalModel = GetSoalResponseModel.fromJson(jsonString).data.id;
-    
-  //   // Mengonversi nilai id (yang berupa int) menjadi String
-  //   // final idAsString = getSoalModel.data.id.toString();
-
-  //   return getSoalModel.toString();
-  // }
 
 
 }

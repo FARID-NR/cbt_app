@@ -1,3 +1,4 @@
+import 'package:cbt_app/bloc/penilaian/penilaian_bloc.dart';
 import 'package:cbt_app/common/constants/colors.dart';
 import 'package:cbt_app/common/constants/images.dart';
 import 'package:cbt_app/common/widgets/menu_card.dart';
@@ -55,41 +56,47 @@ class _ListMatkulHasilPageState extends State<ListMatkulHasilPage> {
             Expanded(
               child: BlocBuilder<EndpointBloc, EndpointState>(
                 builder: (context, state) {
-                  return state.maybeWhen(
-                    orElse: (){
-                      return const Text('Data Matkul Belum ada');
-                    },
-                    loading: (){
-                      return const Center(child: CircularProgressIndicator(),);
-                    },
-                    loaded: (data){
-                      return Column(
-                        children: [
-                          Expanded(
-                            child: ListView.builder(
-                              itemCount: data.data.length,
-                              itemBuilder: (context, index){
-                                return Padding(
-                                  padding: const EdgeInsets.only(bottom: 15),
-                                  child: MenuCard(
-                                    label: data.data[index].nama,
-                                    backgroundColor: const Color(0xff686BFF),
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => const DataMhsSelesaiTile()));
-                                    },
-                                    imagePath: Images.khs,
-                                  ),
-                                );
-                              },
-                            ),
+                  return state.maybeWhen(orElse: () {
+                    return const Text('Data Matkul Belum ada');
+                  }, loading: () {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }, loaded: (data) {
+                    return Column(
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: data.data.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.only(bottom: 15),
+                                child: MenuCard(
+                                  label: data.data[index].nama,
+                                  backgroundColor: const Color(0xff686BFF),
+                                  onPressed: () {
+                                    int selectedUserId = data.data[index].id;
+
+                                    context.read<PenilaianBloc>().add(
+                                        PenilaianEvent.penilaian(
+                                            userId: selectedUserId));
+
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                DataMhsSelesaiTile(
+                                                    userId: selectedUserId)));
+                                  },
+                                  imagePath: Images.khs,
+                                ),
+                              );
+                            },
                           ),
-                        ],
-                      );
-                    }
-                  );
+                        ),
+                      ],
+                    );
+                  });
                 },
               ),
             ),

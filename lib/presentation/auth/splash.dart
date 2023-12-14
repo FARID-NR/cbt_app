@@ -10,7 +10,6 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-
   @override
   void initState() {
     super.initState();
@@ -22,9 +21,10 @@ class _SplashPageState extends State<SplashPage> {
 
     if (mounted) {
       Navigator.pushReplacement(
-        context, 
-        MaterialPageRoute(builder: (context) => const AuthPage(),)
-      );
+          context,
+          MaterialPageRoute(
+            builder: (context) => const AuthPage(),
+          ));
     }
   }
 

@@ -1,42 +1,38 @@
-import 'dart:convert';
+
 import 'dart:io';
 
 class RegisterRequestModel {
   final String nama;
   final String username;
   final String password;
-  final File skKomprenPath; // Gunakan path string
+  final File skKompren;
+  final double? lat;
+  final double? long;
 
   RegisterRequestModel({
     required this.nama,
     required this.username,
     required this.password,
-    required this.skKomprenPath,
+    required this.skKompren,
+    this.lat,
+    this.long,
   });
 
-  factory RegisterRequestModel.fromJson(String str) =>
-      RegisterRequestModel.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory RegisterRequestModel.fromMap(Map<String, dynamic> json) =>
-      RegisterRequestModel(
-        nama: json["nama"],
-        username: json["username"],
-        password: json["password"],
-        skKomprenPath: json["sk_kompren"], // Tetapkan path string
-      );
-
-  Map<String, dynamic> toMap() => {
-        "nama": nama,
-        "username": username,
-        "password": password,
-        "sk_kompren": skKomprenPath,
+  Map<String, String> toJson() {
+    if (lat == null && long == null) {
+      return {
+        'nama': nama,
+        'username': username,
+        'password': password
       };
+    }
 
-  // Future<String> getBase64FromSkKompren() async {
-  //   final File skKompren = File(skKomprenPa);
-  //   final skKomprenBytes = await skKompren.readAsBytes();
-  //   return base64Encode(skKomprenBytes);
-  // }
+    return {
+      'matkul_id': nama,
+      'soal': username,
+      'tingkat': password,
+      'updated_at': lat?.toString() ?? '',
+      'created_at': long?.toString() ?? '',
+    };
+  }
 }

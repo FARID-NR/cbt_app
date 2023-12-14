@@ -15,10 +15,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     on<_Register>((event, emit) async {
       emit(const _Loading());
       final response = await RegisterRemoteDataSource().register(event.data);
-      response.fold(
-        (l) => emit(_Error(l)), 
-        (r) => emit(_Success(r))
-      );
+      response.fold((l) => emit(_Error(l)), (r) => emit(_Success(r)));
     });
   }
 }

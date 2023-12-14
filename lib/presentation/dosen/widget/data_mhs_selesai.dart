@@ -1,10 +1,15 @@
+import 'package:cbt_app/data/datasource/endpoint/endpoint_local_datasource.dart';
+import 'package:cbt_app/presentation/base_widget/button_lihat_nilai.dart';
+import 'package:cbt_app/presentation/base_widget/button_send_nilai.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../bloc/penilaian/penilaian_bloc.dart';
 import '../../../common/constants/colors.dart';
 
 class DataMhsSelesaiTile extends StatefulWidget {
   // final CourseScheduleModel data;
-  const DataMhsSelesaiTile({super.key});
+  const DataMhsSelesaiTile({super.key, required int userId});
 
   @override
   State<DataMhsSelesaiTile> createState() => _DataMhsSelesaiTile();
@@ -16,6 +21,8 @@ class _DataMhsSelesaiTile extends State<DataMhsSelesaiTile> {
   bool activated = false;
   bool endScroll = false;
   String? selectedOption;
+
+  String matkulId = '${EndpointLocalDatasource().getIdEndpoint()}';
 
   void _showSuccessDialog() {
     showDialog(
@@ -37,441 +44,239 @@ class _DataMhsSelesaiTile extends State<DataMhsSelesaiTile> {
     );
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              // Untuk kembali ke halaman sebelumnya
-              Navigator.pop(context);
-            },
-          ),
-          title: const Text(
-            'Data Mahasiswa Ujian',
-            style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w700,
-                color: ColorName.primary),
-          ),
-        ),
-        body: IntrinsicHeight(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                width: 45.0,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16.0),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(left: 10),
-                        child: Text('1.'),
-                      ),
-                      Text(
-                        '',
-                        style: TextStyle(
-                          color: ColorName.grey,
-                        ),
-                      ),
-                    ],
-                  ),
+      child: BlocBuilder<PenilaianBloc, PenilaianState>(
+        builder: (context, state) {
+          return state.maybeWhen(orElse: () {
+            return Scaffold(
+              appBar: AppBar(
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () {
+                    // Untuk kembali ke halaman sebelumnya
+                    Navigator.pop(context);
+                  },
+                ),
+                title: const Text(
+                  'Data Mahasiswa Ujian',
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700,
+                      color: ColorName.primary),
                 ),
               ),
-              const SizedBox(width: 5.0),
-              const VerticalDivider(),
-              const SizedBox(width: 5.0),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '60900120025',
-                      style: TextStyle(
-                        color: ColorName.primary,
-                      ),
-                    ),
-                    SizedBox(height: 18.0),
-                    Text(
-                      'Remedial',
-                      style: TextStyle(
-                        color: Colors.red,
-                      ),
-                    ),
-                    SizedBox(height: 18.0),
-                    Column(
+            );
+          }, loading: () {
+            return Scaffold(
+              appBar: AppBar(
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () {
+                    // Untuk kembali ke halaman sebelumnya
+                    Navigator.pop(context);
+                  },
+                ),
+                title: const Text(
+                  'Data Mahasiswa Ujian',
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700,
+                      color: ColorName.primary),
+                ),
+              ),
+              body: const Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }, loaded: (data) {
+            return Scaffold(
+              appBar: AppBar(
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () {
+                    // Untuk kembali ke halaman sebelumnya
+                    Navigator.pop(context);
+                  },
+                ),
+                title: Text(
+                  'Data Ujian ${data.data.matkul.nama}',
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700,
+                      color: ColorName.primary),
+                ),
+              ),
+              body: ListView.builder(
+                itemCount: data.data.mahasiswa.length,
+                itemBuilder: (context, index) {
+                  final idMatkul = data.data.matkul.id;
+                  final idMhs = data.data.mahasiswa[index].id;
+                  debugPrint(idMatkul.toString());
+                  debugPrint(idMhs.toString());
+                  return IntrinsicHeight(
+                    child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Action :',
-                        ),
                         SizedBox(
-                          height: 10,
+                          width: 45.0,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 16.0),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: Text('${index + 1}.'),
+                                ),
+                                Text(
+                                  '',
+                                  style: TextStyle(
+                                    color: ColorName.grey,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            TextButton(
-                              onPressed: () {
-                                // Aksi yang dijalankan saat tombol ditekan
-                                showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  backgroundColor:
-                                      Color.fromARGB(0, 255, 255, 255),
-                                  context: context,
-                                  builder: (BuildContext Context) {
-                                    return StatefulBuilder(
-                                      builder: (BuildContext context,
-                                          StateSetter setState) {
-                                        return Container(
-                                          height: 838,
-                                          decoration: BoxDecoration(
-                                            color: ColorName.white,
-                                            borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(30),
-                                              topRight: Radius.circular(30),
-                                            ),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 20,
-                                                right: 20,
-                                                top: 60,
-                                                bottom: 20.0),
-                                            child: SingleChildScrollView(
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment
-                                                        .start,
-                                                children: [
-                                                  Align(
-                                                    alignment:
-                                                        Alignment.topRight,
-                                                    child: IconButton(
-                                                      icon: Icon(
-                                                        Icons
-                                                            .keyboard_arrow_down_outlined,
-                                                        color: ColorName
-                                                            .primary,
-                                                      ),
-                                                      onPressed: () {
-                                                        Navigator.pop(
-                                                            context);
-                                                      },
-                                                    ),
-                                                  ),
-                                                  SizedBox(height: 20),
-                                                  Text(
-                                                    'Lihat Soal',
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color: ColorName
-                                                            .primary),
-                                                  ),
-                                                  SizedBox(height: 10),
-                                                  Text('Nilai Akhir'),
-                                                  Container(
-                                                    width: double.maxFinite,
-                                                    padding: EdgeInsets.all(
-                                                        16.0),
-                                                    decoration:
-                                                        BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius
-                                                              .circular(
-                                                                  8.0),
-                                                      border: Border.all(
-                                                        color: Colors.grey,
-                                                        width: 1.0,
-                                                      ),
-                                                    ),
-                                                    child: Text(
-                                                      'Teks yang tidak dapat diubah',
-                                                      style: TextStyle(
-                                                        color: Colors.grey,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(height: 10),
-                                                  Text('Nilai Remedial'),
-                                                  Container(
-                                                    width: double.maxFinite,
-                                                    padding: EdgeInsets.all(
-                                                        16.0),
-                                                    decoration:
-                                                        BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius
-                                                              .circular(
-                                                                  8.0),
-                                                      border: Border.all(
-                                                        color: Colors.grey,
-                                                        width: 1.0,
-                                                      ),
-                                                    ),
-                                                    child: Text(
-                                                      'Teks yang tidak dapat diubah',
-                                                      style: TextStyle(
-                                                        color: Colors.grey,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(height: 10),
-                                                  Text(
-                                                      'Jumlah Benar (Pengerjaan Terakhir)'),
-                                                  Container(
-                                                    width: double.maxFinite,
-                                                    padding:
-                                                        EdgeInsets.all(8.0),
-                                                    decoration:
-                                                        BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius
-                                                              .circular(
-                                                                  8.0),
-                                                      border: Border.all(
-                                                        color: Colors.grey,
-                                                        width: 1.0,
-                                                      ),
-                                                    ),
-                                                    child: Text(
-                                                      'Teks yang tidak dapat diubah',
-                                                      style: TextStyle(
-                                                        color: Colors.grey,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(height: 10),
-                                                  Text(
-                                                      'Jumlah Salah (Pengerjaan Terakhir)'),
-                                                  Container(
-                                                    width: double.maxFinite,
-                                                    padding: EdgeInsets.all(
-                                                        16.0),
-                                                    decoration:
-                                                        BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius
-                                                              .circular(
-                                                                  8.0),
-                                                      border: Border.all(
-                                                        color: Colors.grey,
-                                                        width: 1.0,
-                                                      ),
-                                                    ),
-                                                    child: Text(
-                                                      'Teks yang tidak dapat diubah',
-                                                      style: TextStyle(
-                                                        color: Colors.grey,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(height: 20),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.only(
-                                                            bottom: 5),
-                                                    child: Align(
-                                                      alignment: Alignment
-                                                          .bottomRight,
-                                                      child: TextButton(
-                                                        onPressed: () {
-                                                          // Aksi yang dijalankan saat tombol ditekan
-                                                          Navigator.pop(
-                                                              context);
-                                                        },
-                                                        child: Text(
-                                                          'Close',
-                                                          style: TextStyle(
-                                                            color: Colors
-                                                                .white, // Warna teks tombol
-                                                          ),
-                                                        ),
-                                                        style: TextButton.styleFrom(
-                                                            backgroundColor:
-                                                                ColorName
-                                                                    .primary),
-                                                      ),
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  },
-                                );
-                              },
-                              child: Text(
-                                'Lihat Nilai',
-                                style: TextStyle(
-                                  color: Colors.white, // Warna teks tombol
+                        const SizedBox(width: 5.0),
+                        const VerticalDivider(),
+                        const SizedBox(width: 5.0),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                data.data.mahasiswa[index].nama,
+                                style: const TextStyle(
+                                  color: ColorName.primary,
                                 ),
                               ),
-                              style: TextButton.styleFrom(
-                                backgroundColor: Colors
-                                    .blueAccent, // Warna latar belakang tombol
+                              const SizedBox(height: 10.0),
+                              Text(
+                                data.data.mahasiswa[index].username,
+                                style: const TextStyle(
+                                  color: ColorName.primary,
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                // Aksi yang dijalankan saat tombol ditekan
-                                _showSuccessDialog();
-                              },
-                              child: Text(
+                              const SizedBox(height: 18.0),
+                              Text(
                                 'Remedial',
                                 style: TextStyle(
-                                  color: Colors.white, // Warna teks tombol
+                                  color: Colors.red,
                                 ),
                               ),
-                              style: TextButton.styleFrom(
-                                backgroundColor: Colors
-                                    .red, // Warna latar belakang tombol
-                              ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                // Aksi yang dijalankan saat tombol ditekan
-                                showModalBottomSheet(
-                                    isScrollControlled: true,
-                                    context: context,
-                                    builder: (BuildContext Context) {
-                                      return StatefulBuilder(builder:
-                                          (BuildContext context,
-                                              StateSetter setState) {
-                                        return Container(
-                                          height: 700,
-                                          decoration: BoxDecoration(
-                                            color: ColorName.white,
-                                            borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(30),
-                                              topRight: Radius.circular(30),
-                                            ),
+                              SizedBox(height: 18.0),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Action :',
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      TextButton(
+                                        onPressed: () {
+                                          // Aksi yang dijalankan saat tombol ditekan
+                                          showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            backgroundColor: Color.fromARGB(
+                                                0, 255, 255, 255),
+                                            context: context,
+                                            builder: (BuildContext Context) {
+                                              return StatefulBuilder(
+                                                builder: (BuildContext context,
+                                                    StateSetter setState) {
+                                                  return ButtonViewScore(
+                                                      idMatkul: idMatkul,
+                                                      idMhs: idMhs);
+                                                },
+                                              );
+                                            },
+                                          );
+                                        },
+                                        child: Text(
+                                          'Lihat Nilai',
+                                          style: TextStyle(
+                                            color: Colors
+                                                .white, // Warna teks tombol
                                           ),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsets.all(20.0),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Align(
-                                                  alignment:
-                                                      Alignment.topRight,
-                                                  child: IconButton(
-                                                    icon: Icon(
-                                                      Icons
-                                                          .keyboard_arrow_down_outlined,
-                                                      color: Colors.black,
-                                                    ),
-                                                    onPressed: () {
-                                                      Navigator.pop(
-                                                          context);
-                                                    },
-                                                  ),
-                                                ),
-                                                SizedBox(height: 20),
-                                                Text(
-                                                  'Kirim Nilai',
-                                                  style: TextStyle(
-                                                    fontSize: 20,
-                                                    fontWeight:
-                                                        FontWeight.bold,
-                                                  ),
-                                                ),
-                                                SizedBox(height: 20),
-                                                Text(
-                                                  'Nilai Akhir (Konversi Remedial)'
-                                                ),
-                                                TextFormField(
-                                                  decoration:
-                                                      InputDecoration(
-                                                    labelText:
-                                                        '',
-                                                    border:
-                                                        OutlineInputBorder(),
-                                                    contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10)
-                                                  ),
-                                                  // ...
-                                                ),
-                                                SizedBox(height: 20),
-                                                Text(
-                                                  'Keterangan Surat'
-                                                ),
-                                                TextFormField(
-                                                  decoration:
-                                                      InputDecoration(
-                                                    labelText:
-                                                        '',
-                                                    border:
-                                                        OutlineInputBorder(),
-                                                    contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10)
-                                                  ),
-                                                  // ...
-                                                ),
-        
-                                                Align(
-                                                  alignment: Alignment.bottomRight,
-                                                  child: TextButton(
-                                                    onPressed: () {
-                                                      // Aksi yang dijalankan saat tombol ditekan
-                                                      Navigator.pop(
-                                                        context
-                                                      );
-                                                    },
-                                                    child: Text(
-                                                      'Simpan',
-                                                      style: TextStyle(
-                                                        color: Colors.white, // Warna teks tombol
-                                                      ),
-                                                    ),
-                                                    style: TextButton.styleFrom(
-                                                      backgroundColor:ColorName.primary
-                                                    )
-                                                  ),
-                                                ),
-        
-                                              ],
-                                            ),
+                                        ),
+                                        style: TextButton.styleFrom(
+                                          backgroundColor: Colors
+                                              .blueAccent, // Warna latar belakang tombol
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          // Aksi yang dijalankan saat tombol ditekan
+                                          _showSuccessDialog();
+                                        },
+                                        child: Text(
+                                          'Remedial',
+                                          style: TextStyle(
+                                            color: Colors
+                                                .white, // Warna teks tombol
                                           ),
-                                        );
-                                      });
-                                    });
-                              },
-                              child: Text(
-                                'Kirim Nilai',
-                                style: TextStyle(
-                                  color: Colors.white, // Warna teks tombol
-                                ),
-                              ),
-                              style: TextButton.styleFrom(
-                                backgroundColor: Colors
-                                    .green, // Warna latar belakang tombol
-                              ),
-                            )
-                          ],
-                        )
+                                        ),
+                                        style: TextButton.styleFrom(
+                                          backgroundColor: Colors
+                                              .red, // Warna latar belakang tombol
+                                        ),
+                                      ),
+                                      SizedBox(width: 10),
+                                      TextButton(
+                                        onPressed: () {
+                                          // Aksi yang dijalankan saat tombol ditekan
+                                          showModalBottomSheet(
+                                              isScrollControlled: true,
+                                              context: context,
+                                              builder: (BuildContext Context) {
+                                                return StatefulBuilder(builder:
+                                                    (BuildContext context,
+                                                        StateSetter setState) {
+                                                  return ButtonSendNilai();
+                                                });
+                                              });
+                                        },
+                                        child: Text(
+                                          'Kirim Nilai',
+                                          style: TextStyle(
+                                            color: Colors
+                                                .white, // Warna teks tombol
+                                          ),
+                                        ),
+                                        style: TextButton.styleFrom(
+                                          backgroundColor: Colors
+                                              .green, // Warna latar belakang tombol
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
                       ],
-                    )
-                  ],
-                ),
+                    ),
+                  );
+                },
               ),
-            ],
-          ),
-        ),
+            );
+          });
+        },
       ),
     );
   }

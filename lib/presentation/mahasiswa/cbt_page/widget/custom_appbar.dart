@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 
 import '../../../../common/widgets/circular_button.dart';
 
-
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     Key? key,
     this.title = '',
     this.showActionIcon = false,
     this.leading,
-    this.titleWidget, this.onMenuActionTap,
+    this.titleWidget,
+    this.onMenuActionTap,
   }) : super(key: key);
 
   final String title;
@@ -19,7 +19,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool showActionIcon;
   final Widget? leading;
   final VoidCallback? onMenuActionTap;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +30,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Stack(
             children: [
               Positioned.fill(
-                child: titleWidget == null ? Center(child: Text(title, style: TextStyle(color: ColorName.primary))) : Center(child: titleWidget!),
+                child: titleWidget == null
+                    ? Center(
+                        child: Text(title,
+                            style: TextStyle(color: ColorName.primary)))
+                    : Center(child: titleWidget!),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,9 +49,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     Transform.translate(
                       offset: const Offset(10,
                           0), // transform to allign icons with body content =>  - CircularButton.padding
-                      child:  CircularButton(child: Icon(Icons.menu, color: ColorName.primary,), onTap: onMenuActionTap ?? (){
-                        
-                      },),
+                      child: CircularButton(
+                        child: Icon(
+                          Icons.menu,
+                          color: ColorName.primary,
+                        ),
+                        onTap: onMenuActionTap ?? () {},
+                      ),
                     )
                 ],
               ),

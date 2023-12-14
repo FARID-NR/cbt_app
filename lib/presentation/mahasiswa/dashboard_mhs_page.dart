@@ -1,5 +1,11 @@
+import 'package:cbt_app/bloc/endpoint/endpoint_bloc.dart';
 import 'package:cbt_app/common/constants/colors.dart';
+import 'package:cbt_app/common/widgets/menu_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../bloc/dashboard-mhs/dashboard_mhs_bloc.dart';
+import '../../common/constants/images.dart';
 
 class DashboardMhsPage extends StatefulWidget {
   const DashboardMhsPage({super.key});
@@ -9,6 +15,13 @@ class DashboardMhsPage extends StatefulWidget {
 }
 
 class _DashboardMhsPageState extends State<DashboardMhsPage> {
+
+  @override
+  void initState() {
+    context.read<DashboardMhsBloc>().add(const DashboardMhsEvent.getDashMhs());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -64,42 +77,78 @@ class _DashboardMhsPageState extends State<DashboardMhsPage> {
             ),
           ],
         ),
-        const SizedBox(height: 10.0),
-        // SearchInput(
-        //   controller: searchController,
-        // ),
-        // const SizedBox(height: 40.0),
-        // MenuCard(
-        //   label: 'Kartu Hasil\nStudi',
-        //   backgroundColor: const Color(0xff686BFF),
-        //   onPressed: () {
-        //     Navigator.push(context,
-        //         MaterialPageRoute(builder: (context) => const KhsPage()));
-        //   },
-        //   imagePath: Images.khs,
-        // ),
-        // const SizedBox(height: 40.0),
-        // MenuCard(
-        //   label: 'Nilai\nMata Kuliah',
-        //   backgroundColor: const Color(0xffFFB023),
-        //   onPressed: () {
-        //     Navigator.push(context,
-        //         MaterialPageRoute(builder: (context) => const NilaiMkPage()));
-        //   },
-        //   imagePath: Images.nMatkul,
-        // ),
-        // const SizedBox(height: 40.0),
-        // MenuCard(
-        //   label: 'Jadwal\nMata Kuliah',
-        //   backgroundColor: const Color(0xffFF68F0),
-        //   onPressed: () {
-        //     Navigator.push(
-        //         context,
-        //         MaterialPageRoute(
-        //             builder: (context) => const JadwalMatkulPage()));
-        //   },
-        //   imagePath: Images.jadwal,
-        // ),
+        const SizedBox(height: 50.0),
+        BlocBuilder<DashboardMhsBloc, DashboardMhsState>(
+          builder: (context, state) {
+            return state.maybeWhen(
+              orElse: () {
+                return const SizedBox();
+              },
+              loading: () {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
+              loaded: (data) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Selamat Datang Peserta Ujian Kompren',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: ColorName.primary),
+                    ),
+                    Text(
+                      'Nama : ${data.data.user.nama}',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                          color: ColorName.primary),
+                    ),
+                    Text(
+                      'NIM    : ${data.data.user.username}',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                          color: ColorName.primary),
+                    ),
+                    SizedBox(height: 20),
+                    MenuCard(
+                      label: data.data.penguji.penguji1.matkulNama, 
+                      backgroundColor: const Color(0xff686BFF),              
+                      onPressed: () {
+                    
+                       }, 
+                      imagePath: Images.khs
+                    ),
+                    SizedBox(height: 20),
+                    MenuCard(
+                      label: data.data.penguji.penguji2.matkulNama, 
+                      backgroundColor: const Color(0xff686BFF),              
+                      onPressed: () {
+                    
+                       }, 
+                      imagePath: Images.khs
+                    ),
+                    SizedBox(height: 20),
+                    MenuCard(
+                      label: data.data.penguji.penguji3.matkulNama, 
+                      backgroundColor: const Color(0xff686BFF),              
+                      onPressed: () {
+                    
+                       }, 
+                      imagePath: Images.khs
+                    ),
+
+                  ],
+                );
+              }
+            );
+            
+          },
+        )
       ],
     );
   }

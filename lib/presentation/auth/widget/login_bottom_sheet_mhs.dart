@@ -99,22 +99,43 @@ class _LoginBottomSheetState extends State<LoginBottomSheet> {
                 BlocListener<LoginBloc, LoginState>(
                   listener: (context, state) {
                     state.maybeWhen(
-                      orElse: (){},
-                      loaded: (data){
-                        LoginLocalDatasource().saveLoginData(data);
-                        if (data.data.roles == 'mahasiswa') {
-                          Navigator.pushReplacement(context, 
-                            MaterialPageRoute(builder: (context){
+                        orElse: () {},
+                        loaded: (data) {
+                          LoginLocalDatasource().saveLoginData(data);
+                          if (data.data.roles == 'mahasiswa') {
+                            Navigator.pushReplacement(context,
+                                MaterialPageRoute(builder: (context) {
                               return const MahasiswaPage();
-                            })
-                          );
-                        } else if (data.data.roles != "mahasiswa") {
+                            }));
+                          } else if (data.data.roles != "mahasiswa") {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: const Text('Mahasiswa'),
+                                  content:
+                                      const Text('Akun anda tidak terdaftar'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text('Close'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
+                        },
+                        error: (message) {
                           showDialog(
                             context: context,
                             builder: (context) {
                               return AlertDialog(
                                 title: const Text('Mahasiswa'),
-                                content: const Text('Akun anda tidak terdaftar'),
+                                content:
+                                    const Text('Username atau Password salah'),
                                 actions: <Widget>[
                                   TextButton(
                                     onPressed: () {
@@ -126,38 +147,17 @@ class _LoginBottomSheetState extends State<LoginBottomSheet> {
                               );
                             },
                           );
-                        }
-                      },
-                      error: (message){
-                        showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                title: const Text('Mahasiswa'),
-                                content: const Text('Username atau Password salah'),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: const Text('Close'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                      }
-                    );
+                        });
                   },
                   child: BlocBuilder<LoginBloc, LoginState>(
                     builder: (context, state) {
-                      return state.maybeWhen(orElse: () {
+                      return state.maybeWhen(
+                        orElse: () {
                         return Button.filled(
                           onPressed: () {
                             final requestModel = LoginRequestModel(
-                                username: usernameController.text,
-                                password: passwordController.text,
-                                
+                              username: usernameController.text,
+                              password: passwordController.text,
                             );
                             context
                                 .read<LoginBloc>()
@@ -192,9 +192,7 @@ class _LoginBottomSheetState extends State<LoginBottomSheet> {
                               );
                             }));
                           })
-                    ]
-                   )
-                  ),
+                  ])),
                 ),
                 const SizedBox(height: 30),
               ],

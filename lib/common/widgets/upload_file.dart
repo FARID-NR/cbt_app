@@ -50,7 +50,6 @@ class _UploadFileState extends State<UploadFile> {
         fileName = result.files.single.name;
         pdf = File(result.files.single.path!);
         widget.onFileSelected(pdf!); // Panggil fungsi onFileSelected
-        
       });
     } else {
       // Pengguna tidak memilih file
@@ -60,7 +59,8 @@ class _UploadFileState extends State<UploadFile> {
   Future<void> addSKPdf(File file) async {
     var request = http.MultipartRequest(
       'POST',
-      Uri.parse('${GlobalVariables.baseUrl}/api/register'), // Ganti dengan URL server Anda
+      Uri.parse(
+          '${GlobalVariables.baseUrl}/api/register'), // Ganti dengan URL server Anda
     );
 
     final fileName = file.path.split('/').last;
@@ -70,7 +70,8 @@ class _UploadFileState extends State<UploadFile> {
       'sk_kompren',
       bytes,
       filename: fileName,
-      contentType: MediaType('application', 'pdf'), // Sesuaikan tipe konten jika perlu
+      contentType:
+          MediaType('application', 'pdf'), // Sesuaikan tipe konten jika perlu
     );
 
     request.files.add(multiPartFile);
@@ -111,13 +112,12 @@ class _UploadFileState extends State<UploadFile> {
       File file = File(result.files.single.path!);
 
       // Update _filePdf using the provided callback
-      widget.onFileSelected(file); // Mengirim file yang dipilih ke widget parent
+      widget
+          .onFileSelected(file); // Mengirim file yang dipilih ke widget parent
     } else {
       // Handle if no file is chosen
     }
   }
-
-
 
   // ... kode lainnya ...
   @override
@@ -133,9 +133,7 @@ class _UploadFileState extends State<UploadFile> {
         decoration: BoxDecoration(
           color: Colors.grey[200],
           borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(8),
-            topLeft: Radius.circular(8)
-          ),
+              bottomLeft: Radius.circular(8), topLeft: Radius.circular(8)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -151,5 +149,4 @@ class _UploadFileState extends State<UploadFile> {
       ),
     );
   }
-
 }

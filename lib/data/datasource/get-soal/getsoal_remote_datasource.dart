@@ -11,12 +11,12 @@ class GetsoalRemoteDatasource {
     final header = {
       'Authorization': 'Bearer ${await LoginLocalDatasource().getToken()}'
     };
-    
+
     final response = await http.get(
       Uri.parse('${GlobalVariables.baseUrl}/api/dosen/matkul/$userIdList}'),
       headers: header,
     );
-      // debugPrint(response.body);
+    // debugPrint(response.body);
     if (response.statusCode == 200) {
       return Right(GetSoalResponseModel.fromJson(response.body));
     } else {
@@ -24,4 +24,3 @@ class GetsoalRemoteDatasource {
     }
   }
 }
-

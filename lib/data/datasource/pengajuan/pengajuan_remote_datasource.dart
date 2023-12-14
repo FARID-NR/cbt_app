@@ -9,19 +9,19 @@ import 'package:http/http.dart' as http;
 import '../login/login_local_datasource.dart';
 
 class PengajuanRemoteDatasource {
-  Future<Either<String, PengajuanResponseModel>> getPengujian(int userIdList) async {
-    // final userId = await EndpointLocalDatasource().getIdEndpoint();
-    // debugPrint(userId.toString());
+  Future<Either<String, PengajuanResponseModel>> getPengujian(
+      int userIdList) async {
+
     final header = {
       'Authorization': 'Bearer ${await LoginLocalDatasource().getToken()}'
     };
-    
+
     // debugPrint(userIdList.toString());
     final response = await http.get(
       Uri.parse('${GlobalVariables.baseUrl}/api/dosen/pengujian/$userIdList}'),
       headers: header,
     );
-      debugPrint(response.body);
+    debugPrint(response.body);
     if (response.statusCode == 200) {
       return Right(PengajuanResponseModel.fromJson(response.body));
     } else {
@@ -29,13 +29,15 @@ class PengajuanRemoteDatasource {
     }
   }
 
-  Future<Either<String, DapatUjianResponseModel>> getStatusUjian(int userIdList) async {
+  Future<Either<String, DapatUjianResponseModel>> getStatusUjian(
+      int userIdList) async {
     final header = {
       'Authorization': 'Bearer ${await LoginLocalDatasource().getToken()}'
     };
 
     final response = await http.get(
-      Uri.parse('${GlobalVariables.baseUrl}/api/dosen/dapat-ujian/$userIdList}/3'),
+      Uri.parse(
+          '${GlobalVariables.baseUrl}/api/dosen/dapat-ujian/$userIdList}/3'),
       headers: header,
     );
 
@@ -44,6 +46,5 @@ class PengajuanRemoteDatasource {
     } else {
       return const Left('Server error');
     }
-
   }
 }

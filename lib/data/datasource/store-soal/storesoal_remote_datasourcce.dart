@@ -5,25 +5,23 @@ import 'package:cbt_app/data/models/response/storesoal_response_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 
-
 class StoresoalRemoteDatasource {
   Future<Either<dynamic, StoresoalResponseModel>> storeSoal(
-    StoresoalRequestModel requestModel) async{
+      StoresoalRequestModel requestModel) async {
     final header = {
       'Authorization': 'Bearer ${await LoginLocalDatasource().getToken()}',
     };
 
     final response = await http.post(
-      Uri.parse('${GlobalVariables.baseUrl}/api/dosen/soal'),
-      headers: header,
-      body: {
-        "soal": requestModel.soal,
-        "tingkat": requestModel.tingkat,
-        "gambar_soal": requestModel.gambarSoal
-      }
-    );
+        Uri.parse('${GlobalVariables.baseUrl}/api/dosen/soal'),
+        headers: header,
+        body: {
+          "soal": requestModel.soal,
+          "tingkat": requestModel.tingkat,
+          "gambar_soal": requestModel.gambarSoal
+        });
 
-   if (response.statusCode == 200) {
+    if (response.statusCode == 200) {
       return Right(StoresoalResponseModel.fromJson(response.body));
     } else {
       return Left('Server Error');

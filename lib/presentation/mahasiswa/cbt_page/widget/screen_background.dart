@@ -1,7 +1,6 @@
 import 'package:cbt_app/common/constants/colors.dart';
 import 'package:flutter/material.dart';
 
-
 class BackgroundDecoration extends StatelessWidget {
   const BackgroundDecoration(
       {Key? key, required this.child, this.showGradient = false})
@@ -17,7 +16,8 @@ class BackgroundDecoration extends StatelessWidget {
         Positioned.fill(
             child: Container(
           decoration: BoxDecoration(
-              color: ColorName.white,),
+            color: ColorName.white,
+          ),
           child: CustomPaint(
             painter: BackgroundPainter(),
           ),
