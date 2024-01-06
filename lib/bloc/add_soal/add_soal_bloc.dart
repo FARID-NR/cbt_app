@@ -20,5 +20,12 @@ class AddSoalBloc extends Bloc<AddSoalEvent, AddSoalState> {
         (r) => emit(_Loaded(r))
       );
     });
+
+    on<_Hapus>((event, emit) async {
+      emit(const _Loading());
+      final userId = event.userId;
+      final response = await AddSoalRemoteDatasource().hapusSoal(userId);
+      response.fold((l) => emit(_Error(l)), (r) => emit(_Loaded(r)));
+    });
   }
 }

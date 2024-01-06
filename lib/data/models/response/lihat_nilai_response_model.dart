@@ -21,7 +21,7 @@ class LihatNilaiResponseModel {
       LihatNilaiResponseModel(
         success: json["success"],
         message: json["message"],
-        data: Data.fromMap(json["data"]),
+        data: Data.fromMap(json["data"] ?? ''),
       );
 
   Map<String, dynamic> toMap() => {
@@ -60,7 +60,7 @@ class Data {
 
   factory Data.fromMap(Map<String, dynamic> json) => Data(
         dosen: Dosen.fromMap(json["dosen"]),
-        matkul: Matkul.fromMap(json["matkul"]),
+        matkul: Matkul.fromMap(json["matkul"] ?? ''),
         mahasiswa: Dosen.fromMap(json["mahasiswa"]),
         nilaiAsli: json["nilai_asli"],
         jumlahBenar: json["jumlah_benar"],
@@ -104,7 +104,7 @@ class Dosen {
         id: json["id"],
         nama: json["nama"],
         roles: json["roles"],
-        username: json["username"],
+        username: json["username"] ?? '',
       );
 
   Map<String, dynamic> toMap() => {

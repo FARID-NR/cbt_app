@@ -34,11 +34,15 @@ class User {
   final int id;
   final String nama;
   final int userId;
+  final String finishDate;
+  final String finishTime;
 
   User({
     required this.id,
     required this.nama,
     required this.userId,
+    required this.finishDate,
+    required this.finishTime,
   });
 
   factory User.fromJson(String str) => User.fromMap(json.decode(str));
@@ -49,11 +53,15 @@ class User {
         id: json["id"],
         nama: json["nama"],
         userId: json["user_id"],
+        finishDate: json["finish_date"] ?? '',
+        finishTime: json["finish_time"] ?? '',
       );
 
   Map<String, dynamic> toMap() => {
         "id": id,
         "nama": nama,
         "user_id": userId,
+        "finish_date": finishDate,
+        "finish_time": finishTime,
       };
 }

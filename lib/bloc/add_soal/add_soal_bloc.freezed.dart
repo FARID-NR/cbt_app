@@ -20,18 +20,21 @@ mixin _$AddSoalEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(AddSoalRequestModel data) addSoal,
+    required TResult Function(int userId) hapus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(AddSoalRequestModel data)? addSoal,
+    TResult? Function(int userId)? hapus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(AddSoalRequestModel data)? addSoal,
+    TResult Function(int userId)? hapus,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$AddSoalEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_AddSoal value) addSoal,
+    required TResult Function(_Hapus value) hapus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_AddSoal value)? addSoal,
+    TResult? Function(_Hapus value)? hapus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_AddSoal value)? addSoal,
+    TResult Function(_Hapus value)? hapus,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,6 +120,7 @@ class _$StartedImpl implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(AddSoalRequestModel data) addSoal,
+    required TResult Function(int userId) hapus,
   }) {
     return started();
   }
@@ -123,6 +130,7 @@ class _$StartedImpl implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(AddSoalRequestModel data)? addSoal,
+    TResult? Function(int userId)? hapus,
   }) {
     return started?.call();
   }
@@ -132,6 +140,7 @@ class _$StartedImpl implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(AddSoalRequestModel data)? addSoal,
+    TResult Function(int userId)? hapus,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -145,6 +154,7 @@ class _$StartedImpl implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_AddSoal value) addSoal,
+    required TResult Function(_Hapus value) hapus,
   }) {
     return started(this);
   }
@@ -154,6 +164,7 @@ class _$StartedImpl implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_AddSoal value)? addSoal,
+    TResult? Function(_Hapus value)? hapus,
   }) {
     return started?.call(this);
   }
@@ -163,6 +174,7 @@ class _$StartedImpl implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_AddSoal value)? addSoal,
+    TResult Function(_Hapus value)? hapus,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -242,6 +254,7 @@ class _$AddSoalImpl implements _AddSoal {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(AddSoalRequestModel data) addSoal,
+    required TResult Function(int userId) hapus,
   }) {
     return addSoal(data);
   }
@@ -251,6 +264,7 @@ class _$AddSoalImpl implements _AddSoal {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(AddSoalRequestModel data)? addSoal,
+    TResult? Function(int userId)? hapus,
   }) {
     return addSoal?.call(data);
   }
@@ -260,6 +274,7 @@ class _$AddSoalImpl implements _AddSoal {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(AddSoalRequestModel data)? addSoal,
+    TResult Function(int userId)? hapus,
     required TResult orElse(),
   }) {
     if (addSoal != null) {
@@ -273,6 +288,7 @@ class _$AddSoalImpl implements _AddSoal {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_AddSoal value) addSoal,
+    required TResult Function(_Hapus value) hapus,
   }) {
     return addSoal(this);
   }
@@ -282,6 +298,7 @@ class _$AddSoalImpl implements _AddSoal {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_AddSoal value)? addSoal,
+    TResult? Function(_Hapus value)? hapus,
   }) {
     return addSoal?.call(this);
   }
@@ -291,6 +308,7 @@ class _$AddSoalImpl implements _AddSoal {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_AddSoal value)? addSoal,
+    TResult Function(_Hapus value)? hapus,
     required TResult orElse(),
   }) {
     if (addSoal != null) {
@@ -306,6 +324,145 @@ abstract class _AddSoal implements AddSoalEvent {
   AddSoalRequestModel get data;
   @JsonKey(ignore: true)
   _$$AddSoalImplCopyWith<_$AddSoalImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$HapusImplCopyWith<$Res> {
+  factory _$$HapusImplCopyWith(
+          _$HapusImpl value, $Res Function(_$HapusImpl) then) =
+      __$$HapusImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int userId});
+}
+
+/// @nodoc
+class __$$HapusImplCopyWithImpl<$Res>
+    extends _$AddSoalEventCopyWithImpl<$Res, _$HapusImpl>
+    implements _$$HapusImplCopyWith<$Res> {
+  __$$HapusImplCopyWithImpl(
+      _$HapusImpl _value, $Res Function(_$HapusImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userId = null,
+  }) {
+    return _then(_$HapusImpl(
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$HapusImpl implements _Hapus {
+  const _$HapusImpl({required this.userId});
+
+  @override
+  final int userId;
+
+  @override
+  String toString() {
+    return 'AddSoalEvent.hapus(userId: $userId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$HapusImpl &&
+            (identical(other.userId, userId) || other.userId == userId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, userId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HapusImplCopyWith<_$HapusImpl> get copyWith =>
+      __$$HapusImplCopyWithImpl<_$HapusImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(AddSoalRequestModel data) addSoal,
+    required TResult Function(int userId) hapus,
+  }) {
+    return hapus(userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(AddSoalRequestModel data)? addSoal,
+    TResult? Function(int userId)? hapus,
+  }) {
+    return hapus?.call(userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(AddSoalRequestModel data)? addSoal,
+    TResult Function(int userId)? hapus,
+    required TResult orElse(),
+  }) {
+    if (hapus != null) {
+      return hapus(userId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_AddSoal value) addSoal,
+    required TResult Function(_Hapus value) hapus,
+  }) {
+    return hapus(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_AddSoal value)? addSoal,
+    TResult? Function(_Hapus value)? hapus,
+  }) {
+    return hapus?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_AddSoal value)? addSoal,
+    TResult Function(_Hapus value)? hapus,
+    required TResult orElse(),
+  }) {
+    if (hapus != null) {
+      return hapus(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Hapus implements AddSoalEvent {
+  const factory _Hapus({required final int userId}) = _$HapusImpl;
+
+  int get userId;
+  @JsonKey(ignore: true)
+  _$$HapusImplCopyWith<_$HapusImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

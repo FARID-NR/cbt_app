@@ -7,6 +7,7 @@ import 'package:cbt_app/presentation/dosen/widget/data_mhs_ujian.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../bloc/dapat_ujian/dapat_ujian_bloc.dart';
 import '../../../../../bloc/endpoint/endpoint_bloc.dart';
 import '../../../../../data/datasource/endpoint/endpoint_local_datasource.dart';
 
@@ -79,6 +80,8 @@ class _ListMatkulPageState extends State<ListMatkulPage> {
                                   backgroundColor: const Color(0xff686BFF),
                                   onPressed: () {
                                     int selectedUserId = data.data[index].id;
+                                    int userId = data.data[index].userId;
+                                    // final matkulId = data.data[index].id;
                                     debugPrint(selectedUserId.toString());
                                     context.read<PengajuanBloc>().add(
                                         PengajuanEvent.pengajuan(
@@ -90,7 +93,9 @@ class _ListMatkulPageState extends State<ListMatkulPage> {
                                             builder: (context) =>
                                                 DataMhsUjianTile(
                                                     selectedUserId:
-                                                        selectedUserId)));
+                                                        selectedUserId, userId: userId)));
+                                    
+                                    // context.read<DapatUjianBloc>().add(DapatUjianEvent.dapatUjian(matkulId: matkulId, mhsId: userId));
                                   },
                                   imagePath: Images.khs,
                                 ),

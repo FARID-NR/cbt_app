@@ -19,19 +19,19 @@ mixin _$PenilaianEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(int userId) penilaian,
+    required TResult Function(String userId) penilaian,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(int userId)? penilaian,
+    TResult? Function(String userId)? penilaian,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int userId)? penilaian,
+    TResult Function(String userId)? penilaian,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,7 +113,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(int userId) penilaian,
+    required TResult Function(String userId) penilaian,
   }) {
     return started();
   }
@@ -122,7 +122,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(int userId)? penilaian,
+    TResult? Function(String userId)? penilaian,
   }) {
     return started?.call();
   }
@@ -131,7 +131,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int userId)? penilaian,
+    TResult Function(String userId)? penilaian,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -182,7 +182,7 @@ abstract class _$$PenilaianImplCopyWith<$Res> {
           _$PenilaianImpl value, $Res Function(_$PenilaianImpl) then) =
       __$$PenilaianImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int userId});
+  $Res call({String userId});
 }
 
 /// @nodoc
@@ -199,10 +199,10 @@ class __$$PenilaianImplCopyWithImpl<$Res>
     Object? userId = null,
   }) {
     return _then(_$PenilaianImpl(
-      userId: null == userId
+      null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
     ));
   }
 }
@@ -210,10 +210,10 @@ class __$$PenilaianImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$PenilaianImpl implements _Penilaian {
-  const _$PenilaianImpl({required this.userId});
+  const _$PenilaianImpl(this.userId);
 
   @override
-  final int userId;
+  final String userId;
 
   @override
   String toString() {
@@ -241,7 +241,7 @@ class _$PenilaianImpl implements _Penilaian {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(int userId) penilaian,
+    required TResult Function(String userId) penilaian,
   }) {
     return penilaian(userId);
   }
@@ -250,7 +250,7 @@ class _$PenilaianImpl implements _Penilaian {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(int userId)? penilaian,
+    TResult? Function(String userId)? penilaian,
   }) {
     return penilaian?.call(userId);
   }
@@ -259,7 +259,7 @@ class _$PenilaianImpl implements _Penilaian {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int userId)? penilaian,
+    TResult Function(String userId)? penilaian,
     required TResult orElse(),
   }) {
     if (penilaian != null) {
@@ -301,9 +301,9 @@ class _$PenilaianImpl implements _Penilaian {
 }
 
 abstract class _Penilaian implements PenilaianEvent {
-  const factory _Penilaian({required final int userId}) = _$PenilaianImpl;
+  const factory _Penilaian(final String userId) = _$PenilaianImpl;
 
-  int get userId;
+  String get userId;
   @JsonKey(ignore: true)
   _$$PenilaianImplCopyWith<_$PenilaianImpl> get copyWith =>
       throw _privateConstructorUsedError;

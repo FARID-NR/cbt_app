@@ -61,8 +61,28 @@ class AddSoalRemoteDatasource {
       // print(response.statusCode);
       return const Left('Server Error');
     }
+  }
 
+  Future<Either<String, AddSoalResponseModel>> hapusSoal(
+  int soalId) async {
+    final header = {
+      'Authorization': 'Bearer ${await LoginLocalDatasource().getToken()}',
+    };
 
+    final request = http.MultipartRequest(
+      'GET',
+      Uri.parse('${GlobalVariables.baseUrl}/api/dosen/soal/hapus/$soalId'),
+    );
 
+    request.headers.addAll(header);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+      return Right(AddSoalResponseModel.fromJson(await response.stream.bytesToString()));
+    } else {
+      return Left('Server Error');
+    }
   }
 }

@@ -17,13 +17,12 @@ class PengajuanBloc extends Bloc<PengajuanEvent, PengajuanState> {
       response.fold((l) => emit(_Error(l)), (r) => emit(_Loaded(r)));
     });
 
-    // on<_Pengajuan>((event, emit) async {
+    // on<_DapatUjian>((event, emit) async {
     //   emit(const _Loading());
-    //   final userId = event.userId;
-    //   final response = await PengajuanRemoteDatasource().getStatusUjian(userId);
+    //   final response = await PengajuanRemoteDatasource().dapatUjian(event.matkulId, event.mhsId);
     //   response.fold(
     //     (l) => emit(_Error(l)),
-    //     (r) => emit(_Loaded())
+    //     (r) => emit(_Loaded(r as PengajuanResponseModel))
     //   );
     // });
   }

@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../bloc/get-soal/getsoal_bloc.dart';
+import '../../../bloc/get_edit_jawaban/get_edit_jawaban_bloc.dart';
 
 class PengujianPage extends StatefulWidget {
   const PengujianPage({super.key});
@@ -73,6 +74,9 @@ class _PengujianPageState extends State<PengujianPage> {
                                   context.read<GetsoalBloc>().add(
                                       GetsoalEvent.getSoal(
                                           userId: selectedUserId));
+
+                                  // context.read<GetEditJawabanBloc>().add(
+                                  //     GetEditJawabanEvent.getJawaban());
 
                                   Navigator.push(
                                       context,

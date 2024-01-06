@@ -18,8 +18,8 @@ class PengajuanResponseModel {
 
   factory PengajuanResponseModel.fromMap(Map<String, dynamic> json) =>
       PengajuanResponseModel(
-        success: json["success"],
-        message: json["message"],
+        success: json["success"] ?? false,
+        message: json["message"] ?? '',
         data: Data.fromMap(json["data"]),
       );
 
@@ -172,7 +172,7 @@ class Penguji1Class {
   String toJson() => json.encode(toMap());
 
   factory Penguji1Class.fromMap(Map<String, dynamic> json) => Penguji1Class(
-        userId: json["user_id"],
+        userId: json["user_id"] ?? '',
         matkulId: json["matkul_id"],
         dapatUjian: json["dapat_ujian"],
       );

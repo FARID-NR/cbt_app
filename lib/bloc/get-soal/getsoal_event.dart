@@ -4,4 +4,5 @@ part of 'getsoal_bloc.dart';
 class GetsoalEvent with _$GetsoalEvent {
   const factory GetsoalEvent.started() = _Started;
   const factory GetsoalEvent.getSoal({required int userId}) = _GetSoal;
+  
 }

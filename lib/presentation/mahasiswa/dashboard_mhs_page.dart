@@ -101,14 +101,14 @@ class _DashboardMhsPageState extends State<DashboardMhsPage> {
                           color: ColorName.primary),
                     ),
                     Text(
-                      'Nama : ${data.data.user.nama}',
+                      'Nama : ${data.data.mahasiswa.nama}',
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
                           color: ColorName.primary),
                     ),
                     Text(
-                      'NIM    : ${data.data.user.username}',
+                      'NIM    : ${data.data.mahasiswa.username}',
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,

@@ -3,6 +3,7 @@ import 'package:cbt_app/common/constants/colors.dart';
 import 'package:cbt_app/common/constants/images.dart';
 import 'package:cbt_app/common/widgets/menu_card.dart';
 import 'package:cbt_app/common/widgets/search_input.dart';
+import 'package:cbt_app/data/models/request/penilaian_request_model.dart';
 import 'package:cbt_app/presentation/dosen/widget/data_mhs_selesai.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -75,18 +76,22 @@ class _ListMatkulHasilPageState extends State<ListMatkulHasilPage> {
                                   label: data.data[index].nama,
                                   backgroundColor: const Color(0xff686BFF),
                                   onPressed: () {
-                                    int selectedUserId = data.data[index].id;
-
-                                    context.read<PenilaianBloc>().add(
-                                        PenilaianEvent.penilaian(
-                                            userId: selectedUserId));
+                                    final matkulId = data.data[index].id;
+                                    final userId = data.data[index].userId;
 
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
                                                 DataMhsSelesaiTile(
-                                                    userId: selectedUserId)));
+                                                    matkulId: matkulId,  userId: userId,)));
+                                    // final requestModel = PenilaianRequestModel(
+                                    //   finishDate : data.data[index].finishDate,
+                                    //   finishTime : data.data[index].finishTime,
+                                    // );
+                                    context.read<PenilaianBloc>().add(
+                                        PenilaianEvent.penilaian(
+                                          matkulId.toString()));
                                   },
                                   imagePath: Images.khs,
                                 ),

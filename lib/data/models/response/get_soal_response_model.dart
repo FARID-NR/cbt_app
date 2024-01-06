@@ -34,12 +34,16 @@ class Data {
   final int id;
   final String nama;
   final int userId;
+  final String finishDate;
+  final String finishTime;
   final List<Soal> soal;
 
   Data({
     required this.id,
     required this.nama,
     required this.userId,
+    required this.finishDate,
+    required this.finishTime,
     required this.soal,
   });
 
@@ -51,6 +55,8 @@ class Data {
         id: json["id"],
         nama: json["nama"],
         userId: json["user_id"],
+        finishDate: json["finish_date"] ?? '',
+        finishTime: json["finish_time"] ?? '',
         soal: List<Soal>.from(json["soal"].map((x) => Soal.fromMap(x))),
       );
 

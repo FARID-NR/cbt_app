@@ -36,7 +36,7 @@ class _CreatPageState extends State<CreatPage> {
         backgroundColor: const Color(0xff686BFF),
         onPressed: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => ListMatkulPage()));
+              MaterialPageRoute(builder: (context) => const ListMatkulPage()));
         },
         imagePath: Images.jadwal,
       ),

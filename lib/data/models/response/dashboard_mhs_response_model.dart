@@ -30,11 +30,11 @@ class DashboardMhsResponseModel {
 }
 
 class Data {
-    final User user;
+    final Mahasiswa mahasiswa;
     final Penguji penguji;
 
     Data({
-        required this.user,
+        required this.mahasiswa,
         required this.penguji,
     });
 
@@ -43,13 +43,45 @@ class Data {
     String toJson() => json.encode(toMap());
 
     factory Data.fromMap(Map<String, dynamic> json) => Data(
-        user: User.fromMap(json["user"]),
+        mahasiswa: Mahasiswa.fromMap(json["mahasiswa"]),
         penguji: Penguji.fromMap(json["penguji"]),
     );
 
     Map<String, dynamic> toMap() => {
-        "user": user.toMap(),
+        "mahasiswa": mahasiswa.toMap(),
         "penguji": penguji.toMap(),
+    };
+}
+
+class Mahasiswa {
+    final int id;
+    final String nama;
+    final String username;
+    final String roles;
+
+    Mahasiswa({
+        required this.id,
+        required this.nama,
+        required this.username,
+        required this.roles,
+    });
+
+    factory Mahasiswa.fromJson(String str) => Mahasiswa.fromMap(json.decode(str));
+
+    String toJson() => json.encode(toMap());
+
+    factory Mahasiswa.fromMap(Map<String, dynamic> json) => Mahasiswa(
+        id: json["id"],
+        nama: json["nama"],
+        username: json["username"],
+        roles: json["roles"],
+    );
+
+    Map<String, dynamic> toMap() => {
+        "id": id,
+        "nama": nama,
+        "username": username,
+        "roles": roles,
     };
 }
 
@@ -110,61 +142,5 @@ class Penguji1Class {
         "nama": nama,
         "matkul_id": matkulId,
         "matkul_nama": matkulNama,
-    };
-}
-
-class User {
-    final int id;
-    final String nama;
-    final String username;
-    final String roles;
-    final String skKompren;
-    final String penguji;
-    final String nilai;
-    final int isVerification;
-    final DateTime createdAt;
-    final DateTime updatedAt;
-
-    User({
-        required this.id,
-        required this.nama,
-        required this.username,
-        required this.roles,
-        required this.skKompren,
-        required this.penguji,
-        required this.nilai,
-        required this.isVerification,
-        required this.createdAt,
-        required this.updatedAt,
-    });
-
-    factory User.fromJson(String str) => User.fromMap(json.decode(str));
-
-    String toJson() => json.encode(toMap());
-
-    factory User.fromMap(Map<String, dynamic> json) => User(
-        id: json["id"],
-        nama: json["nama"],
-        username: json["username"],
-        roles: json["roles"],
-        skKompren: json["sk_kompren"],
-        penguji: json["penguji"],
-        nilai: json["nilai"],
-        isVerification: json["is_verification"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-    );
-
-    Map<String, dynamic> toMap() => {
-        "id": id,
-        "nama": nama,
-        "username": username,
-        "roles": roles,
-        "sk_kompren": skKompren,
-        "penguji": penguji,
-        "nilai": nilai,
-        "is_verification": isVerification,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
     };
 }
