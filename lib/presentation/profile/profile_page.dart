@@ -52,10 +52,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                 const LogoutEvent.logout(),
                               );
                         },
-                        child: Text('Logout'),
+                        child: const Text('Logout'),
                       );
                     }, loading: () {
-                      return Center(
+                      return const Center(
                         child: CircularProgressIndicator(),
                       );
                     });

@@ -1,5 +1,7 @@
-import 'package:cbt_app/data/models/response/get_soal_response_model.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../models/response/get_soal_response_model.dart';
 
 class GetsoalLocalDatasource {
   Future<bool> saveDataGetSoal(GetSoalResponseModel data) async {

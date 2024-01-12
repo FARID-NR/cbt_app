@@ -1,10 +1,9 @@
-import 'package:bloc/bloc.dart';
 import 'package:cbt_app/data/models/response/edit_response_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../data/datasource/edit-soal/edit_soal_remote_datasource.dart';
 import '../../data/models/request/edit_request_model.dart';
-import '../../data/models/request/timer_request_model.dart';
 
 part 'edit_soal_event.dart';
 part 'edit_soal_state.dart';

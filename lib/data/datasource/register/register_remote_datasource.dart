@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:cbt_app/common/global_variables.dart';
 import 'package:cbt_app/data/models/request/register_request_model.dart';
 import 'package:cbt_app/data/models/response/register_response_model.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 

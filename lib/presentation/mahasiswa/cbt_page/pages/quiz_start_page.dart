@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:cbt_app/bloc/daftar_soal/dafttar_soal_bloc.dart';
 import 'package:cbt_app/bloc/ujian/ujian_bloc.dart';
@@ -8,7 +7,6 @@ import 'package:cbt_app/presentation/mahasiswa/cbt_page/pages/quiz_finish_page.d
 import 'package:cbt_app/presentation/mahasiswa/cbt_page/widget/countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kiosk_mode/kiosk_mode.dart';
 
 import '../../../../common/components/custom_scaffold.dart';
 import '../../../../common/constants/assets.gen.dart';
@@ -41,6 +39,7 @@ class _QuizStartPageState extends State<QuizStartPage> {
 
   @override
   Widget build(BuildContext context) {
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     return CustomScaffold(
       appBarTitle: BlocBuilder<UjianBloc, UjianState>(
         builder: (context, state) {

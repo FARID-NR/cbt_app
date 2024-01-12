@@ -15,7 +15,7 @@ class BackgroundDecoration extends StatelessWidget {
       children: [
         Positioned.fill(
             child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: ColorName.white,
           ),
           child: CustomPaint(

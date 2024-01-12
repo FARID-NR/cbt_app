@@ -101,10 +101,11 @@ class _LoginBottomSheetDsnState extends State<LoginBottomSheetDsn> {
                         loaded: (data) {
                           LoginLocalDatasource().saveLoginData(data);
                           if (data.data.roles == 'dosen') {
-                            Navigator.pushReplacement(context,
+                            Navigator.pushAndRemoveUntil(context,
                                 MaterialPageRoute(builder: (context) {
                               return const DosenPage();
-                            }));
+                            }), (route) => false);
+                            
                           } else if (data.data.roles != 'dosen') {
                             showDialog(
                               context: context,

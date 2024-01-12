@@ -24,7 +24,7 @@ class StoresoalRemoteDatasource {
     if (response.statusCode == 200) {
       return Right(StoresoalResponseModel.fromJson(response.body));
     } else {
-      return Left('Server Error');
+      return const Left('Server Error');
     }
   }
 }

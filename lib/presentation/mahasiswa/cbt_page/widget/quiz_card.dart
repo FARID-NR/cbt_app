@@ -1,9 +1,7 @@
-import 'package:cbt_app/common/extensions/build_context_ext.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/constants/colors.dart';
 import '../models/quiz_model.dart';
-import '../pages/quiz_start_page.dart';
 // import '../pages/quiz_start_page.dart';
 
 class QuizCard extends StatefulWidget {

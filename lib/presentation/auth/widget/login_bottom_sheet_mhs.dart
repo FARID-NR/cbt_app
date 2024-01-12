@@ -103,10 +103,14 @@ class _LoginBottomSheetState extends State<LoginBottomSheet> {
                         loaded: (data) {
                           LoginLocalDatasource().saveLoginData(data);
                           if (data.data.roles == 'mahasiswa') {
+                            print('Navigasi ke MahasiswaPage');
                             Navigator.pushReplacement(context,
-                                MaterialPageRoute(builder: (context) {
-                              return const MahasiswaPage();
-                            }));
+                                MaterialPageRoute(builder: (context) =>
+                              const MahasiswaPage(),
+                              maintainState: false
+                            ));
+                            // Tutup bottom sheet setelah navigasi
+                            // Navigator.popUntil(context, ModalRoute.withName('/'));
                           } else if (data.data.roles != "mahasiswa") {
                             showDialog(
                               context: context,
@@ -179,7 +183,7 @@ class _LoginBottomSheetState extends State<LoginBottomSheet> {
                       Text.rich(TextSpan(text: 'Belum Punya Akun ', children: [
                     TextSpan(
                         text: 'Buat Akun',
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.w600,
                             color: ColorName.primary),
                         recognizer: TapGestureRecognizer()

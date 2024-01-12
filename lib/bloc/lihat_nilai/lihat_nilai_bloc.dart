@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:cbt_app/data/models/response/lihat_nilai_response_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../data/datasource/lihat-nilai/lihat_nilai_remote_datasource.dart';

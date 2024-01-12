@@ -29,7 +29,7 @@ class RemedialRemoteDatasource {
       // print(await response.stream.bytesToString());
       return Right(RemedialResponseModel.fromJson(responseString));
     } else {
-      return Left('Server Error');
+      return const Left('Server Error');
     }
   }
 }

@@ -53,10 +53,10 @@ class _ProfilePageMhsState extends State<ProfilePageMhs> {
                                 const LogoutEvent.logout(),
                               );
                         },
-                        child: Text('Logout'),
+                        child: const Text('Logout'),
                       );
                     }, loading: () {
-                      return Center(
+                      return const Center(
                         child: CircularProgressIndicator(),
                       );
                     });

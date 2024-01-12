@@ -1,7 +1,6 @@
-import 'package:bloc/bloc.dart';
 import 'package:cbt_app/data/datasource/dashboard/dashboard_remote_datasource.dart';
 import 'package:cbt_app/data/models/response/dashboard_response_model.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'dashboard_event.dart';

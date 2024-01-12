@@ -1,14 +1,9 @@
-import 'dart:io';
-
-import 'package:android_intent/android_intent.dart';
 import 'package:cbt_app/bloc/kirim_sk/kirim_sk_bloc.dart';
 import 'package:cbt_app/data/models/request/kirim_sk_request_model.dart';
-import 'package:cbt_app/presentation/base_widget/pdf_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../bloc/penilaian/penilaian_bloc.dart';
@@ -17,7 +12,6 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:open_file/open_file.dart';
 
 import '../../data/datasource/kirim_sk_remote_datasource.dart/kirim_sk_remote_datasource.dart';
-import '../dosen/widget/open_pdf_down.dart';
 
 class ButtonSendNilai extends StatefulWidget {
   final String dosenPenguji;
@@ -71,7 +65,7 @@ class _ButtonSendNilaiState extends State<ButtonSendNilai> {
   Widget build(BuildContext context) {
     return Container(
       height: 700,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: ColorName.white,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(30),
@@ -86,7 +80,7 @@ class _ButtonSendNilaiState extends State<ButtonSendNilai> {
             Align(
               alignment: Alignment.topRight,
               child: IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.keyboard_arrow_down_outlined,
                   color: Colors.black,
                 ),
@@ -95,30 +89,30 @@ class _ButtonSendNilaiState extends State<ButtonSendNilai> {
                 },
               ),
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Kirim Nilai',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 20),
-            Text('Nilai Akhir (Konversi Remedial)'),
+            const SizedBox(height: 20),
+            const Text('Nilai Akhir (Konversi Remedial)'),
             TextFormField(
               controller: nilaiAkhir,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   labelText: '',
                   border: OutlineInputBorder(),
                   contentPadding:
                       EdgeInsets.symmetric(vertical: 5, horizontal: 10)),
               // ...
             ),
-            SizedBox(height: 20),
-            Text('Keterangan Surat'),
+            const SizedBox(height: 20),
+            const Text('Keterangan Surat'),
             TextFormField(
               controller: keterangan,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   labelText: '',
                   border: OutlineInputBorder(),
                   contentPadding:
@@ -183,7 +177,7 @@ class _ButtonSendNilaiState extends State<ButtonSendNilai> {
                             final result = await KirimSkRemoteDatasource().kirimSK( context, requestData, widget.matkul);
                             result.fold(
                               (l) {
-                                Text('Gagal Melakukan Navigasi');
+                                const Text('Gagal Melakukan Navigasi');
                               },
                               (r) {
                                 // Gunakan path yang dikembalikan ke kelas PDFViewers
@@ -206,7 +200,7 @@ class _ButtonSendNilaiState extends State<ButtonSendNilai> {
                               },
                               
                             );
-                            print('ini adalah $result');
+                            // print('ini adalah $result');
                             
 
                             Navigator.pop(context);

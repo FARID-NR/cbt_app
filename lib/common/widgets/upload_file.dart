@@ -87,13 +87,13 @@ class _UploadFileState extends State<UploadFile> {
         // File berhasil diunggah
         print('File berhasil diunggah: $responseData');
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('File berhasil diunggah ke server.')),
+          const SnackBar(content: Text('File berhasil diunggah ke server.')),
         );
       } else {
         // Gagal mengunggah file
         print('Gagal mengunggah file.');
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Gagal mengunggah file.')),
+          const SnackBar(content: Text('Gagal mengunggah file.')),
         );
       }
     } catch (e) {
@@ -105,19 +105,19 @@ class _UploadFileState extends State<UploadFile> {
     }
   }
 
-  Future<void> _pickFile(BuildContext context) async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
+  // Future<void> _pickFile(BuildContext context) async {
+  //   FilePickerResult? result = await FilePicker.platform.pickFiles();
 
-    if (result != null) {
-      File file = File(result.files.single.path!);
+  //   if (result != null) {
+  //     File file = File(result.files.single.path!);
 
-      // Update _filePdf using the provided callback
-      widget
-          .onFileSelected(file); // Mengirim file yang dipilih ke widget parent
-    } else {
-      // Handle if no file is chosen
-    }
-  }
+  //     // Update _filePdf using the provided callback
+  //     widget
+  //         .onFileSelected(file); // Mengirim file yang dipilih ke widget parent
+  //   } else {
+  //     // Handle if no file is chosen
+  //   }
+  // }
 
   // ... kode lainnya ...
   @override
@@ -132,10 +132,10 @@ class _UploadFileState extends State<UploadFile> {
         width: 100,
         decoration: BoxDecoration(
           color: Colors.grey[200],
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(8), topLeft: Radius.circular(8)),
         ),
-        child: Row(
+        child: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.file_upload),

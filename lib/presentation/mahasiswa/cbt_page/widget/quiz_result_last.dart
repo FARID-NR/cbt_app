@@ -31,7 +31,7 @@ class QuizResultLast extends StatelessWidget {
               children: [
                 Text(
                   'Hasil Ujian ${data.data.matkul.nama}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 21,
                     fontWeight: FontWeight.w500,
                   ),
@@ -60,16 +60,16 @@ class QuizResultLast extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               'Semua Tes',
                               style: TextStyle(
                                 fontSize: 21,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            SizedBox(height: 18.0),
+                            const SizedBox(height: 18.0),
                             ResultValue.correct(correct),
-                            SizedBox(height: 18.0),
+                            const SizedBox(height: 18.0),
                             ResultValue.wrong(wrong),
                           ],
                         ),

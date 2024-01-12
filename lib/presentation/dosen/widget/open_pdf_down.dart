@@ -7,6 +7,7 @@ class PDFViewers extends StatefulWidget {
   const PDFViewers({Key? key, required this.pdfPath}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _PDFViewersState createState() => _PDFViewersState();
 }
 
@@ -17,7 +18,7 @@ class _PDFViewersState extends State<PDFViewers> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('PDF Viewer'),
+        title: const Text('PDF Viewer'),
       ),
       body: PDFView(
         filePath: widget.pdfPath,
@@ -32,7 +33,7 @@ class _PDFViewersState extends State<PDFViewers> {
           // Example: Scroll to a specific page (page number 2 in this case)
           _pdfViewController.setPage(2);
         },
-        child: Icon(Icons.arrow_downward),
+        child: const Icon(Icons.arrow_downward),
       ),
     );
   }

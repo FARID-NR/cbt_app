@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:cbt_app/bloc/register/register_bloc.dart';
 import 'package:cbt_app/common/extensions/build_context_ext.dart';
-import 'package:cbt_app/common/widgets/upload_file.dart';
 import 'package:cbt_app/data/models/request/register_request_model.dart';
 import 'package:cbt_app/presentation/auth/auth.dart';
 import 'package:file_picker/file_picker.dart';
@@ -58,16 +57,16 @@ class _RegisterBottomSheetState extends State<RegisterBottomSheet> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Verifikasi Data'),
-          content: Text('Silahkan tunggu data anda di verifikasi oleh admin.'),
+          title: const Text('Verifikasi Data'),
+          content: const Text('Silahkan tunggu data anda di verifikasi oleh admin.'),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).popUntil((route) => route.isFirst);
                 Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (contex) => AuthPage()));
+                    MaterialPageRoute(builder: (contex) => const AuthPage()));
               },
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         );
@@ -188,13 +187,13 @@ class _RegisterBottomSheetState extends State<RegisterBottomSheet> {
                                 color: const Color.fromARGB(
                                     255, 238, 238, 238), // Warna garis border
                               ),
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                   bottomRight: Radius.circular(8),
                                   topRight: Radius.circular(
                                       8)), // Membuat garis border melingkar
                             ),
-                            padding: EdgeInsets.all(8),
-                            child: Center(
+                            padding: const EdgeInsets.all(8),
+                            child: const Center(
                               child: Text(
                                 'Upload SK',
                                 style: TextStyle(color: Colors.black),
@@ -216,15 +215,15 @@ class _RegisterBottomSheetState extends State<RegisterBottomSheet> {
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(
-                                  title: Text('Register Success'),
-                                  content: Text('Data anda akan dicek oleh admin'),
+                                  title: const Text('Register Success'),
+                                  content: const Text('Data anda akan dicek oleh admin'),
                                   actions: <Widget>[
                                     TextButton(
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                         context.pushReplacement(const AuthPage());
                                       },
-                                      child: Text('OK'),
+                                      child: const Text('OK'),
                                     ),
                                   ],
                                 );
@@ -282,7 +281,7 @@ class _RegisterBottomSheetState extends State<RegisterBottomSheet> {
                           TextSpan(text: 'Sudah Punya Akun ? ', children: [
                         TextSpan(
                             text: 'MASUK',
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.w600,
                                 color: ColorName.primary),
                             recognizer: TapGestureRecognizer()

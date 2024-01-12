@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:bloc/bloc.dart';
 import 'package:cbt_app/data/datasource/download_sk/download_sk_remote_datasource.dart';
 import 'package:cbt_app/data/models/request/download_sk_request_model.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'download_sk_event.dart';

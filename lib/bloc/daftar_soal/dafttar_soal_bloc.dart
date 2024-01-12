@@ -1,6 +1,5 @@
-import 'package:bloc/bloc.dart';
-import 'package:cbt_app/data/datasource/ujian/ujian_remote_datasource.dart';
 import 'package:cbt_app/data/models/response/ujian_response_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'dafttar_soal_event.dart';

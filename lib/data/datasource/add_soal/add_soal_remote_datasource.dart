@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:cbt_app/common/global_variables.dart';
 import 'package:cbt_app/data/models/response/add_soal_response.dart';
@@ -79,10 +78,10 @@ class AddSoalRemoteDatasource {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      print(await response.stream.bytesToString());
+      // print(await response.stream.bytesToString());
       return Right(AddSoalResponseModel.fromJson(await response.stream.bytesToString()));
     } else {
-      return Left('Server Error');
+      return const Left('Server Error');
     }
   }
 }

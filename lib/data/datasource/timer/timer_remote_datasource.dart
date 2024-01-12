@@ -61,10 +61,10 @@ class TimerRemoteDatasource {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      print(await response.stream.bytesToString());
+      // print(await response.stream.bytesToString());
       return Right(TimerResponseModel.fromJson(await response.stream.bytesToString()));
     } else {
-      return Left('Server Error');
+      return const Left('Server Error');
     }
   }
 }

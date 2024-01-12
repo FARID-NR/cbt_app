@@ -1,6 +1,4 @@
-import 'package:cbt_app/bloc/download_sk/download_sk_bloc.dart';
 import 'package:cbt_app/bloc/hasil-ujian/hasil_ujian_bloc.dart';
-import 'package:cbt_app/bloc/pengajuan/pengajuan_bloc.dart';
 import 'package:cbt_app/common/constants/colors.dart';
 import 'package:cbt_app/common/constants/images.dart';
 import 'package:cbt_app/common/widgets/menu_card.dart';
@@ -47,7 +45,7 @@ class _PengujianMhsPageState extends State<PengujianMhsPage> {
         builder: (context, state) {
          return state.maybeWhen(
             orElse: (){
-              return Text('Loading...');
+              return const Text('Loading...');
             },
             loading: (){
               return const Center(
@@ -77,7 +75,7 @@ class _PengujianMhsPageState extends State<PengujianMhsPage> {
                     },
                     imagePath: Images.khs,
                   ),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
                   MenuCard(
                     label: data.data.penguji.penguji2.matkulNama,
                     backgroundColor: const Color(0xff686BFF),
@@ -91,7 +89,7 @@ class _PengujianMhsPageState extends State<PengujianMhsPage> {
                     },
                     imagePath: Images.khs,
                   ),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
                   MenuCard(
                     label: data.data.penguji.penguji3.matkulNama,
                     backgroundColor: const Color(0xff686BFF),
@@ -105,7 +103,7 @@ class _PengujianMhsPageState extends State<PengujianMhsPage> {
                     },
                     imagePath: Images.khs,
                   ),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
                 ],
               );
             }

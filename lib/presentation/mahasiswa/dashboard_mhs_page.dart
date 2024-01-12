@@ -1,4 +1,3 @@
-import 'package:cbt_app/bloc/endpoint/endpoint_bloc.dart';
 import 'package:cbt_app/common/constants/colors.dart';
 import 'package:cbt_app/common/widgets/menu_card.dart';
 import 'package:flutter/material.dart';
@@ -93,7 +92,7 @@ class _DashboardMhsPageState extends State<DashboardMhsPage> {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Selamat Datang Peserta Ujian Kompren',
                       style: TextStyle(
                           fontSize: 18,
@@ -102,19 +101,19 @@ class _DashboardMhsPageState extends State<DashboardMhsPage> {
                     ),
                     Text(
                       'Nama : ${data.data.mahasiswa.nama}',
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
                           color: ColorName.primary),
                     ),
                     Text(
                       'NIM    : ${data.data.mahasiswa.username}',
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
                           color: ColorName.primary),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     MenuCard(
                       label: data.data.penguji.penguji1.matkulNama, 
                       backgroundColor: const Color(0xff686BFF),              
@@ -123,7 +122,7 @@ class _DashboardMhsPageState extends State<DashboardMhsPage> {
                        }, 
                       imagePath: Images.khs
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     MenuCard(
                       label: data.data.penguji.penguji2.matkulNama, 
                       backgroundColor: const Color(0xff686BFF),              
@@ -132,7 +131,7 @@ class _DashboardMhsPageState extends State<DashboardMhsPage> {
                        }, 
                       imagePath: Images.khs
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     MenuCard(
                       label: data.data.penguji.penguji3.matkulNama, 
                       backgroundColor: const Color(0xff686BFF),              

@@ -18,7 +18,7 @@ class SubmitRemoteDatasource {
     };
 
     // Membuat request POST menggunakan MultipartRequest
-    final request = await http.MultipartRequest(
+    final request = http.MultipartRequest(
       'POST',
       Uri.parse('${GlobalVariables.baseUrl}/api/mahasiswa/soal/$matkulId'),
     );
@@ -62,7 +62,7 @@ class SubmitRemoteDatasource {
       return Right(SubmitResponseModel.fromJson(responseString));
     }
     else {
-      print(response.reasonPhrase);
+      // print(response.reasonPhrase);
       return const Left('Server Error');
     }
 

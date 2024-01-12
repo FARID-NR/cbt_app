@@ -2,24 +2,19 @@
 
 import 'dart:io';
 
-import 'package:cbt_app/data/datasource/kirim_sk_remote_datasource.dart/kirim_sk_local_datasource.dart';
 import 'package:cbt_app/data/models/request/kirim_sk_request_model.dart';
-import 'package:cbt_app/presentation/dosen/widget/open_pdf_down.dart';
 import 'package:dartz/dartz.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-// import 'package:open_file/open_file.dart' as OpenFilePackage;
-// import 'package:open_filex/open_filex.dart' as OpenFile;
-import 'package:android_intent/android_intent.dart';
+
 
 import '../../../common/global_variables.dart';
 import '../login/login_local_datasource.dart';
-import 'package:path_provider/path_provider.dart';
 
 class KirimSkRemoteDatasource {
-  int _fileCounter = 0; // Menyimpan nomor urut file
+  final int _fileCounter = 0; // Menyimpan nomor urut file
   Future<Either<String, String>> kirimSK(BuildContext context,
       KirimSkRequestModel requestModel, String nmMatkul) async {
     final header = {

@@ -7,7 +7,6 @@ import 'package:cbt_app/presentation/dosen/widget/data_mhs_ujian.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../bloc/dapat_ujian/dapat_ujian_bloc.dart';
 import '../../../../../bloc/endpoint/endpoint_bloc.dart';
 import '../../../../../data/datasource/endpoint/endpoint_local_datasource.dart';
 
@@ -33,7 +32,7 @@ class _ListMatkulPageState extends State<ListMatkulPage> {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () {
               // Untuk kembali ke halaman sebelumnya
               Navigator.pop(context);
@@ -59,9 +58,9 @@ class _ListMatkulPageState extends State<ListMatkulPage> {
               child: BlocBuilder<EndpointBloc, EndpointState>(
                 builder: (context, state) {
                   return state.maybeWhen(orElse: () {
-                    return Text('Data matkul belum di isi');
+                    return const Text('Data matkul belum di isi');
                   }, loading: () {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   }, loaded: (data) {

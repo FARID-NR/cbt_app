@@ -20,7 +20,7 @@ class ContentArea extends StatelessWidget {
       type: MaterialType.transparency,
       child: Ink(
         width: double.maxFinite,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: ColorName.primary,
         ),
         padding: addPadding

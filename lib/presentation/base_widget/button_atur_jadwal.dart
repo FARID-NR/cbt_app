@@ -77,7 +77,7 @@ class _ButtonAturTimerState extends State<ButtonAturTimer> {
             hour: int.tryParse(widget.time.split(':')[0]) ?? 0,
             minute: int.tryParse(widget.time.split(':')[1]) ?? 0,
           )
-        : TimeOfDay(hour: 0, minute: 0);
+        : const TimeOfDay(hour: 0, minute: 0);
 
     super.initState();
   }
@@ -117,9 +117,9 @@ class _ButtonAturTimerState extends State<ButtonAturTimer> {
           BlocBuilder<TimerBloc, TimerState>(
             builder: (context, state) {
               return state.maybeWhen(orElse: () {
-                return Text(
+                return const Text(
                   'Tanggal Terpilih: Date belum ditentukan',
-                  style: const TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 18),
                 );
               }, loading: () {
                 return const Center(
@@ -143,9 +143,9 @@ class _ButtonAturTimerState extends State<ButtonAturTimer> {
             builder: (context, state) {
               return state.maybeWhen(
                 orElse: () {
-                  return Text(
+                  return const Text(
                     'Waktu Terpilih: Time belum ditentukan',
-                    style: const TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 18),
                   );
                 },
                 loading: () {

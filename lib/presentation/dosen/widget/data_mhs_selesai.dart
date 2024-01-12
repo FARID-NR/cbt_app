@@ -1,11 +1,8 @@
-import 'package:cbt_app/bloc/kirim_sk/kirim_sk_bloc.dart';
 import 'package:cbt_app/bloc/remedial/remedial_bloc.dart';
-import 'package:cbt_app/data/datasource/endpoint/endpoint_local_datasource.dart';
 import 'package:cbt_app/presentation/base_widget/button_lihat_nilai.dart';
 import 'package:cbt_app/presentation/base_widget/button_send_nilai.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import '../../../bloc/batal_kirim/batal_kirim_bloc.dart';
 import '../../../bloc/penilaian/penilaian_bloc.dart';
@@ -53,15 +50,15 @@ class _DataMhsSelesaiTile extends State<DataMhsSelesaiTile> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Perubahan Berhasil'),
-          content: Text('Status berhasil diubah.'),
+          title: const Text('Perubahan Berhasil'),
+          content: const Text('Status berhasil diubah.'),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
                 _refreshData();
               },
-              child: Text('Tutup'),
+              child: const Text('Tutup'),
             ),
           ],
         );
@@ -134,7 +131,7 @@ class _DataMhsSelesaiTile extends State<DataMhsSelesaiTile> {
                 ),
                 title: Text(
                   'Data Ujian ${data.data.matkul.nama}',
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
                       color: ColorName.primary),
@@ -159,7 +156,7 @@ class _DataMhsSelesaiTile extends State<DataMhsSelesaiTile> {
                   final matkulId1 = data.data.mahasiswa[index].penguji.penguji1.matkulId;
                   final matkulId2 = data.data.mahasiswa[index].penguji.penguji2.matkulId;
                   final matkulId3 = data.data.mahasiswa[index].penguji.penguji3.matkulId;
-                  final jumlahBenarTst = data.data.mahasiswa[index].nilai.nilaiPenguji1.jumlahBenar;
+                  // final jumlahBenarTst = data.data.mahasiswa[index].nilai.nilaiPenguji1.jumlahBenar;
                   
 
 
@@ -199,14 +196,14 @@ class _DataMhsSelesaiTile extends State<DataMhsSelesaiTile> {
                         SizedBox(
                           width: 45.0,
                           child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 16.0),
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
                             child: Column(
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.only(left: 10),
+                                  padding: const EdgeInsets.only(left: 10),
                                   child: Text('${index + 1}.'),
                                 ),
-                                Text(
+                                const Text(
                                   '',
                                   style: TextStyle(
                                     color: ColorName.grey,
@@ -260,11 +257,11 @@ class _DataMhsSelesaiTile extends State<DataMhsSelesaiTile> {
                                     color: Colors.green,
                                   ),
                                 ),
-                              SizedBox(height: 18.0),
+                              const SizedBox(height: 18.0),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'Action :',
                                   ),
                                   const SizedBox(
@@ -284,10 +281,10 @@ class _DataMhsSelesaiTile extends State<DataMhsSelesaiTile> {
                                           // Aksi yang dijalankan saat tombol ditekan
                                           showModalBottomSheet(
                                             isScrollControlled: true,
-                                            backgroundColor: Color.fromARGB(
+                                            backgroundColor: const Color.fromARGB(
                                                 0, 255, 255, 255),
                                             context: context,
-                                            builder: (BuildContext Context) {
+                                            builder: (BuildContext context) {
                                               return StatefulBuilder(
                                                 builder: (BuildContext context,
                                                     StateSetter setState) {
@@ -354,7 +351,7 @@ class _DataMhsSelesaiTile extends State<DataMhsSelesaiTile> {
                                           showModalBottomSheet(
                                               isScrollControlled: true,
                                               context: context,
-                                              builder: (BuildContext Context) {
+                                              builder: (BuildContext context) {
                                                 return StatefulBuilder(builder:
                                                     (BuildContext context,
                                                         StateSetter setState) {
@@ -405,15 +402,15 @@ class _DataMhsSelesaiTile extends State<DataMhsSelesaiTile> {
                                               context: context,
                                               builder: (BuildContext context) {
                                                 return AlertDialog(
-                                                  title: Text('Perubahan Berhasil'),
-                                                  content: Text('Status berhasil diubah.'),
+                                                  title: const Text('Perubahan Berhasil'),
+                                                  content: const Text('Status berhasil diubah.'),
                                                   actions: <Widget>[
                                                     TextButton(
                                                       onPressed: () {
                                                         Navigator.of(context).pop();
                                                         _refreshData();
                                                       },
-                                                      child: Text('Tutup'),
+                                                      child: const Text('Tutup'),
                                                     ),
                                                   ],
                                                 );

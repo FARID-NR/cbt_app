@@ -22,10 +22,10 @@ class LoginRemoteDatasource {
         final loginResponseModel = LoginResponseModel.fromJson(response.body);
         return Right(loginResponseModel);
       } catch (e) {
-        return Left('Username atau Password salah');
+        return const Left('Username atau Password salah');
       }
     } else {
-      return Left('Server Error');
+      return const Left('Server Error');
     }
   }
 
@@ -41,9 +41,9 @@ class LoginRemoteDatasource {
         headers: headers);
     // debugPrint(response.statusCode.toString());
     if (response.statusCode == 200) {
-      return Right('Logout Successfully');
+      return const Right('Logout Successfully');
     } else {
-      return Left('Server Error');
+      return const Left('Server Error');
     }
   }
 }

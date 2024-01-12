@@ -29,6 +29,9 @@ class MainButton extends StatelessWidget {
           onTap: enabled == false ? null : onTap,
           child: Ink(
             width: double.maxFinite,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(kButtonCornerRadius),
+                color: ColorName.primary),
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: child ??
@@ -41,9 +44,6 @@ class MainButton extends StatelessWidget {
                     ),
                   ),
             ),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(kButtonCornerRadius),
-                color: ColorName.primary),
           ),
         ),
       ),

@@ -1,18 +1,8 @@
-import 'dart:convert';
-import 'dart:io';
 
 import 'package:cbt_app/bloc/dapat_ujian/dapat_ujian_bloc.dart';
-import 'package:cbt_app/bloc/remedial/remedial_bloc.dart';
-import 'package:cbt_app/common/global_variables.dart';
-import 'package:cbt_app/data/datasource/dapat-ujian/dapat_ujian_local_datasource.dart';
-import 'package:cbt_app/data/models/response/get_pengajuan_response_model.dart';
 import 'package:cbt_app/presentation/base_widget/pdf_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
-import 'package:http/http.dart' as http;
 
 import '../../../bloc/pengajuan/pengajuan_bloc.dart';
 import '../../../common/constants/colors.dart';
@@ -36,25 +26,25 @@ class _DataMhsUjianState extends State<DataMhsUjianTile> {
   bool isClicked = false;
   bool? dapatUjian;
 
-  void _showSuccessDialog() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Perubahan Berhasil'),
-          content: Text('Status berhasil diubah.'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Tutup'),
-            ),
-          ],
-        );
-      },
-    );
-  }
+  // void _showSuccessDialog() {
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         title: Text('Perubahan Berhasil'),
+  //         content: Text('Status berhasil diubah.'),
+  //         actions: <Widget>[
+  //           TextButton(
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //             },
+  //             child: Text('Tutup'),
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 
   Map<String, bool> clickedStatus = {}; // Map untuk menyimpan status isClicked
 
@@ -72,7 +62,7 @@ class _DataMhsUjianState extends State<DataMhsUjianTile> {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () {
               // Untuk kembali ke halaman sebelumnya
               Navigator.pop(context);
@@ -140,21 +130,6 @@ class _DataMhsUjianState extends State<DataMhsUjianTile> {
                     dapatUjian =
                         data.data.mahasiswa[index].penguji.penguji3.dapatUjian;
                   }
-
-                  // print('ini adalah dosen 1 : $dosenId1');
-                  // print('ini adalah user    : ${widget.userId}');
-                  // print('ini adalah dosen 2 : $dosenId1');
-                  // print('ini adalah user    : ${widget.userId}');
-                  // print('ini adalah dosen 3 : $dosenId1');
-                  // print('ini adalah user    : ${widget.userId}');
-                  // print('ini adalah matkulId : $matkulId1');
-                  // print('ini adalah selectedUserId : ${widget.selectedUserId}');
-                  // print('ini adalah matkulId : $matkulId2');
-                  // print('ini adalah selectedUserId : ${widget.selectedUserId}');
-                  // print('ini adalah matkulId : $matkulId3');
-                  // print('ini adalah selectedUserId : ${widget.selectedUserId}');
-
-                  // print('ini adalah dapatUjian : $dapatUjian');
 
                   return IntrinsicHeight(
                     child: Row(
@@ -276,7 +251,7 @@ class _DataMhsUjianState extends State<DataMhsUjianTile> {
                                       },
                                       style: TextButton.styleFrom(
                                           backgroundColor: Colors.greenAccent),
-                                      child: Text(
+                                      child: const Text(
                                         'Dapat Ujian',
                                         style: TextStyle(color: Colors.black),
                                       ),
@@ -332,7 +307,7 @@ class _DataMhsUjianState extends State<DataMhsUjianTile> {
                                       },
                                       style: TextButton.styleFrom(
                                           backgroundColor: Colors.red),
-                                      child: Text(
+                                      child: const Text(
                                         'Tidak Dapat Ujian',
                                         style: TextStyle(color: Colors.white),
                                       ),

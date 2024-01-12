@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:cbt_app/data/models/request/penilaian_request_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +16,7 @@ class PenilaianRemoteDatasource {
       'Authorization': 'Bearer ${await LoginLocalDatasource().getToken()}'
     };
 
-    final request = await http.MultipartRequest(
+    final request = http.MultipartRequest(
         'GET',
         Uri.parse('${GlobalVariables.baseUrl}/api/dosen/penilaian/$userId'),
     );

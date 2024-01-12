@@ -20,7 +20,7 @@ class GetsoalRemoteDatasource {
     if (response.statusCode == 200) {
       return Right(GetSoalResponseModel.fromJson(response.body));
     } else {
-      return const Left('Server error');
+      return const Left('Gagal');
     }
   }
 }

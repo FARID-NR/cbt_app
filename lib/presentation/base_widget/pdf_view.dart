@@ -1,16 +1,13 @@
 import 'dart:io';
 
 import 'package:cbt_app/bloc/pengajuan/pengajuan_bloc.dart';
-import 'package:cbt_app/presentation/dosen/widget/data_mhs_ujian.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
-import '../../data/models/response/get_pengajuan_response_model.dart';
 
 class PdfViewerScreen extends StatefulWidget {
   final String? url;
@@ -35,19 +32,21 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
     await file.writeAsBytes(response.bodyBytes);
     return file.path;
   }
+
+  
   
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('PDF Viewer'),
+          title: const Text('SK Kompren'),
         ),
         body: BlocBuilder<PengajuanBloc, PengajuanState>(
           builder: (context, state) {
             return state.maybeWhen(
               orElse: () {
-                return Center(
+                return const Center(
                   child: Text('PDF Belum Diunggah'),
                 );
               },
@@ -75,6 +74,7 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
                         return Container(
                           child: PDFView(
                             filePath: snapshot.data,
+                            
                           ),
                         );
                       }

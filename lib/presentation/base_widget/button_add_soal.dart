@@ -114,10 +114,10 @@ class _ButtonAddSoalState extends State<ButtonAddSoal> {
                                         8)), // Membuat garis border melingkar
                               ),
                               padding: const EdgeInsets.all(8),
-                              child: Center(
+                              child: const Center(
                                 child: Text(
                                   'tidak ada gambar',
-                                  style: const TextStyle(color: Colors.black),
+                                  style: TextStyle(color: Colors.black),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),

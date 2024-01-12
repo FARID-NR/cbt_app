@@ -1,10 +1,7 @@
-import 'package:cbt_app/bloc/add_soal/add_soal_bloc.dart';
 import 'package:cbt_app/bloc/get_edit_jawaban/get_edit_jawaban_bloc.dart';
 import 'package:cbt_app/common/utils/dimensions.dart';
 import 'package:cbt_app/common/utils/images.dart';
 import 'package:cbt_app/common/widgets/animated_floating_button.dart';
-import 'package:cbt_app/data/datasource/add_soal/add_soal_remote_datasource.dart';
-import 'package:cbt_app/data/models/response/jawaban_response_model.dart';
 import 'package:cbt_app/presentation/base_widget/button_add_soal.dart';
 import 'package:cbt_app/presentation/base_widget/button_atur_jadwal.dart';
 import 'package:cbt_app/presentation/base_widget/button_edit.dart';
@@ -14,7 +11,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../bloc/get-soal/getsoal_bloc.dart';
 import '../../../bloc/hapus_soal/hapus_soal_bloc.dart';
-import '../../../bloc/jawaban/jawaban_bloc.dart';
 import '../../../common/constants/colors.dart';
 
 class CourseScheduleTile extends StatefulWidget {
@@ -28,7 +24,7 @@ class CourseScheduleTile extends StatefulWidget {
 
 class _CourseScheduleTileState extends State<CourseScheduleTile> {
   ScrollController scrollController = ScrollController();
-  String _selectedDifficulty = 'Mudah'; // Nilai default
+  // String _selectedDifficulty = 'Mudah'; // Nilai default
 
   String message = "";
   bool activated = false;
@@ -45,6 +41,7 @@ class _CourseScheduleTileState extends State<CourseScheduleTile> {
         .read<GetsoalBloc>()
         .add(GetsoalEvent.getSoal(userId: widget.selectedUserId));
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +71,7 @@ class _CourseScheduleTileState extends State<CourseScheduleTile> {
                       );
                     }, loaded: (data) {
                       // GetsoalLocalDatasource().getIdEndpoint();
-                      final selectedUserId = data.data.id;
+                      // final selectedUserId = data.data.id;
                       return Stack(
                         children: [
                           Column(
@@ -87,7 +84,7 @@ class _CourseScheduleTileState extends State<CourseScheduleTile> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      '${data.data.nama}',
+                                      data.data.nama,
                                       style: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600,
@@ -336,13 +333,13 @@ class _CourseScheduleTileState extends State<CourseScheduleTile> {
                                                                     builder: (BuildContext context) {
                                                                       return AlertDialog(
                                                                         title: const Text('Hapus Soal'),
-                                                                        content: Text('Hapus Successfully'),
+                                                                        content: const Text('Hapus Successfully'),
                                                                         actions: [
                                                                           TextButton(
                                                                             onPressed: () {
                                                                               context.read<HapusSoalBloc>().add(HapusSoalEvent.hapus(userId:soalId)); 
                                                                               Navigator.of(context).pop();
-                                                                            }, child: Text('Hapus'),
+                                                                            }, child: const Text('Hapus'),
                                                                           )
                                                                         ]
                                                                       );
@@ -379,7 +376,7 @@ class _CourseScheduleTileState extends State<CourseScheduleTile> {
                                       ),
                                     );
                                   },
-                                  padding: EdgeInsets.only(bottom: 65),
+                                  padding: const EdgeInsets.only(bottom: 65),
                                 ),
                               ),
                             ],

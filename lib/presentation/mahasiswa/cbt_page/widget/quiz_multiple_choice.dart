@@ -3,6 +3,7 @@ import 'package:cbt_app/bloc/submit_answer/submit_answer_bloc.dart';
 import 'package:cbt_app/common/constants/colors.dart';
 import 'package:cbt_app/presentation/mahasiswa/cbt_page/pages/quiz_finish_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kiosk_mode/kiosk_mode.dart';
 
@@ -41,7 +42,7 @@ class _QuizMultipleChoiceState extends State<QuizMultipleChoice> {
           final soalId = data[index].id;
           final soalIds = data[index].id;
           final image = data[index].gambarSoal;
-          final imageN = '';
+          // final imageN = '';
           final imageA = data[index].jawaban[0].gambarJawaban;
           final imageB = data[index].jawaban[1].gambarJawaban;
           final imageC = data[index].jawaban[2].gambarJawaban;
@@ -71,7 +72,7 @@ class _QuizMultipleChoiceState extends State<QuizMultipleChoice> {
                     Text(
                       cleanText(data[index].soal),
                       textAlign: TextAlign.justify,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,
                       ),
@@ -242,6 +243,8 @@ class _QuizMultipleChoiceState extends State<QuizMultipleChoice> {
                                       onPressed: () async {
                                         // submitAnswer();
                                         // await stopKioskMode();
+                                        SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+                                        stopKioskMode();
 
                                         final Map<String, String> formattedAnswers = Map.fromEntries(
                                           selectedAnswerIds.entries.map(

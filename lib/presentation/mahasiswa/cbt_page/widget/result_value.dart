@@ -8,14 +8,14 @@ class ResultValue extends StatelessWidget {
   final String label;
   final Color color;
 
-  ResultValue.correct(
+  const ResultValue.correct(
     this.value, {
     super.key,
     this.label = 'Benar',
     this.color = ColorName.green,
   });
 
-  ResultValue.wrong(
+  const ResultValue.wrong(
     this.value, {
     super.key,
     this.label = 'Salah',

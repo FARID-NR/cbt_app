@@ -34,7 +34,7 @@ class _ButtonViewScoreState extends State<ButtonViewScore> {
       body: BlocBuilder<LihatNilaiBloc, LihatNilaiState>(
         builder: (context, state) {
           return state.maybeWhen(orElse: () {
-            return Container(child: Text('data tidak ada'),);
+            return Container(child: const Text('data tidak ada'),);
           }, loading: () {
             return const Center(
               child: CircularProgressIndicator(color: ColorName.black,),
@@ -69,9 +69,9 @@ class _ButtonViewScoreState extends State<ButtonViewScore> {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        Text(
+                        const Text(
                           'Lihat Nilai',
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: ColorName.primary),
@@ -80,7 +80,7 @@ class _ButtonViewScoreState extends State<ButtonViewScore> {
                         const Text('Nilai Akhir'),
                         Container(
                           width: double.maxFinite,
-                          padding: EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(16.0),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
                             border: Border.all(
@@ -90,16 +90,16 @@ class _ButtonViewScoreState extends State<ButtonViewScore> {
                           ),
                           child: Text(
                             '${data.data.nilaiAsli ?? '0'}',
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.grey,
                             ),
                           ),
                         ),
-                        SizedBox(height: 10),
-                        Text('Nilai Remedial'),
+                        const SizedBox(height: 10),
+                        const Text('Nilai Remedial'),
                         Container(
                           width: double.maxFinite,
-                          padding: EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(16.0),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
                             border: Border.all(
@@ -109,16 +109,16 @@ class _ButtonViewScoreState extends State<ButtonViewScore> {
                           ),
                           child: Text(
                             '${data.data.nilaiRemidial ?? '0'}',
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.grey,
                             ),
                           ),
                         ),
-                        SizedBox(height: 10),
-                        Text('Jumlah Benar (Pengerjaan Terakhir)'),
+                        const SizedBox(height: 10),
+                        const Text('Jumlah Benar (Pengerjaan Terakhir)'),
                         Container(
                           width: double.maxFinite,
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
                             border: Border.all(
@@ -128,16 +128,16 @@ class _ButtonViewScoreState extends State<ButtonViewScore> {
                           ),
                           child: Text(
                             '${data.data.jumlahBenar ?? '0'}',
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.grey,
                             ),
                           ),
                         ),
-                        SizedBox(height: 10),
-                        Text('Jumlah Salah (Pengerjaan Terakhir)'),
+                        const SizedBox(height: 10),
+                        const Text('Jumlah Salah (Pengerjaan Terakhir)'),
                         Container(
                           width: double.maxFinite,
-                          padding: EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(16.0),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
                             border: Border.all(
@@ -147,14 +147,14 @@ class _ButtonViewScoreState extends State<ButtonViewScore> {
                           ),
                           child: Text(
                             '${data.data.jumlahSalah ?? '0'}',
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.grey,
                             ),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Padding(
-                          padding: EdgeInsets.only(bottom: 5),
+                          padding: const EdgeInsets.only(bottom: 5),
                           child: Align(
                             alignment: Alignment.bottomRight,
                             child: TextButton(
@@ -162,14 +162,14 @@ class _ButtonViewScoreState extends State<ButtonViewScore> {
                                 // Aksi yang dijalankan saat tombol ditekan
                                 Navigator.pop(context);
                               },
-                              child: Text(
+                              style: TextButton.styleFrom(
+                                  backgroundColor: ColorName.primary),
+                              child: const Text(
                                 'Close',
                                 style: TextStyle(
                                   color: Colors.white, // Warna teks tombol
                                 ),
                               ),
-                              style: TextButton.styleFrom(
-                                  backgroundColor: ColorName.primary),
                             ),
                           ),
                         )

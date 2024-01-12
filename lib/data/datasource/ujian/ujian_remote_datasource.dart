@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:cbt_app/data/models/response/submit_response_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
@@ -16,7 +15,7 @@ class UjianRemoteDatasource {
       'Authorization': 'Bearer ${await LoginLocalDatasource().getToken()}',
     };
 
-    final request = await http.Request(
+    final request = http.Request(
       'GET',
       Uri.parse('${GlobalVariables.baseUrl}/api/mahasiswa/soal/$matkulId'),
     );
@@ -33,7 +32,7 @@ class UjianRemoteDatasource {
       return Right(UjianResponseModel.fromJson(responseString));
     }
     else {
-      print(response.reasonPhrase);
+      // print(response.reasonPhrase);
       return const Left('Server Error');
     }
   }
@@ -43,7 +42,7 @@ class UjianRemoteDatasource {
       'Authorization': 'Bearer ${await LoginLocalDatasource().getToken()}',
     };
 
-    final request = await http.Request(
+    final request = http.Request(
       'POST',
       Uri.parse('${GlobalVariables.baseUrl}/api/mahasiswa/soal/$matkulId'),
     );
@@ -60,7 +59,7 @@ class UjianRemoteDatasource {
       return Right(UjianResponseModel.fromJson(responseString));
     }
     else {
-      print(response.reasonPhrase);
+      // print(response.reasonPhrase);
       return const Left('Server Error');
     }
 

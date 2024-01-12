@@ -33,7 +33,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: titleWidget == null
                     ? Center(
                         child: Text(title,
-                            style: TextStyle(color: ColorName.primary)))
+                            style: const TextStyle(color: ColorName.primary)))
                     : Center(child: titleWidget!),
               ),
               Row(
@@ -50,11 +50,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       offset: const Offset(10,
                           0), // transform to allign icons with body content =>  - CircularButton.padding
                       child: CircularButton(
-                        child: Icon(
+                        onTap: onMenuActionTap ?? () {},
+                        child: const Icon(
                           Icons.menu,
                           color: ColorName.primary,
                         ),
-                        onTap: onMenuActionTap ?? () {},
                       ),
                     )
                 ],

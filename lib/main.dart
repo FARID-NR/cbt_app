@@ -19,7 +19,6 @@ import 'package:cbt_app/bloc/submit_answer/submit_answer_bloc.dart';
 import 'package:cbt_app/bloc/timer/timer_bloc.dart';
 import 'package:cbt_app/data/datasource/login/login_local_datasource.dart';
 import 'package:cbt_app/data/datasource/ujian/ujian_remote_datasource.dart';
-import 'package:cbt_app/data/models/response/jawaban_response_model.dart';
 import 'package:cbt_app/presentation/auth/splash.dart';
 import 'package:cbt_app/presentation/dosen/pages/dosen.dart';
 import 'package:cbt_app/presentation/mahasiswa/mahasiswa.dart';
@@ -46,6 +45,27 @@ Future<void> main() async {
     // Jika izin belum diberikan, minta izin
     await Permission.storage.request();
   }
+
+  // Menampilkan bilah navigasi secara sementara
+  // Future<void> showNavigationBar() async {
+  //   SystemChrome.setSystemUIOverlayStyle(
+  //     SystemUiOverlayStyle(
+  //       statusBarColor: Colors.black,
+  //       statusBarIconBrightness: Brightness.dark,
+  //       statusBarBrightness: Brightness.dark,
+  //       systemNavigationBarColor: Colors.black
+  //     ),
+  //   );
+  //   await Future.delayed(Duration(seconds: 5));
+  //   SystemChrome.setSystemUIOverlayStyle(
+  //     SystemUiOverlayStyle(
+  //       statusBarColor: Colors.transparent,
+  //       statusBarIconBrightness: Brightness.light,
+  //       systemNavigationBarColor: Colors.transparent,
+  //       systemNavigationBarIconBrightness: Brightness.light,
+  //     ),
+  //   );
+  // }
 
   // Menjalankan aplikasi Flutter setelah izin diberikan
   runApp(const MyApp());
@@ -94,7 +114,7 @@ class MyApp extends StatelessWidget {
             future: LoginLocalDatasource().isLogin(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator(); // Tampilkan loading jika masih menunggu data
+                return const CircularProgressIndicator(); // Tampilkan loading jika masih menunggu data
               } else if (snapshot.hasData && snapshot.data!) {
                 return FutureBuilder<String>(
                   future: LoginLocalDatasource()
@@ -102,7 +122,7 @@ class MyApp extends StatelessWidget {
                   builder: (context, roleSnapshot) {
                     if (roleSnapshot.connectionState ==
                         ConnectionState.waiting) {
-                      return CircularProgressIndicator(); // Tampilkan loading jika masih menunggu data roles
+                      return const CircularProgressIndicator(); // Tampilkan loading jika masih menunggu data roles
                     } else {
                       String userRole = roleSnapshot.data ??
                           ''; // Pastikan untuk mengambil nilai dari snapshot.data

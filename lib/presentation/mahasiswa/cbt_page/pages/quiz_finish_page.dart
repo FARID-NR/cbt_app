@@ -9,7 +9,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../common/components/custom_scaffold.dart';
 import '../../../../common/constants/assets.gen.dart';
 import '../../../../common/widgets/buttons.dart';
-import '../models/quiz_model.dart';
 import '../widget/countdown_timer.dart';
 import 'quiz_result_page.dart';
 
@@ -30,7 +29,7 @@ class _QuizFinishPageState extends State<QuizFinishPage> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      appBarTitle: Text('Ujian'),
+      appBarTitle: const Text('Ujian'),
       actions: [
         Assets.icons.clock.image(width: 24.0),
         const SizedBox(width: 8.0),
